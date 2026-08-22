@@ -1,3 +1,5 @@
+-- solo tome un ejemplo para poder crear esta carpeta;
+
 -- Se ejecuta UNA SOLA VEZ en tu vida:
 create schema if not exists a_villacorta;
 
