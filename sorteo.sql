@@ -1,11 +1,6 @@
 -- =====================================================================
 -- SORTEO DE EQUIPOS EN VIVO  ·  Clase 03  ·  PIAD-201
 -- ---------------------------------------------------------------------
--- Una sola sentencia. No crea nada, no depende del esquema activo.
--- Copia, pega y ejecuta con Ctrl + Enter.  UNA SOLA VEZ.
---
--- Si falto alguien: pon dos guiones al inicio de su linea antes
--- de ejecutar, y listo.
 -- =====================================================================
 
 SELECT NTILE(6) OVER (ORDER BY random()) AS equipo,
