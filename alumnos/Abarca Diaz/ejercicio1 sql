@@ -1,0 +1,33 @@
+CREATE SCHEMA IF NOT EXISTS a_Abarca;
+SET search_path TO a_Abarca;
+
+CREATE TABLE cliente (
+    id_cliente  SERIAL      PRIMARY KEY,
+    nombre      VARCHAR(50) NOT NULL,
+    apellido    VARCHAR(50) NOT NULL,
+    correo      VARCHAR(80) UNIQUE,
+    ciudad      VARCHAR(40)
+);
+
+CREATE TABLE producto (
+    id_producto SERIAL        PRIMARY KEY,
+    nombre      VARCHAR(80)   NOT NULL,
+    categoria   VARCHAR(40),
+    precio      NUMERIC(10,2) NOT NULL,
+    stock       INT DEFAULT 0
+);
+
+CREATE TABLE pedido (
+    id_pedido  SERIAL PRIMARY KEY,
+    id_cliente INT NOT NULL REFERENCES cliente(id_cliente),
+    fecha      DATE DEFAULT CURRENT_DATE,
+    estado     VARCHAR(20) DEFAULT 'PENDIENTE'
+);
+
+CREATE TABLE detalle_pedido (
+    id_detalle SERIAL PRIMARY KEY,
+    id_pedido INT NOT NULL REFERENCES pedido(id_pedido),
+    id_producto INT NOT NULL REFERENCES producto(id_producto),
+    cantidad INT NOT NULL,
+    precio_unit NUMERIC(10,2) NOT NULL
+);
