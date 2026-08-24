@@ -2,9 +2,6 @@
 -- TEMA DE BASE DE DATOS: HARRY POTTER
 -- =====================================================
 
-CREATE DATABASE IF NOT EXISTS harry_potter_db;
-USE harry_potter_db;
-
 -- -----------------------------------------------------
 -- Tabla: Casas
 -- -----------------------------------------------------
