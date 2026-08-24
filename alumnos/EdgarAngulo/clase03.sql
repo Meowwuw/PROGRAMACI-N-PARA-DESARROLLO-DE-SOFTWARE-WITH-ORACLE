@@ -199,7 +199,41 @@ WHERE id_cliente IN (SELECT id_cliente FROM pedido);
 
 -- Escribe tus respuestas aqui:
 
+--1)--
+SELECT 
+    p.id_producto,
+    p.nombre,
+    SUM(dp.cantidad) AS unidades_vendidas,
+    SUM(dp.cantidad * dp.precio_unit) AS total_facturado
+FROM producto p
+JOIN detalle_pedido dp ON dp.id_producto = p.id_producto
+GROUP BY p.id_producto, p.nombre
+ORDER BY unidades_vendidas DESC
+LIMIT 3;
 
+--2)--
+WITH gasto_cliente AS (
+    SELECT 
+        c.id_cliente,
+        c.nombre,
+        c.apellido,
+        SUM(dp.cantidad * dp.precio_unit) AS total_gastado
+    FROM cliente c
+    JOIN pedido pe ON pe.id_cliente = c.id_cliente
+    JOIN detalle_pedido dp ON dp.id_pedido = pe.id_pedido
+    GROUP BY c.id_cliente, c.nombre, c.apellido
+)
+SELECT *
+FROM gasto_cliente
+WHERE total_gastado > (SELECT AVG(total_gastado) FROM gasto_cliente)
+ORDER BY total_gastado DESC;
+
+--3)--
+SELECT p.categoria
+FROM producto p
+LEFT JOIN detalle_pedido dp ON dp.id_producto = p.id_producto
+GROUP BY p.categoria
+HAVING COALESCE(SUM(dp.cantidad), 0) = 0;
 
 -- ---------------------------------------------------------------------
 -- ANEXO · el sorteo de equipos (lo ejecuta la instructora)
