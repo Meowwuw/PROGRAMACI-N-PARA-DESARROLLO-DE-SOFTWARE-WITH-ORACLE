@@ -166,11 +166,11 @@ VALUES
 INSERT INTO pago (id_reserva, total)
 SELECT
     r.id_reserva,
-    SUM(r.horas_alquilado * h.precio) AS total
+    SUM(h.precio) AS total
 FROM reserva r
 INNER JOIN horario h
-    ON r.id_horario = h.id
-GROUP BY r.id;
+    ON r.id_horario = h.id_horario
+GROUP BY r.id_reserva;
 
 
 -- ============================================================
@@ -183,9 +183,8 @@ SELECT
     ca.numero_cancha AS numero_cancha,
     r.fecha,
     h.hora,
-    r.horas_alquilado,
     h.precio AS precio_por_hora,
-    SUM(r.horas_alquilado * h.precio) AS total
+    SUM(h.precio) AS total
 FROM reserva r
 INNER JOIN cliente c
     ON r.id_cliente = c.id_cliente
@@ -200,7 +199,6 @@ GROUP BY
     ca.numero_cancha,
     r.fecha,
     h.hora,
-    r.horas_alquilado,
     h.precio
 ORDER BY r.id_reserva;
 
