@@ -48,15 +48,15 @@ CREATE TABLE reserva (
     UNIQUE (id_cancha, fecha, id_horario),
 
     FOREIGN KEY (id_cliente)
-        REFERENCES cliente(id)
+        REFERENCES cliente(id_cliente)
         ON DELETE CASCADE,
 
     FOREIGN KEY (id_cancha)
-        REFERENCES cancha(id)
+        REFERENCES cancha(id_cancha)
         ON DELETE CASCADE,
 
     FOREIGN KEY (id_horario)
-        REFERENCES horario(id)
+        REFERENCES horario(id_horario)
         ON DELETE CASCADE
 );
 
@@ -71,7 +71,7 @@ CREATE TABLE pago (
     total DECIMAL(10,2) NOT NULL,
 
     FOREIGN KEY (id_reserva)
-        REFERENCES reserva(id)
+        REFERENCES reserva(id_reserva)
         ON DELETE CASCADE
 );
 
@@ -256,4 +256,3 @@ INNER JOIN pago p
     ON r.id_reserva = p.id_reserva
 INNER JOIN cliente c
     ON r.id_cliente = c.id_cliente;
-
