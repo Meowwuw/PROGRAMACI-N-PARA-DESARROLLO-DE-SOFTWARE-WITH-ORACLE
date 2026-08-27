@@ -6,7 +6,8 @@ CREATE TABLE cliente (
     id SERIAL PRIMARY KEY,
     telefono VARCHAR(20) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL
+    apellido VARCHAR(100) NOT null,
+    dni INT not null
 );
 
 
@@ -42,6 +43,9 @@ CREATE TABLE reserva (
     id_horario INT NOT NULL,
     horas_alquilado INT NOT NULL,
     fecha DATE NOT NULL,
+
+    CONSTRAINT reserva_unica
+    UNIQUE (id_cancha, fecha, id_horario),
 
     FOREIGN KEY (id_cliente)
         REFERENCES cliente(id)
