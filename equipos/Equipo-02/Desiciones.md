@@ -47,6 +47,14 @@ El script sigue un flujo de ejecución estructurado para garantizar el control y
 * `TIMESTAMP` y `DATE`: Utilizados para `fecha_con` (requiere hora exacta) y `fecha_ini`/`fecha_fin` (solo requieren día/mes/año), optimizando el almacenamiento temporal.
 
 ---
+### Justificación del Diseño y Modelo Relacional
+
+La elección de esta estructura de base de datos no es casual; responde directamente a las necesidades operativas de una clínica veterinaria y a los estándares de ingeniería de software para el modelado de datos:
+
+* **Trazabilidad Médica y Legal:** Separar la información en entidades independientes (`apoderado`, `mascota`, `veterinario`, `consulta`, `tratamiento`) permite reconstruir el historial exacto de cualquier paciente. Si se presenta un reclamo o se requiere auditar un caso, se puede identificar qué veterinario recetó determinado tratamiento, en qué fecha exacta y a través de qué consulta.
+* **Escalabilidad y Flexibilidad Operativa:** El modelo permite que la veterinaria crezca sin cambiar la estructura. Soporta que un cliente registre 1, 2 o más mascotas de forma simultánea, que distintos veterinarios atiendan al mismo paciente en diferentes fechas, o que una sola consulta derive en múltiples tratamientos continuos.
+* **Integridad de Datos e Imposibilidad de Error Humano:** Al delegar la validación al motor de la base de datos mediante restricciones (`NOT NULL`, `DEFAULT NOW()`, `REFERENCES`), el sistema rechaza automáticamente datos incompletos o referencias inexistentes. Por ejemplo, es imposible crear una consulta médica huérfana asignada a un veterinario o apoderado que no exista en el sistema.
+* **Eficiencia en Consultas y Reportes:** Al aplicar correctamente las formas normales y elegir los tipos de datos exactos (`NUMERIC` para el peso, `TIMESTAMP` para la fecha), la base de datos procesa agregaciones y reportes analíticos a gran velocidad. Es posible calcular promedios de peso por raza, contabilizar las consultas atendidas por cada profesional o generar reportes de vacunación sin sobrecargar el servidor.
 
 ### Cumplimiento de las Formas Normales (1FN, 2FN y 3FN)
 
