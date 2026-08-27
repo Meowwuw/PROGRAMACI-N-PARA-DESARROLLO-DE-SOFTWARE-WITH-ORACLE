@@ -1,122 +1,103 @@
 
-
--- 1. Configuración inicial del esquema
-CREATE SCHEMA IF NOT EXISTS reservacion_cancha;
-SET search_path TO reservacion_cancha;
+CREATE SCHEMA IF NOT EXISTS alquiler;
+SET search_path TO alquiler;
 SELECT current_schema();
 
--- 2. Tabla CLIENTE
+-- ==========================================================
+-- SISTEMA DE ALQUILER DE CANCHAS - SCRIPT SQL (3FN)
+-- Creado para el proyecto del módulo
+-- ==========================================================
+-- 1. Tabla CLIENTE
 CREATE TABLE cliente (
     id_cliente SERIAL PRIMARY KEY,
+    dni VARCHAR(8) UNIQUE NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    dni_ruc VARCHAR(20) UNIQUE NOT NULL,
-    telefono VARCHAR(15),
-    email VARCHAR(100)
+    telefono VARCHAR(15) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL
 );
 
--- 3. Tabla CANCHA
+-- 2. Tabla CANCHA
 CREATE TABLE cancha (
     id_cancha SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    tipo_grama VARCHAR(50) NOT NULL, -- Ej: Sintético, Losa, Césped
-    precio_por_hora DECIMAL(10, 2) NOT NULL,
-    estado VARCHAR(20) DEFAULT 'Disponible' -- Disponible, Mantenimiento
+    tipo_grass VARCHAR(50) NOT NULL,
+    precio_hora DECIMAL(8,2) NOT NULL
 );
 
--- 4. Tabla HORARIO
+-- 3. Tabla HORARIO
 CREATE TABLE horario (
     id_horario SERIAL PRIMARY KEY,
     hora_inicio TIME NOT NULL,
     hora_fin TIME NOT NULL
 );
 
--- 5. Tabla RESERVA (Relación N:M entre Cliente, Cancha y Horario)
+-- 4. Tabla RESERVA
 CREATE TABLE reserva (
     id_reserva SERIAL PRIMARY KEY,
+    fecha_reserva DATE NOT NULL,
+    estado VARCHAR(20) NOT NULL DEFAULT 'Confirmado',
     id_cliente INT NOT NULL,
+    CONSTRAINT fk_reserva_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+);
+
+-- 5. Tabla DETALLE_RESERVA (Tabla Intermedia N:M entre reserva, cancha y horario)
+CREATE TABLE detalle_reserva (
+    id_detalle SERIAL PRIMARY KEY,
+    id_reserva INT NOT NULL,
     id_cancha INT NOT NULL,
     id_horario INT NOT NULL,
-    fecha_reserva DATE NOT NULL,
-    estado_reserva VARCHAR(20) DEFAULT 'Confirmada', -- Pendiente, Confirmada, Cancelada
-    
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) ON DELETE CASCADE,
-    FOREIGN KEY (id_cancha) REFERENCES cancha(id_cancha) ON DELETE CASCADE,
-    FOREIGN KEY (id_horario) REFERENCES horario(id_horario) ON DELETE CASCADE
+    subtotal DECIMAL(8,2) NOT NULL,
+    CONSTRAINT fk_detalle_reserva FOREIGN KEY (id_reserva) REFERENCES reserva(id_reserva),
+    CONSTRAINT fk_detalle_cancha FOREIGN KEY (id_cancha) REFERENCES cancha(id_cancha),
+    CONSTRAINT fk_detalle_horario FOREIGN KEY (id_horario) REFERENCES horario(id_horario)
 );
 
--- 6. Tabla PAGO
+-- 6. Tabla PAGO (Relación 1:1 o 1:N con Reserva)
 CREATE TABLE pago (
     id_pago SERIAL PRIMARY KEY,
-    id_reserva INT UNIQUE NOT NULL,
-    monto DECIMAL(10, 2) NOT NULL,
-    metodo_pago VARCHAR(50) NOT NULL, -- Yape, Plin, Transferencia, Efectivo
+    id_reserva INT NOT NULL,
+    monto_total DECIMAL(8,2) NOT NULL,
     fecha_pago TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (id_reserva) REFERENCES reserva(id_reserva) ON DELETE CASCADE
+    metodo_pago VARCHAR(30) NOT NULL,
+    CONSTRAINT fk_pago_reserva FOREIGN KEY (id_reserva) REFERENCES reserva(id_reserva)
 );
 
--- 7. Tabla COMPROBANTE DE PAGO
-CREATE TABLE comprobante_pago (
-    id_comprobante SERIAL PRIMARY KEY,
-    id_pago INT UNIQUE NOT NULL,
-    tipo_comprobante VARCHAR(20) NOT NULL, -- Boleta, Factura
-    numero_serie VARCHAR(20) NOT NULL,
-    fecha_emision TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (id_pago) REFERENCES pago(id_pago) ON DELETE CASCADE
-);
+-- ==========================================================
+-- INSERCIÓN DE DATOS DE PRUEBA (Mínimo 3 registros por tabla)
+-- ==========================================================
 
+-- Clientes
+INSERT INTO cliente (dni, nombre, telefono, correo) VALUES 
+('72345678', 'Carlos Mendoza', '987654321', 'carlos.mendoza@correo.com'),
+('45678912', 'Lucía Pérez', '912345678', 'lucia.perez@correo.com'),
+('78912345', 'Jorge Ramírez', '955443322', 'jorge.ramirez@correo.com');
 
+-- Canchas
+INSERT INTO cancha (nombre, tipo_grass, precio_hora) VALUES 
+('Cancha Sintética 1 - El Gol', 'Sintético Premium', 80.00),
+('Cancha Sintética 2 - La Bombonera', 'Sintético Estándar', 60.00),
+('Cancha de Grass Natural - Maracaná', 'Natural', 100.00);
 
-
-
-
-SET search_path TO create reservacion_cancha;
-
--- 1. Insertar CLIENTES
-INSERT INTO cliente (nombre, apellido, dni_ruc, telefono, email) VALUES
-('Juan', 'Pérez', '72839401', '987654321', 'juan.perez@email.com'),
-('María', 'Gómez', '10483920191', '912345678', 'maria.gomez@empresa.pe'),
-('Carlos', 'López', '71920384', '955443322', 'carlos.lopez@email.com');
-
--- 2. Insertar CANCHAS
-INSERT INTO cancha (nombre, tipo_grama, precio_por_hora, estado) VALUES
-('Cancha 1 - La Bombonera', 'Sintético', 60.00, 'Disponible'),
-('Cancha 2 - Maracaná', 'Sintético', 70.00, 'Disponible'),
-('Cancha 3 - Losa Central', 'Losa', 40.00, 'Disponible');
-
--- 3. Insertar HORARIOS
-INSERT INTO horario (hora_inicio, hora_fin) VALUES
+-- Horarios
+INSERT INTO horario (hora_inicio, hora_fin) VALUES 
 ('18:00:00', '19:00:00'),
 ('19:00:00', '20:00:00'),
-('20:00:00', '21:00:00'),
-('21:00:00', '22:00:00');
+('20:00:00', '21:00:00');
 
--- 4. Insertar RESERVAS
--- (id_cliente, id_cancha, id_horario, fecha_reserva, estado_reserva)
-INSERT INTO reserva (id_cliente, id_cancha, id_horario, fecha_reserva, estado_reserva) VALUES
-(1, 1, 1, '2026-09-01', 'Confirmada'),
-(2, 2, 2, '2026-09-01', 'Confirmada'),
-(3, 1, 3, '2026-09-02', 'Confirmada');
+-- Reservas
+INSERT INTO reserva (fecha_reserva, estado, id_cliente) VALUES 
+('2026-09-01', 'Confirmado', 1),
+('2026-09-02', 'Confirmado', 2),
+('2026-09-03', 'Pendiente', 3);
 
--- 5. Insertar PAGOS
--- (id_reserva, monto, metodo_pago)
-INSERT INTO pago (id_reserva, monto, metodo_pago) VALUES
-(1, 60.00, 'Yape'),
-(2, 70.00, 'Transferencia'),
-(3, 60.00, 'Efectivo');
+-- Detalle Reserva (Relación N:M)
+INSERT INTO detalle_reserva (id_reserva, id_cancha, id_horario, subtotal) VALUES 
+(1, 1, 1, 80.00),
+(2, 2, 2, 60.00),
+(3, 3, 3, 100.00);
 
--- 6. Insertar COMPROBANTES DE PAGO
--- (id_pago, tipo_comprobante, numero_serie)
-INSERT INTO comprobante_pago (id_pago, tipo_comprobante, numero_serie) VALUES
-(1, 'Boleta', 'B001-000001'),
-(2, 'Factura', 'F001-000001'),
-(3, 'Boleta', 'B001-000002');
-
-
-SELECT * FROM cliente;
-SELECT * FROM cancha;
-SELECT * FROM reserva;
-SELECT * FROM pago;
-SELECT * FROM comprobante_pago;
+-- Pagos
+INSERT INTO pago (id_reserva, monto_total, metodo_pago) VALUES 
+(1, 80.00, 'Yape'),
+(2, 60.00, 'Plin'),
+(3, 100.00, 'Efectivo');
