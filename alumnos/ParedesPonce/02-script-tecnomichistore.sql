@@ -1,5 +1,3 @@
--- create schema if not exists a_gonzales;
-SET search_path TO a_gonzales;
 -- =====================================================================
 -- CLASE 02  ·  TecnoMichiStore
 -- Programacion para Desarrollo de Software con Oracle - Modulo 01
@@ -62,6 +60,9 @@ CREATE TABLE detalle_pedido (
     cantidad     INT NOT NULL,
     precio_unit  NUMERIC(10,2) NOT NULL
 );
+
+
+-- ---------------------------------------------------------------------
 -- EJERCICIO 2 · INSERTAR DATOS DE PRUEBA
 -- Los textos van entre comillas SIMPLES. Los numeros van sin comillas.
 -- No escribimos los id: SERIAL los genera solo.
@@ -70,9 +71,7 @@ CREATE TABLE detalle_pedido (
 INSERT INTO cliente (nombre, apellido, correo, ciudad) VALUES
   ('Ana',  'Quispe',  'ana@correo.com',  'Huanuco'),
   ('Luis', 'Ramirez', 'luis@correo.com', 'Lima'),
-  ('Rosa', 'Tello',   'rosa@correo.com', 'Huanuco'),
-  ('jose', 'gonzales','joseluisgonzalesverde713@gmail.com','Pucallpa'),
-  ('laura','rios','laurarios456@gmail.com','Lima');
+  ('Rosa', 'Tello',   'rosa@correo.com', 'Huanuco');
 
 INSERT INTO producto (nombre, categoria, precio, stock) VALUES
   ('Laptop Ryzen 5',       'Computo',    2499.00,  8),
@@ -121,12 +120,7 @@ WHERE categoria = 'Computo' AND stock < 10;
 -- >>> TE TOCA A TI (2):
 -- a) Muestra los productos que cuestan mas de 500 soles.
 -- b) Muestra los clientes ordenados por apellido de la A a la Z.
-1. select nombre,precio
-   from PRODUCTO
-   where precio > 800;
-2. select  nombre,, apellido
-from cliente 
-order by Apellido asc;
+
 
 -- ---------------------------------------------------------------------
 -- EJERCICIO 4 · JOIN ENTRE CUATRO TABLAS
@@ -148,14 +142,8 @@ ORDER BY p.fecha DESC;
 -- >>> TE TOCA A TI (3):
 -- Modifica la consulta para que muestre solo los pedidos de los clientes
 -- de tu ciudad, y agrega el correo del cliente al resultado.
-select c.gonzales
-       p.fecha
-       pr.lavadora
-       d.cantidad
-       d.cantidad * d.precio_unit as total
-       from detalle_pedido d
-       join lavadora p on d.id_pedido  =p;
-       
+
+
 -- ---------------------------------------------------------------------
 -- RETO INDIVIDUAL
 -- Muestra, por cada cliente, cuantos pedidos ha realizado.
@@ -174,6 +162,3 @@ select c.gonzales
 -- DROP TABLE IF EXISTS pedido;
 -- DROP TABLE IF EXISTS producto;
 -- DROP TABLE IF EXISTS cliente;
-
-
--- ----------------------------------------------------------------
