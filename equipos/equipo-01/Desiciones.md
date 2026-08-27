@@ -1,4 +1,6 @@
+--
 Problematica: 
+--
 En los últimos tres años, el barrio ha crecido muchísimo y casi todas las familias tienen al menos un perrito o gatito. 
 Sin embargo, no existe ninguna clínica veterinaria formal a menos de 45 minutos de distancia. Esto ha generado tres 
 problemas graves:
