@@ -8,7 +8,7 @@ problemas graves:
 1- Urgencias mal atendidas: En una zona cálida, la proliferación de garrapatas (que causan erliquia) y los golpes de calor 
 son comunes. Un viaje de 45 minutos en una emergencia suele ser fatal para los peluditos.
 
-2- Falta de control sanitario: Los dueños olvidan las fechas de vacunación y desparasitación porque apuntan todo en cartillas 
+2- Falta de control sanitario: Los dueños olvidan desparasitación porque apuntan todo en cartillas 
 de cartón que terminan perdiéndose, lo que ha provocado pequeños brotes de parvovirus en los parques del barrio.
 
 3- Historiales médicos perdidos: A veces los vecinos traen veterinarios a domicilio, pero cada uno receta algo distinto 
