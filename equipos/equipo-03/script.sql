@@ -134,8 +134,8 @@ VALUES
 -- ============================================================
 -- INSERTS RESERVA
 --
-
-La reserva solo puede tener un horario. ============================================================
+--
+--La reserva solo puede tener un horario. ============================================================
 
 INSERT INTO reserva (
     id_cliente,
