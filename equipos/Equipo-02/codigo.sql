@@ -6,24 +6,20 @@ SET search_path TO a_veterinaria;
 SELECT current_schema();
 
 
--- ---------------------------------------------------------------------
--- EJERCICIO 1 · CREAR LAS TABLAS
--- Primero las tablas independientes, despues las que tienen FK.
--- Orden: mascota -> apoderado -> veterinario -> consulta -> tratamiento
--- ---------------------------------------------------------------------
-
-CREATE TABLE mascota (
-    id_mascota  SERIAL       PRIMARY KEY,
-    raza        VARCHAR(50)  NOT NULL,
-    peso        VARCHAR(60)  NOT NULL,
-    genero      VARCHAR(40)  NOT null
-);
 
 CREATE TABLE apoderado (
     id_apoderado SERIAL       PRIMARY KEY,
     telefono     VARCHAR(11)  NOT NULL,
-    id_mascota   INT          NOT NULL REFERENCES mascota(id_mascota),
     nombre       VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE mascota (
+    id_mascota   SERIAL        PRIMARY KEY,
+    nombre       VARCHAR(50)   NOT NULL,
+    raza         VARCHAR(50)   NOT NULL,
+    peso         NUMERIC(5,2)  NOT NULL,
+    genero       VARCHAR(40)   NOT NULL,
+    id_apoderado INT           NOT NULL REFERENCES apoderado(id_apoderado)
 );
 
 CREATE TABLE veterinario (
@@ -50,17 +46,17 @@ CREATE TABLE tratamiento (
 
 
 
-INSERT INTO mascota (raza, peso, genero) VALUES
-  ('Labrador',         '28kg', 'Macho' ),
-  ('Siames',           '4kg',  'Hembra' ),
-  ('Pastor Aleman',    '14kg', 'Hembra'),
-  ('Bulldog Frances',  '12kg', 'Macho');
+INSERT INTO apoderado (telefono, nombre) VALUES
+  ('987654321', 'Jander Hidalgo'),
+  ('912345678', 'Angel Pinedo'),
+  ('913770863', 'Jonas Gonzales'),
+  ('998877665', 'Gabriel Amasifuen');
 
-INSERT INTO apoderado (telefono, id_mascota, nombre) VALUES
-  ('987654321', 1, 'Jander Hidalgo'),
-  ('912345678', 2, 'Angel Pinedo'),
-  ('913770863', 3, 'Jonas Gonzales'),
-  ('998877665', 4, 'Gabriel Amasifuen');
+INSERT INTO mascota (nombre, raza, peso, genero, id_apoderado) VALUES
+  ('Rocky',  'Labrador',        28,   'Macho',  1),
+  ('Luna',   'Siames',          4.2,  'Hembra', 1),  -- Jander tiene 2 mascotas
+  ('Maya',   'Pastor Aleman',   14,   'Hembra', 2),
+  ('Toby',   'Bulldog Frances', 12.5, 'Macho',  3);
 
 INSERT INTO veterinario (nombre, especialidad, telefono) VALUES
   ('Dra. Ana Torres',   'Cirugia',      '911111111'),
@@ -79,19 +75,12 @@ INSERT INTO tratamiento (fecha_ini, tipo_tratamiento, fecha_fin, id_consulta) VA
 SELECT * FROM mascota;
 SELECT * FROM consulta;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- Comprobacion rapida: cuantas mascotas tiene cada apoderado
+SELECT a.nombre, COUNT(m.id_mascota) AS total_mascotas
+FROM apoderado a
+LEFT JOIN mascota m ON m.id_apoderado = a.id_apoderado
+GROUP BY a.nombre
+ORDER BY total_mascotas DESC;
 
 
 -- ---------------------------------------------------------------------
@@ -101,5 +90,5 @@ SELECT * FROM consulta;
  --DROP TABLE IF EXISTS tratamiento;
  --DROP TABLE IF EXISTS consulta;
  --DROP TABLE IF EXISTS veterinario;
- --DROP TABLE IF EXISTS apoderado;
  --DROP TABLE IF EXISTS mascota;
+ --DROP TABLE IF EXISTS apoderado;
