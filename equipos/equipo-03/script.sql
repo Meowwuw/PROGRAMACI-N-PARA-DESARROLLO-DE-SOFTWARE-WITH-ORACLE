@@ -7,7 +7,7 @@ CREATE TABLE cliente (
     telefono VARCHAR(20) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT null,
-    dni INT(8) not null
+    dni VARCHAR(8) not null
 );
 
 
