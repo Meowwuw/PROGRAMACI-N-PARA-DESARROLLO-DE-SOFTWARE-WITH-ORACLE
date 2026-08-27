@@ -3,7 +3,7 @@
 -- ============================================================
 
 CREATE TABLE cliente (
-    id SERIAL PRIMARY KEY,
+    id_cliente SERIAL PRIMARY KEY,
     telefono VARCHAR(20) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT null,
@@ -16,7 +16,7 @@ CREATE TABLE cliente (
 -- ============================================================
 
 CREATE TABLE cancha (
-    id SERIAL PRIMARY KEY,
+    id_cancha SERIAL PRIMARY KEY,
     numero_cancha INT NOT NULL UNIQUE
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE cancha (
 -- ============================================================
 
 CREATE TABLE horario (
-    id SERIAL PRIMARY KEY,
+    id_horario SERIAL PRIMARY KEY,
     hora TIME NOT NULL,
     precio DECIMAL(10,2) NOT NULL
 );
@@ -37,7 +37,7 @@ CREATE TABLE horario (
 -- ============================================================
 
 CREATE TABLE reserva (
-    id SERIAL PRIMARY KEY,
+    id_reserva SERIAL PRIMARY KEY,
     id_cliente INT NOT NULL,
     id_cancha INT NOT NULL,
     id_horario INT NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE reserva (
 -- ============================================================
 
 CREATE TABLE pago (
-    id SERIAL PRIMARY KEY,
+    id_pago SERIAL PRIMARY KEY,
     id_reserva INT NOT NULL UNIQUE,
     total DECIMAL(10,2) NOT NULL,
 
@@ -162,7 +162,7 @@ VALUES
 
 INSERT INTO pago (id_reserva, total)
 SELECT
-    r.id,
+    r.id_reserva,
     SUM(r.horas_alquilado * h.precio) AS total
 FROM reserva r
 INNER JOIN horario h
@@ -175,7 +175,7 @@ GROUP BY r.id;
 -- ============================================================
 
 SELECT
-    r.id AS id_reserva,
+    r.id_reserva AS id_reserva,
     c.nombre || ' ' || c.apellido AS cliente,
     ca.numero_cancha AS numero_cancha,
     r.fecha,
@@ -185,13 +185,13 @@ SELECT
     SUM(r.horas_alquilado * h.precio) AS total
 FROM reserva r
 INNER JOIN cliente c
-    ON r.id_cliente = c.id
+    ON r.id_cliente = c.id_cliente
 INNER JOIN cancha ca
-    ON r.id_cancha = ca.id
+    ON r.id_cancha = ca.id_cancha
 INNER JOIN horario h
-    ON r.id_horario = h.id
+    ON r.id_horario = h.id_horario
 GROUP BY
-    r.id,
+    r.id_reserva,
     c.nombre,
     c.apellido,
     ca.numero_cancha,
@@ -199,7 +199,7 @@ GROUP BY
     h.hora,
     r.horas_alquilado,
     h.precio
-ORDER BY r.id;
+ORDER BY r.id_reserva;
 
 
 -- ============================================================
@@ -207,31 +207,31 @@ ORDER BY r.id;
 -- ============================================================
 
 SELECT
-    p.id AS id_pago,
+    p.id_pago AS id_pago,
     p.id_reserva,
     p.total
 FROM pago p
-ORDER BY p.id;
+ORDER BY p.id_pago;
 
 -- ============================================================
 -- VER PAGOS DE CUANTAS HORAS SE VENDIO EN UNA CANCHA
 -- ============================================================
 
 SELECT
-    ca.id,
+    ca.id_cancha,
     ca.numero_cancha,
     SUM(p.total) AS total_ganado
 FROM cancha ca
 INNER JOIN reserva r
-    ON ca.id = r.id_cancha
+    ON ca.id_cancha = r.id_cancha
 INNER JOIN horario h
-    ON r.id_horario = h.id
+    ON r.id_horario = h.id_horario
 INNER JOIN pago p
-    ON r.id = p.id_reserva
+    ON r.id_reserva = p.id_reserva
 INNER JOIN cliente c
-    ON r.id_cliente = c.id
+    ON r.id_cliente = c.id_cliente
 GROUP BY
-    ca.id,
+    ca.id_cancha,
     ca.numero_cancha
 ORDER BY
     ca.numero_cancha;
@@ -244,11 +244,11 @@ SELECT
     SUM(p.total) AS total_pagos
 FROM cancha ca
 INNER JOIN reserva r
-    ON ca.id = r.id_cancha
+    ON ca.id_cancha = r.id_cancha
 INNER JOIN horario h
-    ON r.id_horario = h.id
+    ON r.id_horario = h.id_horario
 INNER JOIN pago p
-    ON r.id = p.id_reserva
+    ON r.id_reserva = p.id_reserva
 INNER JOIN cliente c
-    ON r.id_cliente = c.id;
+    ON r.id_cliente = c.id_cliente;
 
