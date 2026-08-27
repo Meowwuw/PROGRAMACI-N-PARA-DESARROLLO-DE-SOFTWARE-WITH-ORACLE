@@ -41,7 +41,6 @@ CREATE TABLE reserva (
     id_cliente INT NOT NULL,
     id_cancha INT NOT NULL,
     id_horario INT NOT NULL,
-    horas_alquilado INT NOT NULL,
     fecha DATE NOT NULL,
 
     CONSTRAINT reserva_unica
@@ -80,7 +79,7 @@ CREATE TABLE pago (
 -- INSERTS CLIENTE
 -- ============================================================
 
-INSERT INTO cliente (telefono, nombre, apellido)
+INSERT INTO cliente (telefono, nombre, apellido,dni)
 VALUES
 ('987654321', 'Juan', 'Perez','12345678'),
 ('986123456', 'Maria', 'Lopez','87654321'),
@@ -140,16 +139,15 @@ INSERT INTO reserva (
     id_cliente,
     id_cancha,
     id_horario,
-    horas_alquilado,
     fecha
 )
 VALUES
-(1, 1, 1, 2, '2026-08-28'),
-(2, 2, 2, 1, '2026-08-28'),
-(3, 3, 3, 2, '2026-08-28'),
-(4, 4, 4, 1, '2026-08-29'),
-(5, 5, 5, 2, '2026-08-29'),
-(1, 2, 6, 1, '2026-08-30');
+(1, 1, 1, '2026-08-28'),
+(2, 2, 2, '2026-08-28'),
+(3, 3, 3, '2026-08-28'),
+(4, 4, 4, '2026-08-29'),
+(5, 5, 5, '2026-08-29'),
+(1, 2, 6, '2026-08-30');
 
 
 -- ============================================================
