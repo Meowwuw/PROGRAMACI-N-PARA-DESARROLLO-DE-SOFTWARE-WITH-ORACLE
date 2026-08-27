@@ -7,7 +7,7 @@ CREATE TABLE cliente (
     telefono VARCHAR(20) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT null,
-    dni INT not null
+    dni INT(8) not null
 );
 
 
@@ -82,11 +82,11 @@ CREATE TABLE pago (
 
 INSERT INTO cliente (telefono, nombre, apellido)
 VALUES
-('987654321', 'Juan', 'Perez'),
-('986123456', 'Maria', 'Lopez'),
-('985456789', 'Carlos', 'Gomez'),
-('984789123', 'Ana', 'Torres'),
-('983456789', 'Pedro', 'Ramirez');
+('987654321', 'Juan', 'Perez','12345678'),
+('986123456', 'Maria', 'Lopez','87654321'),
+('985456789', 'Carlos', 'Gomez','12457836'),
+('984789123', 'Ana', 'Torres','98653214'),
+('983456789', 'Pedro', 'Ramirez','89541263');
 
 
 -- ============================================================
