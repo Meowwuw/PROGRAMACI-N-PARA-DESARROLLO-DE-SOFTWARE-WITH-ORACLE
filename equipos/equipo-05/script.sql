@@ -56,7 +56,7 @@ CREATE TABLE pago (
 INSERT INTO cliente (nombre, apellido, dni, telefono, email)
 VALUES
 ('Juan', 'Perez', '74125896', '987654321', 'juan.perez@gmail.com'),
-('Bwnjamin ', 'Quispe ', '72845631', '986123456', 'benjamin.lopez@gmail.com'),
+('Bwnjamin', 'Quispe', '72845631', '986123456', 'benjamin.lopez@gmail.com'),
 ('Carlos', 'Gomez', '75632148', '985741236', 'carlos.gomez@gmail.com'),
 ('Ana', 'Torres', '71234568', '984632175', 'ana.torres@gmail.com'),
 ('Luis', 'Ramirez', '76543218', '983214567', 'luis.ramirez@gmail.com');
