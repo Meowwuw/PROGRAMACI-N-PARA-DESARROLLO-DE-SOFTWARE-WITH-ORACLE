@@ -155,14 +155,6 @@ VALUES
 -- ============================================================
 -- INSERTS PAGO
 -- ============================================================
--- El TOTAL se calcula mediante SUM.
---
--- total = SUM(horas_alquilado * precio)
---
--- Ejemplo:
--- Reserva 1 = 2 horas * S/20 = S/40
--- Reserva 2 = 1 hora  * S/25 = S/25
--- Reserva 3 = 2 horas * S/30 = S/60
 
 
 INSERT INTO pago (id_reserva, total)
