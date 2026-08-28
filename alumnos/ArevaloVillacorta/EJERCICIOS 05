@@ -1,0 +1,201 @@
+-- =====================================================================
+-- CLASE 05 · TALLER DE CONSULTAS
+-- 24 ejercicios sobre TecnoMichiStore + 3 sobre su proyecto
+-- ---------------------------------------------------------------------
+-- Antes de empezar, ejecuta 05a-base-michistore.sql
+-- Todos trabajamos sobre los MISMOS datos: si tu resultado no coincide
+-- con el del compañero, alguno de los dos tiene la consulta mal.
+-- =====================================================================
+
+SET search_path TO michistore;
+SELECT current_schema();
+
+
+-- =====================================================================
+-- LOS OPERADORES DEL WHERE
+-- ---------------------------------------------------------------------
+--   =   <>            igual, distinto
+--   <   >   <=  >=    comparar
+--   BETWEEN a AND b   dentro de un rango, extremos incluidos
+--   IN (a, b, c)      pertenece a una lista
+--   LIKE / ILIKE      busca por patron   (% = varios, _ = uno)
+--   IS NULL           el dato no existe
+--   AND  OR  NOT      combinar condiciones
+--
+-- ILIKE ignora mayusculas. Existe en PostgreSQL, no en Oracle.
+-- =====================================================================
+
+
+-- =====================================================================
+-- GRUPO A · COMPARACION Y RANGO        (ejercicios 1 al 6)
+-- =====================================================================
+
+-- A1. Productos que cuestan mas de 500 soles.
+SELECT nombre, precio FROM producto WHERE precio > 500;
+
+
+-- A2. Productos que no tienen stock.
+SELECT nombre FROM producto WHERE stock = 0;
+
+
+-- A3. Pedidos que NO estan cancelados.
+--     Usa <>, no uses = tres veces.
+SELECT * FROM pedido WHERE estado <> 'CANCELADO';
+
+
+-- A4. Productos con precio entre 100 y 800, ordenados del mas barato
+--     al mas caro.
+SELECT * FROM producto WHERE precio >= 100 AND precio <= 800;
+
+
+-- A5. Pedidos hechos durante agosto de 2026.
+SELECT * FROM pedido
+WHERE fecha BETWEEN '2026-08-01' AND '2026-08-31'
+
+-- A6. Productos por reponer: los que tienen entre 1 y 10 unidades.
+SELECT * FROM producto
+WHERE stock BETWEEN 1 AND 10;
+
+
+-- =====================================================================
+-- GRUPO B · IN Y LIKE                  (ejercicios 7 al 12)
+-- =====================================================================
+
+-- B7. Clientes de Huanuco, Lima o Pucallpa.
+--     Escribela primero con OR y despues con IN. Compara cual se lee mejor.
+   SELECT * 
+FROM cliente 
+WHERE ciudad = 'Huanuco' OR ciudad = 'Lima' OR ciudad = 'Pucallpa';
+SELECT * 
+FROM cliente 
+WHERE ciudad IN ('Huanuco', 'Lima', 'Pucallpa');
+
+ 
+-- B8. Pedidos que estan PENDIENTE o ENTREGADO.
+ SELECT * 
+FROM pedido 
+WHERE estado IN ('PENDIENTE', 'ENTREGADO');
+
+
+
+
+-- B9. Productos que NO son de Computo ni de Monitores.
+--     Ojo con el resultado: revisa si aparece la Alfombrilla Michi XL.
+--     Si no aparece, piensa por que y anotalo aqui.
+--     RESPUESTA:
+SELECT * 
+FROM producto 
+WHERE categoria NOT IN ('Computo', 'Monitores');
+
+-- B10. Clientes cuyo correo es de Gmail.
+SELECT * 
+FROM cliente 
+WHERE correo LIKE '%@gmail.com';
+
+
+-- B11. Clientes cuyo apellido empieza con Q, sin importar mayusculas.
+SELECT * 
+FROM cliente 
+WHERE LOWER(apellido) LIKE 'q%';
+
+
+-- B12. Productos cuyo nombre contiene "Michi", en cualquier posicion.
+SELECT * 
+FROM producto 
+WHERE nombre LIKE '%Michi%';
+
+
+-- =====================================================================
+-- GRUPO C · NULL Y COMBINACIONES       (ejercicios 13 al 18)
+-- =====================================================================
+
+-- C13. Clientes que no tienen correo registrado.
+SELECT * FROM cliente WHERE correo IS NULL;
+
+
+-- C14. Clientes que si tienen telefono.
+SELECT * 
+FROM cliente 
+WHERE telefono IS NOT NULL;
+
+-- C15. Ejecuta esto:
+--        SELECT * FROM cliente WHERE correo = NULL;
+--      Devuelve cero filas aunque SI hay clientes sin correo.
+--      Escribe aqui por que:
+--      RESPUESTA:
+
+-- C16. Accesorios que cuesten menos de 150 soles.
+SELECT * 
+FROM producto 
+WHERE categoria = 'Accesorios' AND precio < 150;
+
+-- C17. Productos sin stock O que cuesten mas de 2000 soles.
+SELECT * 
+FROM producto 
+WHERE stock = 0 OR precio > 2000;
+
+-- C18. Clientes de Huanuco que tengan correo registrado.
+SELECT * 
+FROM cliente 
+WHERE ciudad = 'Huanuco' AND correo IS NOT NULL;
+
+-- =====================================================================
+-- GRUPO D · OPERADORES CON JOIN        (ejercicios 19 al 24)
+-- =====================================================================
+
+-- D19. Pedidos de agosto con el apellido del cliente y su ciudad.
+SELECT p.*, c.apellido, c.ciudad
+FROM pedido p
+JOIN cliente c ON p.id_cliente = c.id_cliente
+WHERE month(p.fecha) = 8;
+
+
+-- D20. Detalle del pedido 20: nombre del producto, cantidad,
+--      precio cobrado y subtotal (cantidad * precio_unit).
+SELECT pr.nombre, dp.cantidad, dp.precio_unit, (dp.cantidad * dp.precio_unit) AS subtotal
+FROM detalle_pedido dp
+JOIN producto pr ON dp.id_producto = pr.id_producto
+WHERE dp.id_pedido = 20;
+
+-- D21. Pedidos de clientes de Lima que no esten cancelados.
+SELECT p.*
+FROM pedido p
+JOIN cliente c ON p.id_cliente = c.id_cliente
+WHERE c.ciudad = 'Lima' AND p.estado <> 'CANCELADO';
+
+
+-- D22. Ventas donde el precio cobrado fue DISTINTO del precio actual
+--      del producto. Muestra producto, precio_unit y precio.
+--      Esto es el precio historico del que hablamos: no es un error.
+SELECT pr.nombre AS producto, dp.precio_unit AS precio_cobrado, pr.precio AS precio_actual
+FROM detalle_pedido dp
+JOIN producto pr ON dp.id_producto = pr.id_producto
+WHERE dp.precio_unit <> pr.precio;
+
+
+-- D23. Clientes que nunca han hecho un pedido.
+--      Pista: LEFT JOIN y IS NULL.
+SELECT c.*
+FROM cliente c
+LEFT JOIN pedido p ON c.id_cliente = p.id_cliente
+WHERE p.id_pedido IS NULL;
+
+-- D24. Productos que nunca se han vendido.
+SELECT pr.*
+FROM producto pr
+LEFT JOIN detalle_pedido dp ON pr.id_producto = dp.id_producto
+WHERE dp.id_producto IS NULL;
+
+-- =====================================================================
+-- ANTES DE SUBIR
+-- ---------------------------------------------------------------------
+-- [ ] Los 24 ejercicios resueltos, cada uno debajo de su enunciado
+-- [ ] Las respuestas escritas de B9 y C15
+-- [ ] El archivo ejecuta completo, de arriba a abajo, sin errores
+--
+-- ENTREGA INDIVIDUAL. Cada uno sube el suyo a:
+--    alumnos/apellidos/ejercicios-clase05.sql
+--
+-- El trabajo sobre el proyecto va en OTRO archivo, en equipo:
+--    equipos/equipo-NN/consultas-proyecto.sql
+-- =====================================================================
