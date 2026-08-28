@@ -237,6 +237,12 @@ SELECT *
 FROM producto 
 WHERE categoria NOT IN ('Computo', 'Monitores') OR categoria IS NULL
 
+-- RESPUESTA:
+-- La "Alfombrilla Michi XL" tiene categoria NULL. Si usamos únicamente 
+-- "categoria NOT IN ('Computo', 'Monitores')", SQL evalúa la comparación con NULL 
+-- como UNKNOWN (desconocido), por lo que no la incluye en el resultado. Para que 
+-- aparezca en la lista es necesario agregar explícitamente "OR categoria IS NULL".
+    
 -- B10. Clientes cuyo correo es de Gmail.
 SELECT nombre, correo
 FROM cliente 
