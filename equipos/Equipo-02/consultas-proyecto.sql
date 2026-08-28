@@ -98,6 +98,9 @@ ORDER BY total_mascotas DESC;
 -- CLASE 05 · CONSULTAS DEL PROYECTO
 -- Equipo N°:2     Proyecto: Sistema de Veterinaria
 -- Integrantes:
+-- Harim Jander Saavedra Hidalgo 
+-- angel martin pinedo saavedra 
+-- Alex Jonas Gonzales Sangama
 -- =====================================================================
 
 CREATE SCHEMA IF NOT EXISTS a_veterinaria;
