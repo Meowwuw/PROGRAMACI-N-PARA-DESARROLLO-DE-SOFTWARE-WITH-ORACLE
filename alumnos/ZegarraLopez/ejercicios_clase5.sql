@@ -250,23 +250,27 @@ where ciudad = 'Huanuco'
 -- =====================================================================
 
 -- D19. Pedidos de agosto con el apellido del cliente y su ciudad.
-
-select id_pedido,
-   fecha pedido
-   
+SELECT p.id_pedido,
+       p.fecha,
+       c.apellido,
+       c.ciudad
+FROM pedido p
+JOIN cliente c
+  ON p.id_cliente = c.id_cliente
+WHERE p.fecha BETWEEN '2026-08-01' AND '2026-08-31';
 
 -- D20. Detalle del pedido 20: nombre del producto, cantidad,
 --      precio cobrado y subtotal (cantidad * precio_unit).
 
 
-select prod.nombre as producto,
+SELECT prod.nombre AS producto,
        dp.cantidad,
-       dp.precio_unitt as precio_cobrado,
-       (dp.cantidad * dp.precio_unitt) as subtotal
-from detalle_recibo dp
-join producto prod on dp.id_producto = prod.id_producto
-where dp.id_pedido = 20;
-
+       dp.precio_unit AS precio_cobrado,
+       (dp.cantidad * dp.precio_unit) AS subtotal
+FROM detalle_pedido dp
+JOIN producto prod
+  ON dp.id_producto = prod.id_producto
+WHERE dp.id_pedido = 20;
 
 -- D21. Pedidos de clientes de Lima que no esten cancelados.
 select p.*
@@ -279,12 +283,13 @@ where c.ciudad = 'Lima'
 -- D22. Ventas donde el precio cobrado fue DISTINTO del precio actual
 --      del producto. Muestra producto, precio_unit y precio.
 --      Esto es el precio historico del que hablamos: no es un error.
-select prod.nombre as producto,
-       dp.precio_unitt as precio_unit,
+SELECT prod.nombre AS producto,
+       dp.precio_unit,
        prod.precio
-from detalle_pedido dp
-join producto prod on dp.id_producto = prod.id_producto
-where dp.precio_unitt <> prod.precio;
+FROM detalle_pedido dp
+JOIN producto prod
+  ON dp.id_producto = prod.id_producto
+WHERE dp.precio_unit <> prod.precio;
 
 
 -- D23. Clientes que nunca han hecho un pedido.
