@@ -78,8 +78,25 @@ INSERT INTO cancha (nombre, tipo_grass, precio_hora) VALUES
 ('Cancha Sintética 2 - La Bombonera', 'Sintético Estándar', 60.00),
 ('Cancha de Grass Natural - Maracaná', 'Natural', 100.00);
 
+<<<<<<< HEAD
 -- Horarios
 INSERT INTO horario (hora_inicio, hora_fin) VALUES 
+=======
+-- 1. Insertar CLIENTES
+INSERT INTO cliente (nombre, apellido, dni_ruc, telefono, email) VALUES
+('Juan', 'Pérez', '72839401', '987654321', 'juan.perez@email.com'),
+('María', 'Gómez', '10483920191', '912345678', 'maria.gomez@empresa.pe'),
+('Carlos', 'López', '71920384', '955443322', 'carlos.lopez@email.com');
+
+-- 2. Insertar CANCHAS
+INSERT INTO cancha (nombre, tipo_grama, precio_por_hora, estado) VALUES
+('Cancha 1 - La Bombonera', 'Sintético', 60.00, 'Disponible'),
+('Cancha 2 - Maracaná', 'Sintético', 70.00, 'Disponible'),
+('Cancha 3 - Losa Central', 'Losa', 40.00, 'Disponible');
+
+-- 3. Insertar HORARIOS
+INSERT INTO horario (hora_inicio, hora_fin) VALUES
+>>>>>>> 60ce201 (Enviando hoja de trabajo clase 05)
 ('18:00:00', '19:00:00'),
 ('19:00:00', '20:00:00'),
 ('20:00:00', '21:00:00');
