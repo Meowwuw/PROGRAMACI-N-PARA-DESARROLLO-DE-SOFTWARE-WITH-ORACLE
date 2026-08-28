@@ -1,14 +1,20 @@
 
 -- =====================================================================
 -- BASE DE DATOS · SISTEMA DE VETERINARIA
+-- =====================================================================
 -- Equipo N°: 2
 -- =====================================================================
+
+
+
 
 CREATE SCHEMA IF NOT EXISTS a_veterinaria;
 
 SET search_path TO a_veterinaria;
 
 SELECT current_schema();
+
+
 
 
 CREATE TABLE apoderado (
@@ -31,6 +37,7 @@ CREATE TABLE mascota (
 );
 
 
+-
 
 CREATE TABLE veterinario (
     id_veterinario SERIAL PRIMARY KEY,
@@ -66,6 +73,7 @@ CREATE TABLE tratamiento (
 -- PARTE 2 · CARGAR LOS DATOS
 -- =====================================================================
 
+
 -- ---------------------------------------------------------------------
 -- APODERADOS
 -- ---------------------------------------------------------------------
@@ -74,29 +82,65 @@ INSERT INTO apoderado (dni, telefono, nombre) VALUES
     ('12345678', '987654321', 'Jander Hidalgo'),
     ('23456789', '912345678', 'Angel Pinedo'),
     ('34567890', '913770863', 'Jonas Gonzales'),
+    ('61265675', '942098811', 'Magenta Paredes'),
+    ('81469712', '917567921', 'Juanito Ponce'),
+    ('89157201', '976541354', 'Luis Gonzales'),
+    ('94102843', '965451518', 'Lucas Valverde'),
+    ('72144035', '951054695', 'Martina Saavedra'),
+    ('94626501', '936521401', 'Samanta Rojas'),
     ('45678901', '998877665', 'Gabriel Amasifuen');
 
 
-
+-- ---------------------------------------------------------------------
+-- MASCOTAS
+-- ---------------------------------------------------------------------
 
 INSERT INTO mascota (nombre, raza, peso, genero, id_apoderado) VALUES
     ('Rocky', 'Labrador', 28, 'Macho', 1),
     ('Luna', 'Siames', 4.2, 'Hembra', 1),
     ('Maya', 'Pastor Aleman', 14, 'Hembra', 2),
-    ('Toby', 'Bulldog Frances', 12.5, 'Macho', 3);
+    ('Toby', 'Bulldog Frances', 12.5, 'Macho', 3),
+    ('Max', 'Golden Retriever', 30, 'Macho', 4),
+    ('Nala', 'Persa', 4.8, 'Hembra', 5),
+    ('Bruno', 'Rottweiler', 35, 'Macho', 6),
+    ('Coco', 'Chihuahua', 3.2, 'Hembra', 7),
+    ('Simba', 'Maine Coon', 7.5, 'Macho', 8),
+    ('Bella', 'Poodle', 8.5, 'Hembra', 9),
+    ('Zeus', 'Husky Siberiano', 25, 'Macho', 10),
+    ('Milo', 'Beagle', 11, 'Macho', 2),
+    ('Kira', 'Shih Tzu', 6.5, 'Hembra', 3),
+    ('Thor', 'Boxer', 27, 'Macho', 4),
+    ('Canela', 'Cocker Spaniel', 10, 'Hembra', 5),
+    ('Doki', 'Schnauzer', 9, 'Macho', 6),
+    ('Mia', 'Angora', 4.1, 'Hembra', 7);
 
 
-
+-- ---------------------------------------------------------------------
+-- VETERINARIOS
+-- ---------------------------------------------------------------------
 
 INSERT INTO veterinario (nombre, especialidad, telefono) VALUES
     ('Dra. Ana Torres', 'Cirugia', '913770863'),
-    ('Dr. Pedro Salas', 'Dermatologia', '942098811');
+    ('Dr. Pedro Salas', 'Dermatologia', '942098811'),
+    ('Dra. Maria Lopez', 'Medicina Interna', '987654321'),
+    ('Dr. Carlos Ramirez', 'Cardiologia', '912345678'),
+    ('Dra. Sofia Mendoza', 'Oftalmologia', '913456789'),
+    ('Dr. Luis Vargas', 'Traumatologia', '914567890'),
+    ('Dra. Elena Castro', 'Pediatria Veterinaria', '915678901'),
+    ('Dr. Jorge Rojas', 'Odontologia', '916789012'),
+    ('Dra. Patricia Silva', 'Neurologia', '917890123'),
+    ('Dr. Miguel Flores', 'Oncologia', '918901234'),
+    ('Dra. Laura Perez', 'Nutricion Animal', '919012345'),
+    ('Dr. Diego Fernandez', 'Emergencias', '920123456');
 
 
-
+-- ---------------------------------------------------------------------
+-- CONSULTAS
+-- ---------------------------------------------------------------------
 
 INSERT INTO consulta
-(fecha_con, id_apoderado, id_mascota, id_veterinario) VALUES
+    (fecha_con, id_apoderado, id_mascota, id_veterinario)
+VALUES
     ('2026-01-10 09:00', 1, 1, 1),
     ('2026-01-18 15:30', 2, 3, 2),
     ('2026-02-05 11:00', 1, 2, 2),
@@ -121,9 +165,13 @@ INSERT INTO consulta
     ('2026-08-10 11:00', 1, 2, 2);
 
 
+-- ---------------------------------------------------------------------
+-- TRATAMIENTOS
+-- ---------------------------------------------------------------------
 
 INSERT INTO tratamiento
-(fecha_ini, tipo_tratamiento, fecha_fin, id_consulta) VALUES
+    (fecha_ini, tipo_tratamiento, fecha_fin, id_consulta)
+VALUES
     ('2026-01-10', 'Vacunacion', '2026-01-10', 1),
     ('2026-01-18', 'Control de piel', NULL, 2),
     ('2026-02-05', 'Desparasitacion', '2026-02-05', 3),
@@ -162,11 +210,7 @@ SELECT * FROM consulta;
 
 SELECT * FROM tratamiento;
 
-SELECT 'apoderado'        AS tabla, COUNT(*) AS filas FROM apoderado
-UNION ALL SELECT 'mascota',       COUNT(*) FROM mascota
-UNION ALL SELECT 'consulta',         COUNT(*) FROM consulta
-UNION ALL SELECT 'tratamiento', COUNT(*) FROM tratamiento
-UNION ALL SELECT 'veterinario', COUNT(*) FROM veterinario;
+
 -- =====================================================================
 -- CONSULTAS DEL PROYECTO
 -- =====================================================================
@@ -307,7 +351,7 @@ SELECT
     telefono
 FROM veterinario
 WHERE especialidad = 'Cirugia'
-OR especialidad = 'Dermatologia'
+   OR especialidad = 'Dermatologia'
 ORDER BY nombre;
 
 
@@ -316,6 +360,7 @@ ORDER BY nombre;
 -- ¿Qué consultas fueron realizadas por cada apoderado,
 -- qué mascota atendieron y qué veterinario la atendió?
 -- ---------------------------------------------------------------------
+
 SELECT
     c.id_consulta,
     c.fecha_con,
@@ -335,8 +380,8 @@ JOIN mascota m
     ON c.id_mascota = m.id_mascota
 JOIN veterinario v
     ON c.id_veterinario = v.id_veterinario
-WHERE v.especialidad = 'Cirugia'
 ORDER BY c.fecha_con;
+
 
 -- =====================================================================
 -- COMPROBACION RAPIDA
