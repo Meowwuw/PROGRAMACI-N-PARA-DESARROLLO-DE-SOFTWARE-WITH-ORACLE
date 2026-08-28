@@ -44,7 +44,7 @@ CREATE TABLE reserva (
     fecha DATE NOT NULL,
 
     CONSTRAINT reserva_unica
-    UNIQUE (id_cancha, fecha, id_horario),
+    UNIQUE ( fecha, id_horario),
 
     FOREIGN KEY (id_cliente)
         REFERENCES cliente(id_cliente)
@@ -157,6 +157,20 @@ VALUES
 (5, 5, 5, '2026-09-29'),
 (1, 2, 6, '2026-09-30');
 
+INSERT INTO reserva (
+    id_cliente,
+    id_cancha,
+    id_horario,
+    fecha
+)
+VALUES
+(1, 1, 1, '2026-10-28'),
+(2, 2, 2, '2026-10-28'),
+(3, 3, 3, '2026-10-28'),
+(4, 4, 4, '2026-10-29'),
+(5, 5, 5, '2026-10-29'),
+(1, 2, 6, '2026-10-30');
+
 
 
 -- ============================================================
@@ -171,8 +185,10 @@ SELECT
 FROM reserva r
 INNER JOIN horario h
     ON r.id_horario = h.id_horario
+LEFT JOIN pago p
+    ON r.id_reserva = p.id_reserva
+WHERE p.id_reserva IS NULL
 GROUP BY r.id_reserva;
-
 
 -- ============================================================
 -- CONSULTA GENERAL DE RESERVAS
