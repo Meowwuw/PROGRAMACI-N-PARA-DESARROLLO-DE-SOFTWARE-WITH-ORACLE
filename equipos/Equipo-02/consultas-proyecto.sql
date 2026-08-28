@@ -162,7 +162,11 @@ SELECT * FROM consulta;
 
 SELECT * FROM tratamiento;
 
-
+SELECT 'apoderado'        AS tabla, COUNT(*) AS filas FROM apoderado
+UNION ALL SELECT 'mascota',       COUNT(*) FROM mascota
+UNION ALL SELECT 'consulta',         COUNT(*) FROM consulta
+UNION ALL SELECT 'tratamiento', COUNT(*) FROM tratamiento
+UNION ALL SELECT 'veterinario', COUNT(*) FROM veterinario;
 -- =====================================================================
 -- CONSULTAS DEL PROYECTO
 -- =====================================================================
