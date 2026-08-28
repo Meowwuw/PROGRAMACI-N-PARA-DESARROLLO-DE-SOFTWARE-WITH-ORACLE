@@ -188,7 +188,7 @@ ORDER BY fecha_pedido DESC;
 -- B9. Productos que NO son de Computo ni de Monitores.
 --     Ojo con el resultado: revisa si aparece la Alfombrilla Michi XL.
 --     Si no aparece, piensa por que y anotalo aqui.
---     RESPUESTA:
+--     RESPUESTA:Si no aparece la Alfombrilla Michi XL, es porque probablemente su categoría es NULL. Al usar NOT IN con una columna que contiene NULL, la condición no se evalúa como verdadera, sino como desconocida, por lo que ese producto queda fuera del resultado.
 
 SELECT * from producto;
 select * from producto
@@ -225,7 +225,7 @@ select * from cliente where telefono is not null;
 --        SELECT * FROM cliente WHERE correo = NULL;
 --      Devuelve cero filas aunque SI hay clientes sin correo.
 --      Escribe aqui por que:
---      RESPUESTA:
+--      RESPUESTA:Porque NULL representa un valor desconocido o inexistente y no se puede comparar usando =. Por eso, la condición correo = NULL nunca resulta verdadera. Para encontrar los clientes que no tienen correo se debe utilizar IS NULL.
 select * from cliente WHERE correo = NULL
 
 -- C16. Accesorios que cuesten menos de 150 soles.
@@ -311,4 +311,15 @@ LEFT JOIN venta v
     ON p.id_producto = v.id_producto
 WHERE v.id_venta IS NULL;
 
+-- ANTES DE SUBIR
+-- ---------------------------------------------------------------------
+-- [x] Los 24 ejercicios resueltos, cada uno debajo de su enunciado
+-- [x] Las respuestas escritas de B9 y C15
+-- [x] El archivo ejecuta completo, de arriba a abajo, sin errores
+--
+-- ENTREGA INDIVIDUAL. Cada uno sube el suyo a:
+--    alumnos/apellidos/ejercicios-clase05.sql
+--
+-- El trabajo sobre el proyecto va en OTRO archivo, en equipo:
+--    equipos/equipo-NN/consultas-proyecto.sql
 
