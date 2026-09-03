@@ -479,5 +479,79 @@ INNER JOIN especies e ON r.id_especie = e.id_especie
 LEFT JOIN consultas c ON c.id_mascota = m.id_mascota
 GROUP BY m.id_mascota, m.nombre, e.nombre_especie, r.nombre_raza
 ORDER BY total_consultas ASC;
+
+-- =====================================================================
+-- ACTIVIDAD APLICADA AL PROYECTO: CONSULTAS CON JOIN
+-- =====================================================================
+
+-- ---------------------------------------------------------------------
+-- CONSULTA 01: Mascotas registradas sin atenciones o consultas
+-- ---------------------------------------------------------------------
+-- Necesidad: Identificar qué mascotas registradas en el sistema aún no han tenido ninguna consulta médica para realizar campañas de fidelización o seguimiento preventivo.
+-- Tablas involucradas: mascota (A), consulta (B)
+-- Tipo de JOIN: LEFT JOIN (filtrando con NULL en B)
+-- Justificación: Nos permite traer la totalidad de mascotas (tabla izquierda) y cruzarla con sus consultas. Al filtrar donde el ID de la consulta sea NULL, aislamos únicamente a las mascotas que nunca han acudido a una cita.
+
+SELECT 
+    m.id_mascota,
+    m.nombre AS nombre_mascota,
+    m.raza,
+    a.nombre AS nombre_apoderado,
+    a.telefono
+FROM mascota m
+LEFT JOIN consulta c 
+    ON m.id_mascota = c.id_mascota
+JOIN apoderado a 
+    ON m.id_apoderado = a.id_apoderado
+WHERE c.id_consulta IS NULL
+ORDER BY m.nombre;
+
+
+-- ---------------------------------------------------------------------
+-- CONSULTA 02: Historial clínico detallado de tratamientos por mascota
+-- ---------------------------------------------------------------------
+-- Necesidad: Consultar el historial médico completo de una mascota, relacionando el tratamiento recibido con la fecha de atención y el veterinario responsable.
+-- Tablas involucradas: mascota, consulta, tratamiento, veterinario
+-- Tipo de JOIN: INNER JOIN
+-- Justificación: Permite relacionar estrictamente los registros que coinciden en la cadena de atención (mascota -> consulta -> tratamiento -> veterinario) para construir una vista clínica consolidada sin dejar datos huérfanos.
+
+SELECT 
+    m.nombre AS mascota,
+    t.tipo_tratamiento,
+    t.fecha_ini,
+    t.fecha_fin,
+    v.nombre AS veterinario,
+    v.especialidad
+FROM tratamiento t
+INNER JOIN consulta c 
+    ON t.id_consulta = c.id_consulta
+INNER JOIN mascota m 
+    ON c.id_mascota = m.id_mascota
+INNER JOIN veterinario v 
+    ON c.id_veterinario = v.id_veterinario
+ORDER BY t.fecha_ini DESC;
+
+
+-- ---------------------------------------------------------------------
+-- CONSULTA 03: Reporte de productividad médica y demanda por especialidad
+-- ---------------------------------------------------------------------
+-- Necesidad: Evaluar la carga de trabajo de los veterinarios y el rendimiento del personal médico según las consultas registradas en la clínica.
+-- Tablas involucradas: veterinario (A), consulta (B)
+-- Tipo de JOIN: LEFT JOIN
+-- Justificación: Se utiliza un LEFT JOIN para asegurar que figuren todos los veterinarios contratados en el reporte, incluso aquellos que aún no han atendido ninguna consulta (obteniendo un conteo de 0).
+
+SELECT 
+    v.id_veterinario,
+    v.nombre AS veterinario,
+    v.especialidad,
+    COUNT(c.id_consulta) AS total_consultas_atendidas
+FROM veterinario v
+LEFT JOIN consulta c 
+    ON v.id_veterinario = c.id_veterinario
+GROUP BY 
+    v.id_veterinario, 
+    v.nombre, 
+    v.especialidad
+ORDER BY total_consultas_atendidas DESC;
 -- =====================================================================
 
