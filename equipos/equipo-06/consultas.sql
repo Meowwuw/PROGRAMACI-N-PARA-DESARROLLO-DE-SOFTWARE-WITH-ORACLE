@@ -50,3 +50,36 @@ FROM cliente c
 JOIN reserva r ON c.id_cliente = r.id_cliente
 JOIN pago p ON r.id_reserva = p.id_reserva
 WHERE p.monto_total > 60.00;
+
+
+-- CLASE 7 - EJERCICIO 2
+-- 1.
+-- Necesidad: Mostrar la relación de todas las reservas confirmadas o pendientes junto con el nombre, DNI y correo del cliente que las realizó.
+-- Tablas involucradas: reserva y cliente
+-- Tipo de JOIN: INNER JOIN.
+-- Justificación: Se requiere para identificar al responsable de cada movimiento registrado en el sistema, vinculando los datos personales del cliente con su respectiva orden de reserva.
+SELECT r.id_reserva, r.fecha_reserva, r.estado, c.nombre AS cliente, c.dni, c.correo
+FROM reserva r
+INNER JOIN cliente c ON r.id_cliente = c.id_cliente;
+
+-- 2.
+-- Necesidad: Consultar los detalles de las reservas activas, mostrando qué cancha fue alquilada, el tipo de grass, el horario asignado y el subtotal a pagar.
+-- Tablas involucradas: detalle_reserva, cancha y horario.
+-- Tipo de JOIN: INNER JOIN múltiple.
+-- ustificación: La tabla intermedia detalle_reserva conecta tres entidades;
+--es indispensable cruzarla con cancha y horario para transformar los IDs en información comprensible (nombre de cancha y bloque horario) para el reporte de la administración.
+SELECT dr.id_detalle, dr.id_reserva, c.nombre AS cancha, c.tipo_grass, 
+       CONCAT(h.hora_inicio, ' - ', h.hora_fin) AS horario, dr.subtotal
+FROM detalle_reserva dr
+INNER JOIN cancha c ON dr.id_cancha = c.id_cancha
+INNER JOIN horario h ON dr.id_horario = h.id_horario;
+
+-- 3.
+-- Necesidad: Obtener un reporte financiero que relacione cada pago registrado con el cliente correspondiente, mostrando el monto total, el método de pago utilizado y la fecha de la transacción.
+-- Tablas involucradas: pago, reserva y cliente.
+-- Tipo de JOIN: INNER JOIN múltiple.
+-- Justificación: La tabla pago solo se conecta directamente con reserva, por lo que se requiere un segundo INNER JOIN hacia cliente para saber qué usuario efectuó el pago.
+SELECT p.id_pago, c.nombre AS cliente, p.monto_total, p.metodo_pago, p.fecha_pago
+FROM pago p
+INNER JOIN reserva r ON p.id_reserva = r.id_reserva
+INNER JOIN cliente c ON r.id_cliente = c.id_cliente;
