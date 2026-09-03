@@ -504,10 +504,10 @@ SELECT
     a.nombre AS nombre_apoderado,
     a.telefono
 FROM mascota m
-LEFT JOIN consulta c 
-    ON m.id_mascota = c.id_mascota
-JOIN apoderado a 
+INNER JOIN apoderado a 
     ON m.id_apoderado = a.id_apoderado
+LEFT JOIN consulta c 
+    ON a.id_apoderado = c.id_apoderado
 WHERE c.id_consulta IS NULL
 ORDER BY m.nombre;
 
