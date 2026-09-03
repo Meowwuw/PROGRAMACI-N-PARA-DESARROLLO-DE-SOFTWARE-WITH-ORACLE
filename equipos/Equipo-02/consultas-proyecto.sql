@@ -484,13 +484,18 @@ ORDER BY total_consultas ASC;
 -- ACTIVIDAD APLICADA AL PROYECTO: CONSULTAS CON JOIN
 -- =====================================================================
 
+-- =====================================================================
+-- ACTIVIDAD APLICADA AL PROYECTO: CONSULTAS CON JOIN
+-- Equipo N°: 2 | Proyecto: Sistema de Veterinaria
+-- =====================================================================
+
 -- ---------------------------------------------------------------------
--- CONSULTA 01: Mascotas registradas sin atenciones o consultas
--- ---------------------------------------------------------------------
--- Necesidad: Identificar qué mascotas registradas en el sistema aún no han tenido ninguna consulta médica para realizar campañas de fidelización o seguimiento preventivo.
+-- CONSULTA 01
+-- Necesidad: Identificar las mascotas registradas que aún no han asistido a ninguna consulta para realizar seguimiento preventivo y campañas de contacto.
 -- Tablas involucradas: mascota (A), consulta (B)
--- Tipo de JOIN: LEFT JOIN (filtrando con NULL en B)
--- Justificación: Nos permite traer la totalidad de mascotas (tabla izquierda) y cruzarla con sus consultas. Al filtrar donde el ID de la consulta sea NULL, aislamos únicamente a las mascotas que nunca han acudido a una cita.
+-- Tipo de JOIN: LEFT JOIN
+-- Justificación: Se requiere listar la totalidad de las mascotas registradas (tabla izquierda) y determinar cuáles no tienen coincidencias en la tabla de consultas mediante la condición WHERE IS NULL.
+-- ---------------------------------------------------------------------
 
 SELECT 
     m.id_mascota,
@@ -508,37 +513,37 @@ ORDER BY m.nombre;
 
 
 -- ---------------------------------------------------------------------
--- CONSULTA 02: Historial clínico detallado de tratamientos por mascota
--- ---------------------------------------------------------------------
--- Necesidad: Consultar el historial médico completo de una mascota, relacionando el tratamiento recibido con la fecha de atención y el veterinario responsable.
--- Tablas involucradas: mascota, consulta, tratamiento, veterinario
+-- CONSULTA 02
+-- Necesidad: Obtener un reporte histórico detallado de la atención médica por paciente, mostrando la fecha de la cita, el tipo de tratamiento aplicado y el veterinario responsable.
+-- Tablas involucradas: tratamiento, consulta, apoderado, veterinario
 -- Tipo de JOIN: INNER JOIN
--- Justificación: Permite relacionar estrictamente los registros que coinciden en la cadena de atención (mascota -> consulta -> tratamiento -> veterinario) para construir una vista clínica consolidada sin dejar datos huérfanos.
+-- Justificación: Permite vincular exclusivamente los tratamientos registrados con sus respectivas consultas médicas y el especialista asignado, omitiendo registros incompletos.
+-- ---------------------------------------------------------------------
 
 SELECT 
-    m.nombre AS mascota,
-    t.tipo_tratamiento,
+    t.id_tratamiento,
     t.fecha_ini,
-    t.fecha_fin,
+    t.tipo_tratamiento,
+    a.nombre AS apoderado,
     v.nombre AS veterinario,
     v.especialidad
 FROM tratamiento t
 INNER JOIN consulta c 
     ON t.id_consulta = c.id_consulta
-INNER JOIN mascota m 
-    ON c.id_mascota = m.id_mascota
+INNER JOIN apoderado a 
+    ON c.id_apoderado = a.id_apoderado
 INNER JOIN veterinario v 
     ON c.id_veterinario = v.id_veterinario
 ORDER BY t.fecha_ini DESC;
 
 
 -- ---------------------------------------------------------------------
--- CONSULTA 03: Reporte de productividad médica y demanda por especialidad
--- ---------------------------------------------------------------------
--- Necesidad: Evaluar la carga de trabajo de los veterinarios y el rendimiento del personal médico según las consultas registradas en la clínica.
+-- CONSULTA 03
+-- Necesidad: Medir la productividad y carga laboral del personal médico listando todos los veterinarios y el total de consultas que han atendido.
 -- Tablas involucradas: veterinario (A), consulta (B)
 -- Tipo de JOIN: LEFT JOIN
--- Justificación: Se utiliza un LEFT JOIN para asegurar que figuren todos los veterinarios contratados en el reporte, incluso aquellos que aún no han atendido ninguna consulta (obteniendo un conteo de 0).
+-- Justificación: Muestra a todos los veterinarios registrados en el sistema sin excluir a aquellos que todavía no han atendido ninguna consulta, asignándoles un conteo de cero.
+-- ---------------------------------------------------------------------
 
 SELECT 
     v.id_veterinario,
