@@ -402,8 +402,82 @@ GROUP BY
     a.nombre
 ORDER BY total_mascotas DESC;
 
+--------------------------------------------------------------------------
 
--- =====================================================================
--- FIN DEL PROYECTO
+
+-- =========================================================
+-- CONSULTA 01
+-- --Necesidad: Ver el historial completo de una mascota:
+--   quién es su dueño, qué veterinario la atendió, cuándo,
+--   y qué se diagnosticó. Útil para mostrarle al dueño el
+--   historial médico de su mascota.
+-- --Tablas involucradas: mascotas, duenos, consultas, veterinarios
+-- --Tipo de JOIN: INNER JOIN
+-- --Justificación: Usamos INNER JOIN porque solo nos interesan
+--   mascotas que SÍ tienen consultas registradas. No tiene
+--   sentido mostrar una mascota sin historial en este reporte.
+-- --Consulta SQL:
+SELECT
+    m.nombre AS mascota,
+    d.nombre AS dueno,
+    v.nombre AS veterinario,
+    c.fecha_hora,
+    c.diagnostico
+FROM mascotas m
+INNER JOIN duenos d ON m.id_dueno = d.id_dueno
+INNER JOIN consultas c ON c.id_mascota = m.id_mascota
+INNER JOIN veterinarios v ON c.id_veterinario = v.id_veterinario
+ORDER BY c.fecha_hora DESC;
+
+
+-- =========================================================
+-- CONSULTA 02
+-- --Necesidad: Calcular cuánto se le debe cobrar a un dueño
+--   por una consulta, sumando el costo base más todos los
+--   servicios adicionales aplicados (vacunas, análisis, etc.).
+-- --Tablas involucradas: consultas, detalle_consulta_servicio, servicios
+-- --Tipo de JOIN: INNER JOIN
+-- --Justificación: Usamos INNER JOIN porque el reporte solo
+--   tiene sentido para consultas que realmente tuvieron
+--   servicios aplicados; si no hay detalle, no hay nada que sumar.
+-- --Consulta SQL:
+SELECT
+    c.id_consulta,
+    c.costo_base,
+    s.nombre_servicio,
+    s.precio,
+    (c.costo_base + SUM(s.precio) OVER (PARTITION BY c.id_consulta)) AS total_estimado
+FROM consultas c
+INNER JOIN detalle_consulta_servicio dcs ON dcs.id_consulta = c.id_consulta
+INNER JOIN servicios s ON s.id_servicio = dcs.id_servicio
+ORDER BY c.id_consulta;
+
+
+-- =========================================================
+-- CONSULTA 03
+-- --Necesidad: Listar TODAS las mascotas registradas junto con
+--   su especie y raza, incluyendo aquellas que aún no han tenido
+--   ninguna consulta (para que la recepción sepa a quién le falta
+--   agendar su primera cita).
+-- --Tablas involucradas: mascotas, razas, especies, consultas
+-- --Tipo de JOIN: INNER JOIN (para razas/especies) + LEFT JOIN (para consultas)
+-- --Justificación: mascotas SIEMPRE debe tener raza y especie
+--   (son obligatorias, NOT NULL), por eso ahí usamos INNER JOIN.
+--   Pero usamos LEFT JOIN con consultas porque queremos ver
+--   TODAS las mascotas, incluso las que todavía no tienen
+--   ninguna consulta registrada (si usáramos INNER JOIN aquí,
+--   esas mascotas desaparecerían del resultado).
+-- --Consulta SQL:
+SELECT
+    m.nombre AS mascota,
+    e.nombre_especie,
+    r.nombre_raza,
+    COUNT(c.id_consulta) AS total_consultas
+FROM mascotas m
+INNER JOIN razas r ON m.id_raza = r.id_raza
+INNER JOIN especies e ON r.id_especie = e.id_especie
+LEFT JOIN consultas c ON c.id_mascota = m.id_mascota
+GROUP BY m.id_mascota, m.nombre, e.nombre_especie, r.nombre_raza
+ORDER BY total_consultas ASC;
 -- =====================================================================
 
