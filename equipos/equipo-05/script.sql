@@ -365,3 +365,101 @@ INNER JOIN cancha ca
 INNER JOIN horario h 
     ON r.id_horario = h.id_horario
 WHERE r.fecha_reserva = '2026-09-05';
+
+
+
+--- ==================================================================================
+--- CONSULTA CON LAS ULTIMAS CONDICIONES
+--- ==================================================================================
+--- CON LOS SIGUIENTES TERMINOS
+--- 1) NECESIDAD
+--- 2) TABLAS INVOLUCRADAS
+--- 3) TIPO DE JOIN
+--- 4) JUSTIFICACION
+--- 5) CONSULTA SQL
+
+
+
+--- --------------------------------
+--- consulta 01:
+
+--- 1) NECESIDAD: Mostrar las reservas realizadas por los clientes, 
+--- indicando el nombre del cliente, la cancha reservada y 
+--- el horario correspondiente.
+
+--- 2) TABLAS INVOLUCRADAS: CLIENTE, RESERVA, CANCHA, HORARIO
+
+--- 3) TIPO DE JOIN: INNER JOIN
+
+--- 4) JUSTIFICACION: Se utiliza INNER JOIN porque necesitamos mostrar únicamente las 
+--- reservas que tienen un cliente, una cancha y un horario asociados. Esto permite al 
+--- administrador conocer quién reservó, qué cancha utilizará y en qué horario.
+
+--- 5) CONSULTA SQL: 
+
+SELECT 
+    c.nombre AS cliente,
+    ca.nombre AS cancha,
+    h.hora_inicio,
+    h.hora_fin
+FROM CLIENTE c
+INNER JOIN RESERVA r 
+    ON c.id_cliente = r.id_cliente
+INNER JOIN CANCHA ca 
+    ON r.id_cancha = ca.id_cancha
+INNER JOIN HORARIO h 
+    ON r.id_horario = h.id_horario;
+
+--- --------------------------------
+--- consulta 02:
+
+--- 1) NECESIDAD: Consultar todas las reservas y verificar 
+--- si cada una cuenta con un pago registrado.
+
+--- 2) TABLAS INVOLUCRADAS: RESERVA, CLIENTE, PAGO
+
+--- 3) TIPO DE JOIN: LEFT JOIN
+
+--- 4) JUSTIFICACION: Se utiliza LEFT JOIN para mostrar todas las reservas, incluso 
+--- aquellas que todavía no tienen un pago registrado. Esto es útil para 
+--- que el administrador pueda identificar reservas pendientes de pago.
+--- 5) CONSULTA SQL: 
+SELECT 
+    r.id_reserva,
+    c.nombre AS cliente,
+    r.fecha_reserva,
+    p.monto,
+    p.estado AS estado_pago
+FROM RESERVA r
+INNER JOIN CLIENTE c 
+    ON r.id_cliente = c.id_cliente
+LEFT JOIN PAGO p 
+    ON r.id_reserva = p.id_reserva;
+
+
+--- --------------------------------
+--- consulta 03:
+
+--- 1) NECESIDAD: Obtener el historial de pagos realizados por los clientes, 
+--- mostrando la reserva, el cliente y el monto pagado.
+
+--- 2) TABLAS INVOLUCRADAS: PAGO, RESERVA, CLIENTE
+
+--- 3) TIPO DE JOIN: INNER JOIN
+
+--- 4) JUSTIFICACION: Se utiliza INNER JOIN porque solo interesa mostrar los 
+--- pagos que están relacionados con una reserva y un cliente existente. De esta manera se 
+--- puede llevar un control de los ingresos generados por las reservas de las canchas.
+--- 5) CONSULTA SQL: 
+SELECT 
+    p.id_pago,
+    c.nombre AS cliente,
+    r.id_reserva,
+    p.monto,
+    p.fecha_pago,
+    p.estado
+FROM PAGO p
+INNER JOIN RESERVA r 
+    ON p.id_reserva = r.id_reserva
+INNER JOIN CLIENTE c 
+    ON r.id_cliente = c.id_cliente;
