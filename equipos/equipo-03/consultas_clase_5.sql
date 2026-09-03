@@ -372,3 +372,74 @@ WHERE r.fecha BETWEEN '2026-07-01' AND '2026-10-31';
 --
 -- Sube el Integrador, a:  equipos/equipo-NN/consultas-proyecto.sql
 -- =====================================================================
+
+
+
+
+
+-- CLASE 7 EJERCICIO CONSULTAS
+
+
+-- CONSULTA 01
+-- NECESIDAD: MOSTRAR CLIENTES QUE TIENEN RESERVAS DE LA SEMANA
+-- TABLAS INVOLUCRADAS: CLIENTE - RESERVA
+-- TIPO JOIN: INNER JOIN
+-- JUSTIFICACION: Se utiliza INNER JOIN porque necesitamos mostrar únicamente los clientes que sí tienen una reserva registrada.
+-- CONSULTA SQL:
+
+SELECT 
+    c.id_cliente,
+    c.nombre,
+    r.id_reserva,
+    r.fecha_reserva
+FROM cliente c
+INNER JOIN reserva r
+    ON c.id_cliente = r.id_cliente
+WHERE r.fecha_reserva >= CURRENT_DATE
+  AND r.fecha_reserva < CURRENT_DATE + INTERVAL '7 days';
+
+-- CONSULTA 02
+-- NECESIDAD: ENCONTRAR RESERVAS QUE NO REALIZARON PAGOS EN EL MES
+-- TABLAS INVOLUCRADAS: CLIENTE - RESERVA - PAGO
+-- TIPO JOIN: LEFT JOIN
+-- JUSTIFICACION: Se utiliza LEFT JOIN para mostrar las reservas que no tengan pagoS registrado durante el mes actual.
+-- CONSULTA SQL:
+
+SELECT 
+    c.id_cliente,
+    c.nombre,
+    r.id_reserva,
+    r.fecha_reserva
+FROM cliente c
+INNER JOIN reserva r
+    ON c.id_cliente = r.id_cliente
+LEFT JOIN pago p
+    ON r.id_reserva = p.id_reserva
+    AND EXTRACT(MONTH FROM p.fecha_pago) = EXTRACT(MONTH FROM CURRENT_DATE)
+    AND EXTRACT(YEAR FROM p.fecha_pago) = EXTRACT(YEAR FROM CURRENT_DATE)
+WHERE p.id_reserva IS NULL;
+
+
+
+-- CONSULTA 03
+-- NECESIDAD: MOSTRAR LA CANTIDAD DE RESERVAS DE LOS CLIENTES EN EL MES
+-- TABLAS INVOLUCRADAS: CLIENTE - RESERVA
+-- TIPO JOIN: LEFT JOIN
+-- JUSTIFICACION: Se utiliza LEFT JOIN para relacionar los clientes
+-- con sus reservas y obtener la cantidad de reservas realizadas
+-- durante el mes actual.
+-- CONSULTA SQL:
+
+SELECT 
+    c.id_cliente,
+    c.nombre,
+    COUNT(r.id_reserva) AS cantidad_reservas
+FROM cliente c
+LEFT JOIN reserva r
+    ON c.id_cliente = r.id_cliente
+    AND MONTH(r.fecha_reserva) = MONTH(CURRENT_DATE)
+    AND YEAR(r.fecha_reserva) = YEAR(CURRENT_DATE)
+GROUP BY 
+    c.id_cliente,
+    c.nombre;
+
