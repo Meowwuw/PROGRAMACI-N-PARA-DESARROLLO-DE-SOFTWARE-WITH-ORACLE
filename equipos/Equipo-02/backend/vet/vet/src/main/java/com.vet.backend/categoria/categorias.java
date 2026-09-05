@@ -1,4 +1,4 @@
-package categoria;
+package com.vet.backend.categoria;
 
 public class categorias {
     private Long id;
@@ -36,5 +36,3 @@ public class categorias {
                 '}';
     }
 }
-
-
