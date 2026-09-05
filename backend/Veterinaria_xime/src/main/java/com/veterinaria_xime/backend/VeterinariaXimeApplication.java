@@ -1,13 +1,13 @@
-package com.tecnomichistore.backend;
+package com.veterinaria_xime.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TecnoMichiStoreApplication {
+public class VeterinariaXimeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TecnoMichiStoreApplication.class, args);
+        SpringApplication.run(VeterinariaXimeApplication.class, args);
     }
 
 }

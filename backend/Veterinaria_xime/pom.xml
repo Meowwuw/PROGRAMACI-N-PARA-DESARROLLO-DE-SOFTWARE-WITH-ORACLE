@@ -8,11 +8,11 @@
         <version>4.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.tecnomichistore</groupId>
+    <groupId>com.Veterinaria_xime</groupId>
     <artifactId>backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TecnoMichiStore</name>
-    <description>TecnoMichiStore</description>
+    <name>Veterinaria_xime</name>
+    <description>Veterinaria_xime</description>
     <url/>
     <licenses>
         <license/>
