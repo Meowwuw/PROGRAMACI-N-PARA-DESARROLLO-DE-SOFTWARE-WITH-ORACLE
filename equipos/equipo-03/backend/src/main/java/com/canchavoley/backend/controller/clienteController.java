@@ -1,11 +1,8 @@
 package com.canchavoley.backend.controller;
 import com.canchavoley.backend.model.Cliente;
 
-import com.canchavoley.backend.model.Producto;
 import com.canchavoley.backend.service.ClienteService;
-import com.canchavoley.backend.service.ProductoService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
