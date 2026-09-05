@@ -43,6 +43,7 @@ public class SaludoController {
     public String despedida(){
         return "goodbye";
     }
+
     //creen el endpoint d curso/{nombreCurso}
     @GetMapping("/curso/{nombreCurso}")
     public String obtenerCurso(@PathVariable String nombreCurso){
