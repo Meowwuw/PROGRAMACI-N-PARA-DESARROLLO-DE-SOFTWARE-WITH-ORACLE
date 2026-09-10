@@ -1,8 +1,6 @@
-# Decisiones2.md 
+# Decisiones2
 
 Equipo: Lozada Escobar Genesis Ximena / Angulo Nolorbe Edgar
-Basado en el estado actual del backend (`Dueno` y `Veterinario` ya tienen model, service y controller funcionando con datos de ejemplo).
-
 ---
 
 ## Integrante 1 — Genesis Ximena Lozada Escobar
