@@ -286,7 +286,7 @@ public class HorarioController {
 -----------------------------------------------------------------------------------------
 
 ESAU PECHO ZARATE
-1. Necesidad Ingresar datos de los clientes en la base de datos
+1. Necesidad de registrar reservas en la base de datos
 2. Endpoint POST/api/reservas
 3. Modelo
    
