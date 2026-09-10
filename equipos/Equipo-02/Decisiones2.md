@@ -54,8 +54,7 @@ ORDER BY c.fecha_con DESC;
 ### 6. Datos de conexión requeridos (sin credenciales reales)
 Ver sección compartida al final del documento.
 
----## Necesidad 2 — angel gabriel amasifuen ruiz
-fuen ruiz
+## Necesidad 2 — angel gabriel amasifuen ruiz
 
 ### 1. Necesidad
 El administrador necesita saber **cuántas consultas ha atendido cada veterinario**, incluyendo a los que tienen cero, para repartir la carga de trabajo de forma equitativa entre el personal médico.
