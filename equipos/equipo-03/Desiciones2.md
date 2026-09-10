@@ -87,3 +87,99 @@ El flujo seria el siguiente.
   spring.jpa.properties.hibernate.format_sql=true
 
 -----------------------------------------------------------------------------------------
+
+
+
+DAVID SANGAMA SAENZ
+
+1. Necesidad
+  Registrar una nueva cancha de vóley en la base de datos, para que quede disponible y se pueda usar luego en las reservas y horarios.
+
+2. Endpoint
+POST /api/canchas
+
+3. Modelo
+
+  public class Cancha {
+      private Long id;
+      private int numeroCancha;
+
+      public Cancha(Long id, int numeroCancha){
+          this.id = id;
+          this.numeroCancha = numeroCancha;
+      }
+
+      public Long getId(){ return id; }
+
+      public int getNumeroCancha(){ return numeroCancha; }
+  }
+
+4. Flujo
+
+El flujo sería el siguiente.
+-Primero se usaría el controlador de cancha, donde ya estaría usando el modelo de cancha
+
+  @RestController
+  @RequestMapping("/api/canchas")
+  public class canchaController {
+      private final CanchaService canchaService;
+
+      public canchaController(CanchaService canchaService){
+          this.canchaService = canchaService;
+      }
+
+      @PostMapping
+      public Cancha registrar(@RequestBody Cancha cancha){
+          return canchaService.registrarCancha(cancha);
+      }
+
+      @GetMapping
+      public List<Cancha> listar(){
+          return canchaService.listar();
+      }
+  }
+
+-Segundo sería usar el servicio que se usará, en este caso sería registrar los datos de la cancha
+
+  @Service
+  public class CanchaService {
+      private final CanchaRepository canchaRepository;
+
+      public CanchaService(CanchaRepository canchaRepository) {
+          this.canchaRepository = canchaRepository;
+      }
+
+      public Cancha registrarCancha(Cancha cancha) {
+          return canchaRepository.save(cancha);
+      }
+
+      public List<Cancha> listar() {
+          return canchaRepository.findAll();
+      }
+  }
+
+-Tercero se hace la conexión a la base de datos mediante repositorio
+
+  public interface CanchaRepository extends JpaRepository<Cancha, Long> {
+
+  }
+
+5. SQL necesario
+
+  INSERT INTO cancha (numero_cancha)
+  VALUES
+  (3);
+
+6. Datos de conexión requeridos
+  Estos datos serían:
+
+  spring.datasource.url=jdbc:postgresql://localhost:5432/mi_base_de_datos
+  spring.datasource.username=postgres
+  spring.datasource.password=TU_PASSWORD
+
+  spring.jpa.hibernate.ddl-auto=update
+  spring.jpa.show-sql=true
+  spring.jpa.properties.hibernate.format_sql=true
+
+-----------------------------------------------------------------------------------------
+
