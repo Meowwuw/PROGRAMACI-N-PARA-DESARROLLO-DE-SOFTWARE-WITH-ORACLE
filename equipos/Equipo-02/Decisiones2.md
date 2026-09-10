@@ -2,8 +2,6 @@
 
 Equipo 2 — se definieron **3 necesidades reales**, una por integrante, cada una con su propio recorrido Endpoint → Controller → Service → Repository → PostgreSQL.
 
-> **Nota sobre el estado actual del código (revisado en `Equipo-02.zip`):** el SQL de las 3 necesidades ya está validado en `codigo.sql` (8 apoderados, 5 veterinarios, 28 consultas, 28 tratamientos). Lo que **todavía no existe** en el backend es la capa que lo conecta con Spring Boot: no hay clases `Repository`, el `pom.xml` no trae el driver de PostgreSQL ni Spring Data, y `application.properties` solo tiene `spring.application.name=vet` (sin datasource). Los `Service` actuales (`ApoderadoService`, `TratamientoService`, etc.) devuelven listas fijas con `List.of(...)` a modo de mock. Las secciones de "Flujo" de abajo describen el diseño objetivo; lo marcado como **(pendiente)** es lo que falta construir.
-
 ---
 
 ## Necesidad 1 — Harim Jander Saavedra Hidalgo
