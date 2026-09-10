@@ -50,7 +50,6 @@ INNER JOIN veterinario v ON c.id_veterinario = v.id_veterinario
 WHERE c.id_apoderado = ?
 ORDER BY c.fecha_con DESC;
 ```
-(Basado en la "CONSULTA 02" ya validada en `codigo.sql`, agregando el filtro por apoderado.)
 
 ### 6. Datos de conexión requeridos (sin credenciales reales)
 Ver sección compartida al final del documento.
@@ -98,7 +97,6 @@ LEFT JOIN consulta c ON v.id_veterinario = c.id_veterinario
 GROUP BY v.id_veterinario, v.nombre, v.especialidad
 ORDER BY total_consultas_atendidas DESC;
 ```
-(Es la "CONSULTA 03" ya validada en `codigo.sql`, tal cual — no necesita parámetro.)
 
 ### 6. Datos de conexión requeridos (sin credenciales reales)
 Ver sección compartida al final del documento.
@@ -136,7 +134,6 @@ LEFT JOIN consulta c ON a.id_apoderado = c.id_apoderado
 WHERE c.id_consulta IS NULL
 ORDER BY a.nombre;
 ```
-(Es la "CONSULTA 01" ya validada en `codigo.sql`, tal cual.)
 
 ### 6. Datos de conexión requeridos (sin credenciales reales)
 Ver sección compartida al final del documento.
@@ -163,5 +160,3 @@ spring.jpa.hibernate.ddl-auto=none
 - **Usuario/contraseña**: los del rol de PostgreSQL con permisos sobre esa base — nunca se escriben en el archivo que se sube al repo (van en variables de entorno o `application-local.properties` ignorado por git).
 
 ---
-
-*Nota de equipo:* los modelos `Mascota.java`, `Consulta.java` y `Tratamiento.java` que ya están en el repo (con campos como `especie`, `edad`, `motivo`, `diagnostico`, `costo`) **no coinciden** con las columnas reales de `codigo.sql` (`raza`, `peso`, `genero`, `fecha_con`, `tipo_tratamiento`, etc.). Antes de implementar estos repositorios de verdad, hay que alinear esos modelos a las columnas del script.
