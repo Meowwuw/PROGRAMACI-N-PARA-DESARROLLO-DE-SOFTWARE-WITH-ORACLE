@@ -62,7 +62,6 @@ Ver sección compartida al final del documento.
 
 ## Necesidad 2 — angel gabriel amasifuen ruiz
 
-> Nota: el equipo son 4 integrantes, no 3. `Integrantes.md` está desactualizado — lista a *Alex Jonas Gonzales Sangama*, pero Jonas fue reemplazado por Gabriel Amasifuen. Conviene actualizar `Integrantes.md` para reflejar la lista actual del equipo (y de paso explica por qué "Gabriel Amasifuen" también aparece como apoderado de prueba en `codigo.sql`).
 
 ### 1. Necesidad
 El administrador necesita saber **cuántas consultas ha atendido cada veterinario**, incluyendo a los que tienen cero, para repartir la carga de trabajo de forma equitativa entre el personal médico.
