@@ -1,4 +1,4 @@
-# Decisiones2.md — Recorrido de los datos
+# Decisiones2.md 
 
 Equipo: Lozada Escobar Genesis Ximena / Angulo Nolorbe Edgar
 Basado en el estado actual del backend (`Dueno` y `Veterinario` ya tienen model, service y controller funcionando con datos de ejemplo).
