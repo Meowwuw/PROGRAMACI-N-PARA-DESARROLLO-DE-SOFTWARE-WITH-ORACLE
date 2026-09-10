@@ -16,6 +16,35 @@ Ejemplo: `GET /api/duenos/telefono/912345678`
 
 ### 3. Modelo
 Se reutiliza el modelo `Dueno` que ya existe en el proyecto (`id_dueno`, `nombre`, `telefono`, `direccion`), sin campos nuevos.
+package com.Vet.backend.model;
+
+public class Dueno {
+    private Long idDueno;
+    private String nombre;
+    private String telefono;
+    private String direccion;
+    
+    public Dueno(){
+    }
+    public Dueno(Long idDueno, String nombre, String telefono, String direccion){
+        this.idDueno = idDueno;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.direccion = direccion;
+    }
+    public Long getIdDueno(){
+        return idDueno;
+    }
+    public String getNombre(){
+        return nombre;
+    }
+    public String getTelefono(){
+        return telefono;
+    }
+    public String getDireccion(){
+        return direccion;
+    }
+}
 
 ### 4. Flujo
 1. **Endpoint**: la recepcionista busca `GET /api/duenos/telefono/912345678`.
@@ -56,6 +85,36 @@ Ejemplo: `GET /api/veterinarios/especialidad/Dermatología`
 
 ### 3. Modelo
 Se reutiliza el modelo `Veterinario` que ya existe en el proyecto (`id_veterinario`, `nombre`, `especialidad`, `telefono`), sin campos nuevos.
+
+package com.Vet.backend.model;
+
+public class Veterinario {
+    private Long idVeterinario;
+    private String nombre;
+    private String especialidad;
+    private String telefono;
+
+    public Veterinario(){
+    }
+    public Veterinario(Long idVeterinario, String nombre, String especialidad, String telefono){
+        this.idVeterinario = idVeterinario;
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+        this.telefono = telefono;
+    }
+    public Long getIdVeterinario(){
+        return idVeterinario;
+    }
+    public String getNombre(){
+        return nombre;
+    }
+    public String getEspecialidad(){
+        return especialidad;
+    }
+    public String getTelefono(){
+        return telefono;
+    }
+}
 
 ### 4. Flujo
 1. **Endpoint**: la recepción busca `GET /api/veterinarios/especialidad/Dermatología`.
