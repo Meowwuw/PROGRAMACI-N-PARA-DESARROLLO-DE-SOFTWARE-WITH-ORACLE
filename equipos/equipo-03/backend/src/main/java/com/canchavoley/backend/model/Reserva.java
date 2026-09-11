@@ -1,14 +1,27 @@
 package com.canchavoley.backend.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "reserva", schema = "renta_cancha")
 public class Reserva {
+    @Id
+    @Column(name="id_reserva")
     private int id;
+
     private int id_cliente;
     private int id_horario;
     private int id_cancha;
     private String fecha;
 
-    public Reserva(int id, int id_cliente, int id_horario,
-                   int id_cancha, String fecha){
+    public Reserva(){
+
+    }
+
+    public Reserva(int id, int id_cliente, int id_horario, int id_cancha, String fecha){
         this.id=id;
         this.id_cliente=id_cliente;
         this.id_horario=id_horario;
