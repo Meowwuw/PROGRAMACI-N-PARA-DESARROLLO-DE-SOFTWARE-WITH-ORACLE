@@ -1,37 +1,31 @@
 package com.canchavoley.backend.model;
 
-public class Horario {
-    private Long id;
-    private String hora;
-    private double precio;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-    public Horario(Long id, String hora, double precio) {
+@Entity
+@Table(name = "horario", schema = "renta_cancha")
+public class Horario {
+    @Id
+    @Column(name = "id_horario")
+    private Long id;
+    private int horario;
+
+    public Horario() {
+    }
+
+    public Horario(Long id, int horario) {
         this.id = id;
-        this.hora = hora;
-        this.precio = precio;
+        this.horario = horario;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public int getHorario() {
+        return horario;
     }
 }

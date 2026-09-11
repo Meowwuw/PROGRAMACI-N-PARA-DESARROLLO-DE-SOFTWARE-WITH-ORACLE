@@ -1,28 +1,24 @@
 package com.canchavoley.backend.service;
 
+import com.canchavoley.backend.model.Cancha;
 import com.canchavoley.backend.model.Horario;
+import com.canchavoley.backend.model.Producto;
+import com.canchavoley.backend.repository.CanchaRepository;
+import com.canchavoley.backend.repository.HorarioRepository;
+import com.canchavoley.backend.repository.ProductoRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class HorarioService {
 
-    private final List<Horario> listaHorarios = new ArrayList<>();
+    private final HorarioRepository horarioRepository;
 
-    public HorarioService() {
-
-        listaHorarios.add(new Horario(1L, "08:00 - 09:00", 25.0));
-        listaHorarios.add(new Horario(2L, "09:00 - 10:00", 25.0));
+    public HorarioService(HorarioRepository horarioRepository) {
+        this.horarioRepository=horarioRepository;
     }
 
-    public List<Horario> listar() {
-        return listaHorarios;
-    }
-
-    public Horario guardar(Horario hora) {
-        listaHorarios.add(hora);
-        return hora;
+    public List<Horario> listar(){
+        return horarioRepository.findAll();
     }
 }
