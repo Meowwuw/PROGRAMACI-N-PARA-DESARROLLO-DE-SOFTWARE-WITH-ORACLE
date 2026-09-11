@@ -1,11 +1,7 @@
 package com.canchavoley.backend.service;
 
-import com.canchavoley.backend.model.Cancha;
 import com.canchavoley.backend.model.Horario;
-import com.canchavoley.backend.model.Producto;
-import com.canchavoley.backend.repository.CanchaRepository;
 import com.canchavoley.backend.repository.HorarioRepository;
-import com.canchavoley.backend.repository.ProductoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

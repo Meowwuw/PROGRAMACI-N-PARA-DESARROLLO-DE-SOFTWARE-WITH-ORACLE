@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/horarios")
-public class HorarioController {
+public class horarioController {
 
     private final HorarioService horarioService;
 
-    public HorarioController(HorarioService horarioService) {
+    public horarioController(HorarioService horarioService) {
         this.horarioService = horarioService;
     }
 
