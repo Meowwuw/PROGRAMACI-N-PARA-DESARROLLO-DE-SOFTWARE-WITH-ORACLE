@@ -1,17 +1,20 @@
 package com.canchavoley.backend.service;
 
 import com.canchavoley.backend.model.Cancha;
+import com.canchavoley.backend.repository.CanchaRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class CanchaService {
 
-    public List<Cancha> listar() {
-        return List.of(
-                new Cancha(1L, 1),
-                new Cancha(2L, 2),
-                new Cancha(3L, 3)
-        );
+    private final CanchaRepository canchaRepository;
+
+    public CanchaService(CanchaRepository canchaRepository) {
+        this.canchaRepository=canchaRepository;
+    }
+
+    public List<Cancha> listar(){
+        return canchaRepository.findAll();
     }
 }
