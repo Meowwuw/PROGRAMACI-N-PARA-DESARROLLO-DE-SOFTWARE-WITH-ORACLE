@@ -1,17 +1,26 @@
 package com.vet.backend.service;
 
 import com.vet.backend.model.Apoderado;
+import com.vet.backend.repository.ApoderadoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApoderadoService {
-    public List<Apoderado> listar(){
-        return List.of(
-                new Apoderado(1L, "Carlos Ramírez", "987654321", "Av. Los Álamos 123"),
-                new Apoderado(2L, "María Torres", "912345678", "Jr. Las Flores 456"),
-                new Apoderado(3L, "Luis Vargas", "998877665", "Calle San Martín 789")
-        );
+
+    private final ApoderadoRepository apoderadoRepository;
+
+    public ApoderadoService(ApoderadoRepository apoderadoRepository) {
+        this.apoderadoRepository = apoderadoRepository;
+    }
+
+    public List<Apoderado> listar() {
+        return apoderadoRepository.findAll();
+    }
+
+    public Optional<Apoderado> buscarPorId(Long id) {
+        return apoderadoRepository.findById(id);
     }
 }

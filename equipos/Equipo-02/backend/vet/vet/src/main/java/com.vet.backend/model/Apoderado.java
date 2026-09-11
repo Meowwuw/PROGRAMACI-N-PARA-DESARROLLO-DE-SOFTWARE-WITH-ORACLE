@@ -1,19 +1,28 @@
 package com.vet.backend.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "apoderado", schema = "a_veterinaria")
 public class Apoderado {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_apoderado")
     private Long id;
+
+    @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;
+
+    @Column(name = "telefono", length = 11, nullable = false)
     private String telefono;
-    private String direccion;
 
     public Apoderado() {
     }
 
-    public Apoderado(Long id, String nombre, String telefono, String direccion) {
-        this.id = id;
+    public Apoderado(String nombre, String telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
-        this.direccion = direccion;
     }
 
     public Long getId() {
@@ -40,21 +49,12 @@ public class Apoderado {
         this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     @Override
     public String toString() {
         return "Apoderado{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
                 '}';
     }
 }
