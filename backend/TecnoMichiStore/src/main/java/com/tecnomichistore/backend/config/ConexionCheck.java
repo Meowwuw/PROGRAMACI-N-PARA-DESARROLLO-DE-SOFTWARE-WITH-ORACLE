@@ -1,4 +1,4 @@
-package com.veterinaria_xime.backend.config;
+package com.tecnomichistore.backend.config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,4 +17,6 @@ public class ConexionCheck implements CommandLineRunner {
         jdbcTemplate.queryForObject("SELECT 1", Integer.class);
         System.out.println("CONEXION EXITOSA");
     }
+
+
 }
