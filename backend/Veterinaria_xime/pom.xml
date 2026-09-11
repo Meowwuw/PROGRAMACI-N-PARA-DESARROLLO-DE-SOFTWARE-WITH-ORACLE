@@ -29,6 +29,7 @@
     <properties>
         <java.version>21</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,7 +53,12 @@
             <scope>runtime</scope>
         </dependency>
 
+<<<<<<< HEAD:backend/Veterinaria_xime/pom.xml
+=======
+
+>>>>>>> 1e52d726fa79ce1e4bdf77cc93be6822cac85fd0:backend/TecnoMichiStore/pom.xml
     </dependencies>
+
 
     <build>
         <plugins>
