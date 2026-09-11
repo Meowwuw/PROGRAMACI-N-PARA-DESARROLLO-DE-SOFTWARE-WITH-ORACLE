@@ -13,37 +13,5 @@ import java.util.List;
 @RequestMapping("/api/producto")
 
 public class ProductoController {
-    private final ProductoService productoService;
-
-
-    public ProductoController(ProductoService productoService){
-        this.productoService = productoService;
-    }
-
-    //cada clase tiene una responsabilidad
-    @GetMapping
-    public List <Producto> Listar(){
-        return productoService.listar();
-    }
-
-    //migrar los endpoints de producto
-    @GetMapping("/destacado")
-    public Producto destacado(){
-        return new Producto(
-                2L,
-                "MonitorBig",
-                750.00,
-                "Monitor");
-
-    }
-
-    @GetMapping("{id}")
-    public Producto buscarPorId(@PathVariable Long id){
-        return  new Producto(
-                1L,
-                "Producto prueba",
-                99.90,
-                "No identificado"
-        );
-    }
+  
 }
