@@ -20,7 +20,7 @@ public class SaludoController {
         return "Hola " + nombre + " 🌻";
     }
 
-    @GetMapping("/productos")
+ /*   @GetMapping("/productos")
     public List<String> productos(){
         return List.of(
                 "Laptop Michina",
@@ -28,17 +28,10 @@ public class SaludoController {
                 "Tecladp RGB Cat"
         );
     }
-
-    @GetMapping("/producto")
-    public Producto producto(){
-        return new Producto(
-                1L,
-                "Michi-Mouse",
-                75.50
-        );
-    }
+*/
 
     //Creen el endpoint de despedida
     //Creen el enpoint de curso/{nombrecurso}
     //Creen el enpoint de categorias que devuelva 3 categorias
+
 }
