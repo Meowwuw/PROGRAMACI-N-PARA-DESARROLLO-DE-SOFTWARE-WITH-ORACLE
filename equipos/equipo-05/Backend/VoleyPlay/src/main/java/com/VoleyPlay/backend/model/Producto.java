@@ -1,6 +1,21 @@
 package com.VoleyPlay.backend.model;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+/*@Entity
+@Table(name = "producto", schema = "michistore")*/
 public class Producto {
+
+    /*
+    @id
+    @Column(name ="id_producto")
+
+    private Long id;
+    */
+
 
     private Long id;
     private String nombre;
@@ -18,6 +33,7 @@ public class Producto {
     public Long getId(){
         return id;
     }
+
     public String getNombre(){
         return  nombre;
     }
