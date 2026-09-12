@@ -37,13 +37,4 @@ public class ProductoController {
 
     }
 
-    @GetMapping("{id}")
-    public Producto buscarPorId(@PathVariable Long id){
-        return  new Producto(
-                1L,
-                "Producto prueba",
-                99.90,
-                "No identificado"
-        );
-    }
 }

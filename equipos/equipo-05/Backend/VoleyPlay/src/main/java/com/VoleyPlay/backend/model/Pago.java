@@ -1,44 +1,80 @@
 package com.VoleyPlay.backend.model;
 
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "pago", schema = "voley_playa")
 public class Pago {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pago")
+    private Long idPago;
+
+    @Column(name = "id_reserva")
     private Long idReserva;
-    private String fechaPago;
-    private double monto;
+
+    @Column(name = "fecha_pago")
+    private LocalDateTime fechaPago;
+
+    @Column(name = "monto")
+    private Double monto;
+
+    @Column(name = "metodo_pago")
     private String metodoPago;
+
+    @Column(name = "estado")
     private String estado;
 
-    public Pago(Long id, Long idReserva, String fechaPago, double monto, String metodoPago, String estado) {
-        this.id = id;
-        this.idReserva = idReserva;
-        this.fechaPago = fechaPago;
-        this.monto = monto;
-        this.metodoPago = metodoPago;
-        this.estado = estado;
+    public Pago() {}
+
+    // Getters y Setters
+    public Long getIdPago() {
+        return idPago;
     }
 
-    public Long getId() {
-        return id;
+    public void setIdPago(Long idPago) {
+        this.idPago = idPago;
     }
 
     public Long getIdReserva() {
         return idReserva;
     }
 
-    public String getFechaPago() {
+    public void setIdReserva(Long idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public LocalDateTime getFechaPago() {
         return fechaPago;
     }
 
-    public double getMonto() {
+    public void setFechaPago(LocalDateTime fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+
+    public Double getMonto() {
         return monto;
+    }
+
+    public void setMonto(Double monto) {
+        this.monto = monto;
     }
 
     public String getMetodoPago() {
         return metodoPago;
     }
 
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
     public String getEstado() {
         return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
