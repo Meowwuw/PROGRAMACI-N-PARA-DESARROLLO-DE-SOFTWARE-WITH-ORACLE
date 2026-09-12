@@ -17,4 +17,14 @@ public class ClienteService {
     public List<Cliente> listar(){
         return clienteRepository.findAll();
     }
+
+    public Cliente buscarPorId(Long id) {
+        return clienteRepository.findById(id)
+                .orElse(null);
+    }
+
+    public Cliente guardar(Cliente producto) {
+        return clienteRepository.save(producto);
+    }
+
 }
