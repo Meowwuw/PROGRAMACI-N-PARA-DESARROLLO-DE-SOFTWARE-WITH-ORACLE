@@ -3,6 +3,7 @@ package com.canchavoley.backend.controller;
 import com.canchavoley.backend.model.Cancha;
 import com.canchavoley.backend.service.CanchaService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -21,4 +22,10 @@ public class canchaController {
     public List<Cancha> listar() {
         return canchaService.listar();
     }
+
+    @GetMapping("/{id}")
+    public Cancha buscarPorId(@PathVariable Long id) {
+        return canchaService.buscarPorId(id);
+    }
+
 }

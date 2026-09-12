@@ -17,4 +17,10 @@ public class CanchaService {
     public List<Cancha> listar(){
         return canchaRepository.findAll();
     }
+
+    public Cancha buscarPorId(Long id) {
+        return canchaRepository.findById(id)
+                .orElse(null);
+    }
+
 }
