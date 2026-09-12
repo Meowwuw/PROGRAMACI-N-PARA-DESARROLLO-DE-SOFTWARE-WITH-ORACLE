@@ -10,9 +10,9 @@ public class ProductoService {
 
     public List<Producto> listar(){
         return List.of(
-                new Producto(1l,"Laptop Michina", 2500.00, "Equipo"),
-                new Producto(2l,"Mouse michi Gamer", 75.50, "Accesorio"),
-                new Producto(3l,"Teclado Cat", 120.00, "Accesorio")
+                new Producto(1l, "Laptop Michina", 2500.00, "Equipo"),
+                new Producto(2l, "Mouse michi Gamer", 75.50, "Accesorio"),
+                new Producto(3l, "Teclado Cat", 120.00, "Accesorio")
         );
     }
 }

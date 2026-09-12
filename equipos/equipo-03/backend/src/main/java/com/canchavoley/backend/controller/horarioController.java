@@ -1,10 +1,9 @@
 package com.canchavoley.backend.controller;
+
 import com.canchavoley.backend.model.Horario;
 import com.canchavoley.backend.service.HorarioService;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,15 @@ public class horarioController {
     @GetMapping
     public List<Horario> listar() {
         return horarioService.listar();
+    }
+
+    @GetMapping("/{id}")
+    public Horario buscarPorId(@PathVariable Integer id) {
+        return horarioService.buscarPorId(id);
+    }
+
+    @PostMapping
+    public Horario registrar(@RequestBody Horario horario) {
+        return horarioService.guardar(horario);
     }
 }
