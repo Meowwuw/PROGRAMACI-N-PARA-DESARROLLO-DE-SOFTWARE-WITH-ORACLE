@@ -1,208 +1,132 @@
-Informe del Sistema de Reservas de Vóley Playa  
+##John Benjamin Abarca Diaz
+## 1. Necesidad
 
-Esquema: voley_playa  
+**Obtener reservas**
 
-Fecha del informe: 28 de agosto de 2026  
+Se requiere obtener todas las reservas de la base de datos.
 
+## 2. Endpoint
 
+**GET** /api/reservas
 
-1. Descripción general del sistema
+## 3. Modelo
 
-Sistema de gestión de reservas para canchas de vóley playa.  
+**Reserva**
 
-Horario de operación:** 16:00 a 21:00 (5 franjas de 1 hora).  
+##tabla
 
-Precio fijo:** S/ 20.00 por hora.  
+CREATE TABLE reserva (
+    id_reserva SERIAL PRIMARY KEY,
+    id_cliente INT NOT NULL REFERENCES cliente(id_cliente),
+    id_cancha INT NOT NULL REFERENCES cancha(id_cancha),
+    id_horario INT NOT NULL REFERENCES horario(id_horario),
+    fecha_reserva DATE NOT NULL,
+    estado VARCHAR(50)DEFAULT 'Pendiente',
+    total DECIMAL(10,2) NOT NULL
+);
 
-Estados de reserva:** RESERVADO, CANCELADO, FINALIZADO.  
+##Jhoau Zegarra Lopez 
 
-Estados de pago:** PENDIENTE, PAGADO, DEVUELTO.  
+## 1. Necesidad
 
-Métodos de pago:** EFECTIVO, YAPE, PLIN, TARJETA.  
+**Obtener horarios**
 
+Se requiere obtener todos los horarios disponibles
+de la base de datos.
 
+## 2. Endpoint
 
-Características principales de integridad:
+**GET** /api/horarios
 
-Unicidad de correo de cliente.
+## 3. Modelo
 
-Restricción de precio fijo a S/ 20.00.
+**Horario**
 
-Restricción de horarios válidos (16:00–21:00).
+##tabla 
+CREATE TABLE horario (
+    id_horario SERIAL PRIMARY KEY,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    precio DECIMAL(10,2) NOT NULL
+);
 
-Restricción de unicidad** que impide doble reserva de la misma cancha + fecha + horario.
+##Esteban Arevalo Villacorta
 
-Relación 1:1 entre reserva y pago.
+const productService = require('../services/product.service');
 
+const createProduct = async (req, res) => {
+  try {
+    const { name, price, stock, category_id } = req.body;
 
+    // Validación básica de entrada
+    if (!name || price == null || stock == null || !category_id) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
 
-2. Estructura de la base de datos
+    if (price <= 0 || stock < 0) {
+      return res.status(400).json({ error: 'El precio y el stock deben ser valores válidos' });
+    }
 
+    const newProduct = await productService.createProduct({ name, price, stock, category_id });
+    return res.status(201).json(newProduct);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
+module.exports = { createProduct };
 
-| Tabla   | Descripción             | Clave primaria | Relaciones principales         |
+##Clara Luz Chero Rios
+## 1. Necesidad
 
-|-----------|--------------------------------------|----------------|-----------------------------------------|
+**Obtener pagos**
 
-| cliente  | Datos de los clientes        | id_cliente   | —                    |
+Se requiere obtener todos los pagos de la base de datos.
 
-| cancha  | Canchas disponibles         | id_cancha   | —                    |
+## 2. Endpoint
 
-| horario  | Franjas horarias           | id_horario   | —                    |
+**GET** /api/pagos
 
-| reserva  | Reservas realizadas         | id_reserva   | FK → cliente, cancha, horario      |
+## 3. Modelo
 
-| pago   | Pagos asociados a reservas      | id_pago    | FK → reserva (única)          |
+**Pago**
 
+##tabla
+CREATE TABLE pago (
+    id_pago SERIAL PRIMARY KEY,
+    id_reserva INT NOT NULL REFERENCES reserva(id_reserva),
+    fecha_pago DATE,
+    monto DECIMAL(10,2) NOT NULL,
+    metodo_pago VARCHAR(50) NOT NULL,
+    estado VARCHAR(50) DEFAULT 'Pendiente'
+);
 
+##Susan Aracely Ñahuinripa Quispe
 
-3. Datos cargados (muestra)
+## 1. Necesidad
 
+**Obtener cliente** \
 
+Se requiere obtener todos los clientes 
+de la base de datos
+ 
+## 2. Endpoint
 
-Clientes (5)  
+**POST** /api/clientes
 
-Ana Quispe, Luis Ramirez, Rosa Tello, Carlos Torres, Maria Flores.
+## 3. Modelo
 
+**Cliente**
 
+##tabla
 
-Canchas (2)  
+CREATE TABLE cliente (
+    id_cliente SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    dni VARCHAR(20) NOT NULL UNIQUE,
+    telefono VARCHAR(20),
+    email VARCHAR(100) UNIQUE
+);
 
-Cancha 1 – VOLEY PLAYA – S/ 20.00  
-
-Cancha 2 – VOLEY PLAYA – S/ 20.00  
-
-
-
-Horarios (5)  
-
-16:00-17:00 · 17:00-18:00 · 18:00-19:00 · 19:00-20:00 · 20:00-21:00  
-
-
-
-Reservas del día 2026-08-28 (5)  
-
-
-
-| ID Reserva | Cliente     | Cancha  | Horario    | Estado   |
-
-|------------|------------------|----------|---------------|------------|
-
-| 1     | Ana Quispe    | Cancha 1 | 16:00-17:00  | RESERVADO |
-
-| 2     | Luis Ramirez   | Cancha 2 | 16:00-17:00  | RESERVADO |
-
-| 3     | Rosa Tello    | Cancha 1 | 17:00-18:00  | RESERVADO |
-
-| 4     | Carlos Torres  | Cancha 2 | 18:00-19:00  | RESERVADO |
-
-| 5     | Maria Flores   | Cancha 1 | 19:00-20:00  | RESERVADO |
-
-
-
-Pagos  
-
-
-
-| ID Reserva | Monto | Método  | Estado   |
-
-|------------|--------|-----------|------------|
-
-| 1     | 20.00 | YAPE   | PAGADO   |
-
-| 2     | 20.00 | EFECTIVO | PAGADO   |
-
-| 3     | 20.00 | PLIN   | PAGADO   |
-
-| 4     | 20.00 | YAPE   | PAGADO   |
-
-| 5     | 20.00 | EFECTIVO | PENDIENTE |
-
-
-
-4. Resultados de las consultas principales
-
-
-
-Consulta general (Cliente + Cancha + Horario + Reserva + Pago)  
-
-Se obtiene el detalle completo de las 5 reservas del 28/08/2026 con sus respectivos datos de pago.
-
-
-
-Horarios disponibles – Cancha 1 (28/08/2026)  
-
-18:00-19:00  
-
-20:00-21:00  
-
-
-
-Todas las canchas disponibles (28/08/2026)  
-
-
-
-| Cancha  | Horario    |
-
-|----------|---------------|
-
-| Cancha 1 | 18:00-19:00  |
-
-| Cancha 2 | 17:00-18:00  |
-
-| Cancha 1 | 20:00-21:00  |
-
-| Cancha 2 | 19:00-20:00  |
-
-| Cancha 2 | 20:00-21:00  |
-
-
-
-Total recaudado (solo pagos PAGADO)  
-
-S/ 80.00
-
-
-
-Cantidad de reservas por cliente  
-
-Todos los clientes tienen 1 reserva (ordenados por cantidad descendente, empate total).
-
-
-
-5. Análisis y observaciones
-
-
-
-Ocupación del día 28/08/2026: 5 reservas de un total posible de 10 (2 canchas × 5 horarios) → **50 % de ocupación.
-
-Cancha más demandada**: Cancha 1 (3 reservas).
-
-Horario más demandado**: 16:00-17:00 (ambas canchas ocupadas).
-
-Situación de cobros**: 4 pagos confirmados (S/ 80) y 1 pendiente (reserva de Maria Flores).
-
-La restricción UNIQUE (id_cancha, fecha, id_horario) funciona correctamente y evita sobre-reservas.
-
-El sistema está listo para consultas de disponibilidad en tiempo real y reportes de recaudación.
-
-
-
-6. Recomendaciones
-
-Implementar un trigger o procedimiento que actualice automáticamente el estado de la reserva a FINALIZADO al terminar el horario.
-
-Agregar una columna fecha_pago y fecha_creacion para mejor auditoría.
-
-Crear una vista materializada o consulta frecuente para “disponibilidad del día” para mejorar el rendimiento.
-
-Considerar permitir cancelaciones con reembolso automático (cambiar estado a CANCELADO + DEVUELTO).
-
-
-
-Resumen ejecutivo  
-
-El sistema se encuentra correctamente modelado, con datos de prueba consistentes y consultas funcionales. En el día de referencia se recaudaron S/ 80.00 de un potencial de S/ 100.00, con buena distribución de reservas y control de disponibilidad operativo.
-
-Escribir mensaje
-
+## Las tablas 
