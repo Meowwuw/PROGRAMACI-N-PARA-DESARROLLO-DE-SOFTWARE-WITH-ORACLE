@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/api/producto")
 
 public class ProductoController {
+<<<<<<< HEAD
     private final ProductoService productoService;
 
 
@@ -37,13 +38,7 @@ public class ProductoController {
 
     }
 
-    @GetMapping("{id}")
-    public Producto buscarPorId(@PathVariable Long id){
-        return  new Producto(
-                1L,
-                "Producto prueba",
-                99.90,
-                "No identificado"
-        );
-    }
+=======
+  
+>>>>>>> 57ab954a1c30c0eecf59a6cca9f7dfcba81c1123
 }
