@@ -11,16 +11,20 @@ public class CanchaService {
     private final CanchaRepository canchaRepository;
 
     public CanchaService(CanchaRepository canchaRepository) {
-        this.canchaRepository=canchaRepository;
+        this.canchaRepository = canchaRepository;
     }
 
     public List<Cancha> listar(){
         return canchaRepository.findAll();
     }
 
-    public Cancha buscarPorId(Long id) {
+    public Cancha buscarPorId(Integer id) {
         return canchaRepository.findById(id)
                 .orElse(null);
+    }
+
+    public Cancha guardar(Cancha cancha) {
+        return canchaRepository.save(cancha);
     }
 
 }
