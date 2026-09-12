@@ -23,13 +23,18 @@ public class Consulta {
     @JoinColumn(name = "id_veterinario", nullable = false)
     private Veterinario veterinario;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_mascota", nullable = false)
+    private Mascota mascota;
+
     public Consulta() {
     }
 
-    public Consulta(LocalDateTime fechaCon, Apoderado apoderado, Veterinario veterinario) {
+    public Consulta(LocalDateTime fechaCon, Apoderado apoderado, Veterinario veterinario, Mascota mascota) {
         this.fechaCon = fechaCon;
         this.apoderado = apoderado;
         this.veterinario = veterinario;
+        this.mascota = mascota;
     }
 
     public Long getId() {
@@ -64,11 +69,11 @@ public class Consulta {
         this.veterinario = veterinario;
     }
 
-    @Override
-    public String toString() {
-        return "Consulta{" +
-                "id=" + id +
-                ", fechaCon=" + fechaCon +
-                '}';
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
     }
 }

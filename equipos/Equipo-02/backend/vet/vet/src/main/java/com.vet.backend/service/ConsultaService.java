@@ -23,4 +23,8 @@ public class ConsultaService {
     public Optional<Consulta> buscarPorId(Long id) {
         return consultaRepository.findById(id);
     }
+
+    public Consulta guardar(Consulta consulta) {
+        return consultaRepository.save(consulta);
+    }
 }

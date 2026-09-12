@@ -2,6 +2,7 @@ package com.vet.backend.controller;
 
 import com.vet.backend.model.Consulta;
 import com.vet.backend.service.ConsultaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,5 +28,11 @@ public class ConsultaController {
         return consultaService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Consulta> crear(@RequestBody Consulta consulta) {
+        Consulta nueva = consultaService.guardar(consulta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nueva);
     }
 }
