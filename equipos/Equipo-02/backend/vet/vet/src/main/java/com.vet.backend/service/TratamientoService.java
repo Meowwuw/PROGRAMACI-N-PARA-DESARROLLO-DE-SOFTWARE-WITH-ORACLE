@@ -1,17 +1,26 @@
 package com.vet.backend.service;
 
 import com.vet.backend.model.Tratamiento;
+import com.vet.backend.repository.TratamientoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TratamientoService {
-    public List<Tratamiento> listar(){
-        return List.of(
-                new Tratamiento(1L, "Vacunación", "Aplicación de vacuna antirrábica", 45.00),
-                new Tratamiento(2L, "Desparasitación", "Tratamiento antiparasitario interno", 30.00),
-                new Tratamiento(3L, "Baño medicado", "Baño con shampoo dermatológico", 25.00)
-        );
+
+    private final TratamientoRepository tratamientoRepository;
+
+    public TratamientoService(TratamientoRepository tratamientoRepository) {
+        this.tratamientoRepository = tratamientoRepository;
+    }
+
+    public List<Tratamiento> listar() {
+        return tratamientoRepository.findAll();
+    }
+
+    public Optional<Tratamiento> buscarPorId(Long id) {
+        return tratamientoRepository.findById(id);
     }
 }
