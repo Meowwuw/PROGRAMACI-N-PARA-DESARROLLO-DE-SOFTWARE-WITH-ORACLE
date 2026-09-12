@@ -1,19 +1,35 @@
 package com.vet.backend.model;
 
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "consulta", schema = "a_veterinaria")
 public class Consulta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_consulta")
     private Long id;
-    private String motivo;
-    private String fecha;
-    private String diagnostico;
+
+    @Column(name = "fecha_con", nullable = false)
+    private LocalDateTime fechaCon;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_apoderado", nullable = false)
+    private Apoderado apoderado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_veterinario", nullable = false)
+    private Veterinario veterinario;
 
     public Consulta() {
     }
 
-    public Consulta(Long id, String motivo, String fecha, String diagnostico) {
-        this.id = id;
-        this.motivo = motivo;
-        this.fecha = fecha;
-        this.diagnostico = diagnostico;
+    public Consulta(LocalDateTime fechaCon, Apoderado apoderado, Veterinario veterinario) {
+        this.fechaCon = fechaCon;
+        this.apoderado = apoderado;
+        this.veterinario = veterinario;
     }
 
     public Long getId() {
@@ -24,37 +40,35 @@ public class Consulta {
         this.id = id;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public LocalDateTime getFechaCon() {
+        return fechaCon;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setFechaCon(LocalDateTime fechaCon) {
+        this.fechaCon = fechaCon;
     }
 
-    public String getFecha() {
-        return fecha;
+    public Apoderado getApoderado() {
+        return apoderado;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setApoderado(Apoderado apoderado) {
+        this.apoderado = apoderado;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public Veterinario getVeterinario() {
+        return veterinario;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 
     @Override
     public String toString() {
         return "Consulta{" +
                 "id=" + id +
-                ", motivo='" + motivo + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", diagnostico='" + diagnostico + '\'' +
+                ", fechaCon=" + fechaCon +
                 '}';
     }
 }
