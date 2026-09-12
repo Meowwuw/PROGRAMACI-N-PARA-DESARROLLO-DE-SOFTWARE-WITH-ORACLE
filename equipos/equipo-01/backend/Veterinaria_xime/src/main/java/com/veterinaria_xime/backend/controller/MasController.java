@@ -24,6 +24,10 @@ public class MasControlller {
     public List<Mascota> listar(){
         return mascotaService.listar();
     }
+    @GetMapping
+    public Mascota buscarPorId(@PathVariable Long id){
+        return mascotaService.buscarPorId(id);
+    }
 
 }
 
