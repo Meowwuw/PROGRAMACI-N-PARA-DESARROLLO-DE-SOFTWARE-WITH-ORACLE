@@ -1,7 +1,7 @@
-package com.VoleyPlay.backend.controller;
+package com.canchavoley.backend.controller;
+import com.canchavoley.backend.model.Cliente;
 
-import com.VoleyPlay.backend.model.Cliente;
-import com.VoleyPlay.backend.services.ClienteService;
+import com.canchavoley.backend.service.ClienteService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,16 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cliente")
-public class ClienteController {
+@RequestMapping("/api/clientes")
+public class clienteController {
     private final ClienteService clienteService;
 
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
+    public clienteController(ClienteService clienteService){
+        this.clienteService=clienteService;
     }
 
     @GetMapping
     public List<Cliente> listar(){
         return clienteService.listar();
     }
+
 }

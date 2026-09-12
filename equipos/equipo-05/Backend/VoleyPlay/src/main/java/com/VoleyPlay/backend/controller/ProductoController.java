@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/api/producto")
 
 public class ProductoController {
+<<<<<<< HEAD
     private final ProductoService productoService;
 
 
@@ -37,4 +38,7 @@ public class ProductoController {
 
     }
 
+=======
+  
+>>>>>>> 57ab954a1c30c0eecf59a6cca9f7dfcba81c1123
 }
