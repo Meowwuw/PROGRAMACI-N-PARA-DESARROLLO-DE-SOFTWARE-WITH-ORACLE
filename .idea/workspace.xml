@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a1dcff9-a469-41db-91c2-3973135ad0b2" name="Changes" comment="" />
+    <list default="true" id="9a1dcff9-a469-41db-91c2-3973135ad0b2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/equipos/equipo-05/Backend/VoleyPlay/src/main/java/com/VoleyPlay/backend/model/HorarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,14 +16,43 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3JE8vhapsb5WelO7ut39agqPfll" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "equipo-05-spring",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ALUMNOS/Documents/GitHub/PROGRAMACI-N-PARA-DESARROLLO-DE-SOFTWARE-WITH-ORACLE/equipos/equipo-05/Backend/VoleyP",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9a1dcff9-a469-41db-91c2-3973135ad0b2" name="Changes" comment="" />
+      <created>1789215099957</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1789215099957</updated>
+      <workItem from="1789215101391" duration="4000" />
+      <workItem from="1789215257004" duration="4000" />
+      <workItem from="1789215269596" duration="20000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
