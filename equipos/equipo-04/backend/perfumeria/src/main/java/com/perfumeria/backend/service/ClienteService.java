@@ -4,8 +4,6 @@ import com.perfumeria.backend.model.Cliente;
 import com.perfumeria.backend.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -19,8 +17,8 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    @PutMapping("/{id}")
-    public Cliente actualizar(
-            @PathVariable L
-    )
+    public Cliente actualizar(Long id, Cliente cliente) {
+        cliente.setId(id);
+        return clienteRepository.save(cliente);
+    }
 }
