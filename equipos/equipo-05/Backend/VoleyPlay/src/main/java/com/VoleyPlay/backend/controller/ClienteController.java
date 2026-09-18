@@ -30,4 +30,15 @@ public class ClienteController {
         return clienteService.guardar(producto);
     }
 
+    @PutMapping("/{id}")
+        public Cliente actualizar(
+                @PathVariable Long id,
+                @RequestBody Cliente cliente){
+        return clienteService.actualizar(id, cliente);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+        clienteService.eliminar(id);
+    }
 }

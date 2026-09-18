@@ -1,7 +1,7 @@
 package com.VoleyPlay.backend.controller;
 
 import com.VoleyPlay.backend.model.Horario;
-import com.VoleyPlay.backend.Repository.HorarioRepository; // R mayúscula
+import com.VoleyPlay.backend.repository.HorarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

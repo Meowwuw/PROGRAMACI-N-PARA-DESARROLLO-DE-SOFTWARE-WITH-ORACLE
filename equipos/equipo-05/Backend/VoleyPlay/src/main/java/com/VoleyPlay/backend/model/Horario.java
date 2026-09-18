@@ -3,7 +3,7 @@ package com.VoleyPlay.backend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "horario")
+@Table(name = "horario", schema = "voley_playa")
 public class Horario {
 
     @Id
