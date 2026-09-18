@@ -36,4 +36,12 @@ public class Cliente {
     public Integer getTelefono(){ return telefono;}
 
     public String getDni(){ return dni;}
+
+    public void setNombre(){ this.nombre = nombre;}
+
+    public void setApellido(){ this.apellido = apellido;}
+
+    public void setTelefono(){ this.telefono = telefono;}
+
+    public void setDni(){ this.dni = dni;}
 }
