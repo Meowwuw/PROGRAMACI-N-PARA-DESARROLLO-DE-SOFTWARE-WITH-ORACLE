@@ -7,9 +7,7 @@ import jakarta.persistence.*;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_cliente")
-
-
+    @Column(name = "id_cliente")
     private Long id;
 
     private String nombre;
@@ -17,24 +15,27 @@ public class Cliente {
     private Integer telefono;
     private String dni;
 
-    public Cliente(){}
-
-    public Cliente(Long id, String nombre, String apellido, Integer telefono, String dni) {
-        this.id=id;
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.telefono=telefono;
-        this.dni=dni;
+    public Cliente() {
     }
 
-    public Long getId(){ return id;}
+    public Cliente(Long id, String nombre, String apellido, Integer telefono, String dni) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.dni = dni;
+    }
 
-    public String getNombre(){ return nombre;}
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getApellido(){ return apellido;}
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public Integer getTelefono(){ return telefono;}
+    public String getApellido() { return apellido; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
 
+<<<<<<< Updated upstream
     public String getDni(){ return dni;}
 
     public void setNombre(){ this.nombre = nombre;}
@@ -45,3 +46,11 @@ public class Cliente {
 
     public void setDni(){ this.dni = dni;}
 }
+=======
+    public Integer getTelefono() { return telefono; }
+    public void setTelefono(Integer telefono) { this.telefono = telefono; }
+
+    public String getDni() { return dni; }
+    public void setDni(String dni) { this.dni = dni; }
+}
+>>>>>>> Stashed changes

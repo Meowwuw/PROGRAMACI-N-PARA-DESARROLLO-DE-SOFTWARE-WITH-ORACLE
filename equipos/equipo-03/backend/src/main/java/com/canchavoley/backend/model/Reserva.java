@@ -1,71 +1,46 @@
 package com.canchavoley.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "reserva", schema = "renta_cancha")
+@Table(name = "reserva")
 public class Reserva {
-    @Id
-    @Column(name="id_reserva")
-    private int id;
 
-    private int id_cliente;
-    private int id_horario;
-    private int id_cancha;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "id_cliente")
+    private Integer idCliente;
+
+    @Column(name = "id_cancha")
+    private Integer idCancha;
+
+    @Column(name = "id_horario")
+    private Integer idHorario;
+
+    @Column(name = "horas_alquilado")
+    private Integer horasAlquilado;
+
     private String fecha;
 
-    public Reserva(){
+    public Reserva() {}
 
-    }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public Reserva(int id, int id_cliente, int id_horario, int id_cancha, String fecha){
-        this.id=id;
-        this.id_cliente=id_cliente;
-        this.id_horario=id_horario;
-        this.id_cancha=id_cancha;
-        this.fecha=fecha;
-    }
+    public Integer getIdCliente() { return idCliente; }
+    public void setIdCliente(Integer idCliente) { this.idCliente = idCliente; }
 
-    public int getId(){
-        return id;
-    }
+    public Integer getIdCancha() { return idCancha; }
+    public void setIdCancha(Integer idCancha) { this.idCancha = idCancha; }
 
-    public void setId(int id){
-        this.id=id;
-    }
+    public Integer getIdHorario() { return idHorario; }
+    public void setIdHorario(Integer idHorario) { this.idHorario = idHorario; }
 
-    public int getId_cliente(){
-        return id_cliente;
-    }
+    public Integer getHorasAlquilado() { return horasAlquilado; }
+    public void setHorasAlquilado(Integer horasAlquilado) { this.horasAlquilado = horasAlquilado; }
 
-    public void setId_cliente(int id_cliente){
-        this.id_cliente=id_cliente;
-    }
-
-    public int getId_horario(){
-        return id_horario;
-    }
-
-    public void setId_horario(int id_horario){
-        this.id_horario=id_horario;
-    }
-
-    public int getId_cancha(){
-        return id_cancha;
-    }
-
-    public void setId_cancha(int id_cancha){
-        this.id_cancha=id_cancha;
-    }
-
-    public String getFecha(){
-        return fecha;
-    }
-
-    public void setFecha(String fecha){
-        this.fecha=fecha;
-    }
+    public String getFecha() { return fecha; }
+    public void setFecha(String fecha) { this.fecha = fecha; }
 }
