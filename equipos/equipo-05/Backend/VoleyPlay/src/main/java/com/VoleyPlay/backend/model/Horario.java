@@ -1,9 +1,9 @@
 package com.VoleyPlay.backend.model;
-
 import jakarta.persistence.*;
 
+
 @Entity
-@Table(name = "horario")
+@Table(name = "horario", schema = "")
 public class Horario {
 
     @Id
@@ -18,8 +18,10 @@ public class Horario {
 
     private double precio;
 
+    // Constructor vacío
     public Horario() {}
 
+    // Constructor con argumentos
     public Horario(Long id, String horaInicio, String horaFin, double precio) {
         this.id = id;
         this.horaInicio = horaInicio;
@@ -27,16 +29,37 @@ public class Horario {
         this.precio = precio;
     }
 
-    // Getters y Setters obligatorios
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // Getters y Setters
+    public Long getId() {
+        return id;
+    }
 
-    public String getHoraInicio() { return horaInicio; }
-    public void setHoraInicio(String horaInicio) { this.horaInicio = horaInicio; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getHoraFin() { return horaFin; }
-    public void setHoraFin(String horaFin) { this.horaFin = horaFin; }
+    public String getHoraInicio() {
+        return horaInicio;
+    }
 
-    public double getPrecio() { return precio; }
-    public void setPrecio(double precio) { this.precio = precio; }
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
 }
