@@ -35,22 +35,9 @@ public class Cliente {
     public String getApellido() { return apellido; }
     public void setApellido(String apellido) { this.apellido = apellido; }
 
-<<<<<<< Updated upstream
-    public String getDni(){ return dni;}
-
-    public void setNombre(){ this.nombre = nombre;}
-
-    public void setApellido(){ this.apellido = apellido;}
-
-    public void setTelefono(){ this.telefono = telefono;}
-
-    public void setDni(){ this.dni = dni;}
-}
-=======
     public Integer getTelefono() { return telefono; }
     public void setTelefono(Integer telefono) { this.telefono = telefono; }
 
     public String getDni() { return dni; }
     public void setDni(String dni) { this.dni = dni; }
 }
->>>>>>> Stashed changes
