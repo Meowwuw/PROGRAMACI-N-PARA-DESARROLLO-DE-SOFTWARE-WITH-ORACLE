@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TratamientoService {
+public class
+TratamientoService {
 
     private final TratamientoRepository tratamientoRepository;
 
