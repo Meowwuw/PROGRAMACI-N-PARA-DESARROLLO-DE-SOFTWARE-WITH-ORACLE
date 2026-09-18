@@ -28,6 +28,7 @@ public class MasController {
         return mascotaService.buscarPorId(id);
     }
 
+<<<<<<< HEAD
     @PostMapping
     public Mascota guardar(@RequestBody Mascota producto) {
         return mascotaService.guardar(producto);
@@ -37,3 +38,7 @@ public class MasController {
 
 
 }
+=======
+}
+
+>>>>>>> c42b6804feb4a85edd63e05117171f54554dd825
