@@ -1,6 +1,7 @@
 package com.serviciocancha.controller;
 
 import com.serviciocancha.model.Cliente;
+import com.serviciocancha.model.MetodoPago;
 import com.serviciocancha.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +29,17 @@ public class ClienteController {
     @PostMapping
     public Cliente guardar(@RequestBody Cliente cliente) {
         return clienteService.guardar(cliente);
+    }
+
+    @PutMapping("/{id}")
+    public Cliente actualizar(
+            @PathVariable Integer id,
+            @RequestBody Cliente cliente) {
+        return clienteService.actualizar(id, cliente);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        clienteService.eliminar(id);
     }
 }
