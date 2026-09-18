@@ -24,4 +24,29 @@ public class ReservaService {
     public Reserva guardar(Reserva reserva) {
         return reservaRepository.save(reserva);
     }
+
+    public Reserva actualizar(Integer id, Reserva datos) {
+        Reserva reserva = reservaRepository.findById(id)
+                .orElse(null);
+
+        if (reserva == null) {
+            return null;
+        }
+
+        reserva.setId(datos.getId());
+        reserva.setCancha(datos.getCancha());
+        reserva.setCliente(datos.getCliente());
+        reserva.setMetodoPago(datos.getMetodoPago());
+        reserva.setFecha(datos.getFecha());
+        reserva.setHoraInicio(datos.getHoraInicio());
+        reserva.setHoraFin(datos.getHoraFin());
+        reserva.setTotal(datos.getTotal());
+        reserva.setEstado(datos.getEstado());
+
+        return reservaRepository.save(reserva);
+    }
+
+    public void eliminar(Integer id) {
+        reservaRepository.deleteById(id);
+    }
 }
