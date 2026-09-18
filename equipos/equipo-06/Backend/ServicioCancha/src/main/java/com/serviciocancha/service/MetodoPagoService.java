@@ -1,6 +1,7 @@
 package com.serviciocancha.service;
 
 import com.serviciocancha.model.MetodoPago;
+import com.serviciocancha.model.Reserva;
 import com.serviciocancha.repository.MetodoPagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,17 @@ public class MetodoPagoService {
 
     public MetodoPago guardar(MetodoPago metodoPago) {
         return metodoPagoRepository.save(metodoPago);
+    }
+
+    public MetodoPago actualizar(Integer id, MetodoPago datos) {
+        MetodoPago metodoPago = metodoPagoRepository.findById(id)
+                .orElse(null);
+
+        metodoPago.setNombre(datos.getNombre());
+        return metodoPagoRepository.save(metodoPago);
+    }
+
+    public void eliminar(Integer id) {
+        metodoPagoRepository.deleteById(id);
     }
 }

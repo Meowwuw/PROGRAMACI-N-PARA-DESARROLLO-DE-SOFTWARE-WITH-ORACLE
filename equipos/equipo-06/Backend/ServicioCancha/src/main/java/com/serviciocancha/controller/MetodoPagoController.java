@@ -1,6 +1,7 @@
 package com.serviciocancha.controller;
 
 import com.serviciocancha.model.MetodoPago;
+import com.serviciocancha.model.Reserva;
 import com.serviciocancha.service.MetodoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +29,17 @@ public class MetodoPagoController {
     @PostMapping
     public MetodoPago guardar(@RequestBody MetodoPago metodoPago) {
         return metodoPagoService.guardar(metodoPago);
+    }
+
+    @PutMapping("/{id}")
+    public MetodoPago actualizar(
+            @PathVariable Integer id,
+            @RequestBody MetodoPago metodoPago) {
+        return metodoPagoService.actualizar(id, metodoPago);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        metodoPagoService.eliminar(id);
     }
 }
