@@ -2,9 +2,7 @@ package com.VoleyPlay.backend.controller;
 
 import com.VoleyPlay.backend.model.Pago;
 import com.VoleyPlay.backend.services.PagoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,15 @@ public class PagoController {
     @GetMapping
     public List<Pago> listar() {
         return pagoService.listar();
+    }
+    @PutMapping("/{id}")
+        public Pago actualizar(
+                @PathVariable long id,
+                @RequestBody Pago pago){
+        return pagoService.actualizar(id, pago);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+        pagoService.eliminar(id);
     }
 }
