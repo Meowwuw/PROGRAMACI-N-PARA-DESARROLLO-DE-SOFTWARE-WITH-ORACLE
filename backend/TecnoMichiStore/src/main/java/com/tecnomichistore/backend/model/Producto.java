@@ -41,6 +41,21 @@ public class Producto {
     public Integer getStock(){
         return stock;
     }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    public void setCategoria(String categoria){
+        this.categoria = categoria;
+    }
+    public void setPrecio(Double precio){
+        this.precio = precio;
+    }
+    public void setStock(Integer stock){
+        this.stock = stock;
+    }
+
+
 }
 
 
