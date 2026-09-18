@@ -1,9 +1,7 @@
 package com.veterinaria_xime.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -11,6 +9,7 @@ import java.time.LocalDate;
 public class Mascota {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mascota")
     private Long id;
 

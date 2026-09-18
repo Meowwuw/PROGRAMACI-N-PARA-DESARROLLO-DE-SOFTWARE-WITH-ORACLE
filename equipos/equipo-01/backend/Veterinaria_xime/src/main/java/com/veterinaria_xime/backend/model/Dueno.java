@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "dueno" , schema = "public")
+@Table(name = "duenos" , schema = "public")
 public class Dueno{
     @Id
     @Column(name="id_dueno")
@@ -41,6 +41,18 @@ public class Dueno{
         public String getTelefono(){
             return telefono;
         }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public void setTelefono(String telefono){
+        this.telefono = telefono;
+    }
+
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
+    }
     }
 
 

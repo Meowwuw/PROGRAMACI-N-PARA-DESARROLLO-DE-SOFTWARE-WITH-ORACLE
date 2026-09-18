@@ -2,12 +2,8 @@ package com.veterinaria_xime.backend.controller;
 
 
 import com.veterinaria_xime.backend.model.Mascota;
-import com.veterinaria_xime.backend.model.Producto;
 import com.veterinaria_xime.backend.service.MascotaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,10 +12,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/mascota")
 
-public class MasControlller {
+public class MasController {
     private final MascotaService mascotaService;
 
-    public MasControlller(MascotaService mascotaService){
+    public MasController(MascotaService mascotaService){
         this.mascotaService=mascotaService;
     }
 
@@ -27,9 +23,17 @@ public class MasControlller {
     public List<Mascota> listar(){
         return mascotaService.listar();
     }
-    @GetMapping
+    @GetMapping("/{id}")
     public Mascota buscarPorId(@PathVariable Long id){
         return mascotaService.buscarPorId(id);
     }
+
+    @PostMapping
+    public Mascota guardar(@RequestBody Mascota producto) {
+        return mascotaService.guardar(producto);
+    }
+
+
+
 
 }

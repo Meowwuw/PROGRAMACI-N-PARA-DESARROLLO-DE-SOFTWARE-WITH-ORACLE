@@ -18,5 +18,14 @@ public class MascotaService {
     public List<Mascota> listar(){
         return mascotaRepository.findAll();
     }
+    public Mascota buscarPorId(Long id) {
+        return mascotaRepository.findById(id)
+                .orElse(null);
+    }
+    public Mascota guardar(Mascota producto) {
+        return mascotaRepository.save(producto);
+    }
+
+
 
 }
