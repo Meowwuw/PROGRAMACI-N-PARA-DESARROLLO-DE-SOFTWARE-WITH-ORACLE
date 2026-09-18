@@ -16,4 +16,14 @@ public class ProductoService {
     public List<Producto> listar(){
         return productoRepository.findAll();
     }
+
+    public Producto buscarPorId(Long id) {
+        return productoRepository.findById(id)
+                .orElse(null);
+    }
+
+    public Producto guardar(Producto producto) {
+        return productoRepository.save(producto);
+    }
+
 }
