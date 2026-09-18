@@ -1,6 +1,7 @@
 package com.serviciocancha.controller;
 
 import com.serviciocancha.model.Cancha;
+import com.serviciocancha.model.Cliente;
 import com.serviciocancha.service.CanchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,4 +30,17 @@ public class CanchaController {
     public Cancha guardar(@RequestBody Cancha cancha) {
         return canchaService.guardar(cancha);
     }
+
+    @PutMapping("/{id}")
+    public Cancha actualizar(
+            @PathVariable Integer id,
+            @RequestBody Cancha cancha) {
+        return canchaService.actualizar(id, cancha);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        canchaService.eliminar(id);
+    }
+    
 }
