@@ -1,15 +1,14 @@
 package com.VoleyPlay.backend.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.stereotype.Service;
 
 @Entity
 @Table(name = "cliente", schema = "voley_playa")
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_cliente")
     private Long id;
 
@@ -49,4 +48,22 @@ public class Cliente {
     public String getEmail(){
         return email;
     }
+
+    public void setNombre(String nombre){
+        this.nombre=nombre;
+    }
+    public void setApellido(String apellido){
+        this.apellido=apellido;
+    }
+    public void setDni(String dni){
+        this.dni=dni;
+    }
+    public void setTelefono(String telefono){
+        this.telefono=telefono;
+    }
+    public void setEmail(String email){
+        this.email=email;
+    }
+
 }
+

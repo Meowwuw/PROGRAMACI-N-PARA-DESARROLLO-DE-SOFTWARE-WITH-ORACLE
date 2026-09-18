@@ -17,4 +17,35 @@ public class ClienteService {
     public List<Cliente> listar(){
         return clienteRepository.findAll();
     }
+
+    public Cliente buscarPorId(Long id) {
+        return clienteRepository.findById(id)
+                .orElse(null);
+    }
+
+    public Cliente guardar(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+    public Cliente actualizar(Long id, Cliente datos){
+
+        Cliente cliente = clienteRepository.findById(id)
+                .orElse(null);
+
+        if(cliente == null){
+            return null;
+        }
+
+        cliente.setNombre(datos.getNombre());
+        cliente.setApellido(datos.getApellido());
+        cliente.setDni(datos.getDni());
+        cliente.setTelefono(datos.getTelefono());
+        cliente.setEmail(datos.getEmail());
+
+        return clienteRepository.save(cliente);
+    }
+
+    public void eliminar (Long id){
+        clienteRepository.deleteById(id);
+    }
 }

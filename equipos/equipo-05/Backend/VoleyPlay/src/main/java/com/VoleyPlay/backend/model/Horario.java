@@ -3,7 +3,11 @@ import jakarta.persistence.*;
 
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "horario", schema = "")
+=======
+@Table(name = "horario", schema = "voley_playa")
+>>>>>>> 95c09642a97319db6f1676f5ef83078e7076ff80
 public class Horario {
 
     @Id
