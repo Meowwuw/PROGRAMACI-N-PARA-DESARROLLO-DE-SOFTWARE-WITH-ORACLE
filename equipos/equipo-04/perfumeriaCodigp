@@ -1,0 +1,61 @@
+CREATE TABLE marca (
+    id_marca SERIAL PRIMARY KEY,
+    nombre_marca VARCHAR(50) NOT NULL UNIQUE,
+    pais_origen VARCHAR(50),
+    sitio_web VARCHAR(150),
+    email_contacto VARCHAR(100),
+    estado BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE perfume (
+    id_perfume SERIAL PRIMARY KEY,
+    id_marca INT REFERENCES marca(id_marca),
+    nombre VARCHAR(100) NOT NULL,
+    genero VARCHAR(20),
+    concentracion VARCHAR(30), 
+    mililitros INT NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    stock INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE cliente (
+    id_cliente SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100),
+    dni_ruc VARCHAR(20) UNIQUE,
+    telefono VARCHAR(20),
+    email VARCHAR(100),
+    direccion TEXT
+);
+
+CREATE TABLE venta (
+    id_venta SERIAL PRIMARY KEY,
+    id_cliente INT REFERENCES cliente(id_cliente),
+    fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    metodo_pago VARCHAR(30) DEFAULT 'efectivo', 
+    tipo_comprobante VARCHAR(20) DEFAULT 'boleta', 
+    monto_total DECIMAL(10, 2) DEFAULT 0.00,
+    estado_venta VARCHAR(20) DEFAULT 'completada'
+);
+
+CREATE TABLE detalle_venta (
+    id_detalle SERIAL PRIMARY KEY,
+    id_venta INT REFERENCES venta(id_venta) ON DELETE CASCADE,
+    id_perfume INT REFERENCES perfume(id_perfume),
+    cantidad INT NOT NULL CHECK (cantidad > 0),
+    precio_unitario DECIMAL(10, 2) NOT NULL,
+    descuento DECIMAL(10, 2) DEFAULT 0.00,
+    subtotal DECIMAL(10, 2) GENERATED ALWAYS AS (cantidad * precio_unitario - descuento) STORED
+);
+
+INSERT INTO public.cliente (nombre, apellido, dni_ruc, telefono, email, direccion) VALUES
+('Juan', 'Pérez', '72345678', '987654321', 'juan.perez@example.com', 'Av. Primavera 123'),
+('Maria', 'García', '10456789012', '912345678', 'maria.garcia@example.com', 'Calle Los Olivos 456'),
+('Carlos', 'López', '45678912', '955443322', 'carlos.lopez@example.com', 'Jirón Las Flores 789'),
+('Ana', 'Torres', '20567890123', '933221100', 'ana.torres@example.com', 'Av. Arequipa 1011'),
+('Luis', 'Mendoza', '78912345', '966778899', 'luis.mendoza@example.com', 'Calle El Sol 234'),
+('Sofia', 'Rojas', '10789123456', '944556677', 'sofia.rojas@example.com', 'Av. Larco 567'),
+('Diego', 'Castro', '41235678', '922334455', 'diego.castro@example.com', 'Jirón Huallaga 890'),
+('Lucía', 'Vargas', '20123456789', '977889900', 'lucia.vargas@example.com', 'Av. Brasil 321'),
+('Miguel', 'Flores', '73456789', '911223344', 'miguel.flores@example.com', 'Calle los Pinos 654'),
+('Elena', 'Quispe', '10345678901', '988776655', 'elena.quispe@example.com', 'Av. Grau 987');
