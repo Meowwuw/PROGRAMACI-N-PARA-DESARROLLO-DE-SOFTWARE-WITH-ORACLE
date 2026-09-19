@@ -9,4 +9,10 @@ import java.util.Optional;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     Optional<Cliente> findByDni(String dni);
+
+    // Método para buscar por email (necesario para Login / Autenticación)
+    Optional<Cliente> findByEmail(String email);
+
+    // Método opcional para verificar si el correo ya existe antes de registrar
+    boolean existsByEmail(String email);
 }

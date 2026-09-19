@@ -1,7 +1,6 @@
 package com.serviciocancha.service;
 
 import com.serviciocancha.model.Cliente;
-import com.serviciocancha.model.MetodoPago;
 import com.serviciocancha.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,20 @@ public class ClienteService {
         return clienteRepository.findByDni(dni).orElse(null);
     }
 
+    // Nuevo método para buscar cliente por Email
+    public Cliente buscarPorEmail(String email) {
+        return clienteRepository.findByEmail(email).orElse(null);
+    }
+
+    // Nuevo método opcional para procesar un inicio de sesión
+    public Cliente login(String email, String password) {
+        Cliente cliente = clienteRepository.findByEmail(email).orElse(null);
+        if (cliente != null && cliente.getPassword().equals(password)) {
+            return cliente; // Login exitoso
+        }
+        return null; // Credenciales inválidas
+    }
+
     public Cliente guardar(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
@@ -41,6 +54,10 @@ public class ClienteService {
         cliente.setNombre(datos.getNombre());
         cliente.setTelefono(datos.getTelefono());
         cliente.setDni(datos.getDni());
+
+        // Se agregan las actualizaciones de email y password
+        cliente.setEmail(datos.getEmail());
+        cliente.setPassword(datos.getPassword());
 
         return clienteRepository.save(cliente);
     }
