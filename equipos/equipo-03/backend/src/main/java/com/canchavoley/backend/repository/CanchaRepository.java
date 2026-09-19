@@ -2,17 +2,19 @@ package com.canchavoley.backend.repository;
 
 import com.canchavoley.backend.model.Cancha;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
-public interface CanchaRepository extends JpaRepository<Cancha, Integer> {
+@Repository
+public interface CanchaRepository extends JpaRepository<Cancha, Long> {
 
-    Optional<Cancha> findByNumeroCancha(int numeroCancha);
+    // Método para buscar cancha por su número (GET 3)
+    Optional<Cancha> findByNumeroCancha(Integer numeroCancha);
 
-    List<Cancha> findAllByOrderByNumeroCanchaAsc();
+    // Método para verificar existencia por número
+    boolean existsByNumeroCancha(Integer numeroCancha);
 
-    List<Cancha> findByNumeroCanchaGreaterThanEqual(int numeroCancha);
-
-    void deleteByNumeroCancha(int numeroCancha);
+    // Método para eliminar por número (DELETE 2)
+    void deleteByNumeroCancha(Integer numeroCancha);
 }

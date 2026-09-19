@@ -2,41 +2,41 @@ package com.canchavoley.backend.service;
 
 import com.canchavoley.backend.model.Cancha;
 import com.canchavoley.backend.repository.CanchaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CanchaService {
 
-    private final CanchaRepository canchaRepository;
+    @Autowired
+    private CanchaRepository canchaRepository;
 
-    public CanchaService(CanchaRepository canchaRepository) {
-        this.canchaRepository = canchaRepository;
-    }
-
-    // ---- GET ----
-    public List<Cancha> listar() {
+    // --- GETs ---
+    public List<Cancha> obtenerTodas() {
         return canchaRepository.findAll();
     }
 
-    public Cancha buscarPorId(Integer id) {
-        return canchaRepository.findById(id).orElse(null);
+    public Optional<Cancha> obtenerPorId(Long id) {
+        return canchaRepository.findById(id);
     }
 
-    public Cancha buscarPorNumero(int numeroCancha) {
-        return canchaRepository.findByNumeroCancha(numeroCancha).orElse(null);
+    public Optional<Cancha> obtenerPorNumero(Integer numero) {
+        return canchaRepository.findByNumeroCancha(numero);
     }
 
-    public List<Cancha> listarOrdenadasPorNumero() {
-        return canchaRepository.findAllByOrderByNumeroCanchaAsc();
+    public long contarTodas() {
+        return canchaRepository.count();
     }
 
-    public List<Cancha> listarDesdeNumero(int numeroCancha) {
-        return canchaRepository.findByNumeroCanchaGreaterThanEqual(numeroCancha);
+    public boolean existePorNumero(Integer numero) {
+        return canchaRepository.existsByNumeroCancha(numero);
     }
 
-    // ---- POST ----
+    // --- POSTs ---
     public Cancha guardar(Cancha cancha) {
         return canchaRepository.save(cancha);
     }
@@ -45,29 +45,28 @@ public class CanchaService {
         return canchaRepository.saveAll(canchas);
     }
 
-    // ---- PUT ----
-    public Cancha actualizar(Integer id, Cancha datos) {
-        Cancha existente = canchaRepository.findById(id).orElse(null);
-        if (existente == null) return null;
-        existente.setNumeroCancha(datos.getNumeroCancha());
-        return canchaRepository.save(existente);
+    // --- PUTs ---
+    public Cancha actualizar(Long id, Cancha canchaDetalles) {
+        Cancha cancha = canchaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cancha no encontrada con id: " + id));
+        cancha.setNumeroCancha(canchaDetalles.getNumeroCancha());
+        return canchaRepository.save(cancha);
     }
 
-    public Cancha actualizarNumero(Integer id, int numeroCancha) {
-        Cancha existente = canchaRepository.findById(id).orElse(null);
-        if (existente == null) return null;
-        existente.setNumeroCancha(numeroCancha);
-        return canchaRepository.save(existente);
+    public Cancha actualizarNumero(Long id, Integer nuevoNumero) {
+        Cancha cancha = canchaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cancha no encontrada con id: " + id));
+        cancha.setNumeroCancha(nuevoNumero);
+        return canchaRepository.save(cancha);
     }
 
-    // ---- DELETE ----
-    public boolean eliminar(Integer id) {
-        if (!canchaRepository.existsById(id)) return false;
+    // --- DELETEs ---
+    public void eliminarPorId(Long id) {
         canchaRepository.deleteById(id);
-        return true;
     }
 
-    public void eliminarPorNumero(int numeroCancha) {
-        canchaRepository.deleteByNumeroCancha(numeroCancha);
+    @Transactional
+    public void eliminarPorNumero(Integer numero) {
+        canchaRepository.deleteByNumeroCancha(numero);
     }
 }
