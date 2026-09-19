@@ -23,4 +23,25 @@ public class ApoderadoService {
     public Optional<Apoderado> buscarPorId(Long id) {
         return apoderadoRepository.findById(id);
     }
+
+    public Apoderado guardar(Apoderado apoderado) {
+        return apoderadoRepository.save(apoderado);
+    }
+
+    public Optional<Apoderado> actualizar(Long id, Apoderado apoderado) {
+        return apoderadoRepository.findById(id).map(existente -> {
+            existente.setNombre(apoderado.getNombre());
+            existente.setTelefono(apoderado.getTelefono());
+            existente.setDni(apoderado.getDni());
+            return apoderadoRepository.save(existente);
+        });
+    }
+
+    public boolean eliminar(Long id) {
+        if (!apoderadoRepository.existsById(id)) {
+            return false;
+        }
+        apoderadoRepository.deleteById(id);
+        return true;
+    }
 }
