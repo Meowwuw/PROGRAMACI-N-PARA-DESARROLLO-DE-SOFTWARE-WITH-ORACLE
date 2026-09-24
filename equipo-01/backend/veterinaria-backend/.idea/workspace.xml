@@ -4,14 +4,110 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12faaaf9-f035-426c-94a3-a74dc4116029" name="Changes" comment="" />
+    <list default="true" id="12faaaf9-f035-426c-94a3-a74dc4116029" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/BackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/config/ConexionCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/config/CorsConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/ConsultaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/DetalleConsultaServicioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/DuenoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/EspecieController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/MascotaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/RazaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/ServicioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/UsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/VeterinarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/dto/LoginRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Consulta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/DetalleConsultaServicio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Dueno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Especie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Mascota.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Raza.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Servicio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/model/Veterinario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/ConsultaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/DetalleConsultaServicioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/DuenoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/EspecieRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/MascotaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/RazaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/ServicioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/UsuarioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/repository/VeterinarioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/ConsultaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/DetalleConsultaServicioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/DuenoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/EspecieService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/MascotaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/RazaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/ServicioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/UsuarioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/service/VeterinarioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/BackendApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/config/ConexionCheck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/config/CorsConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/config/CorsConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/ConsultaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/DetalleConsultaServicioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/DuenoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/EspecieController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/MascotaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/RazaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/ServicioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/UsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/controller/VeterinarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/dto/LoginRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Consulta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/DetalleConsultaServicio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Dueno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Especie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Mascota.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Raza.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Servicio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/model/Veterinario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/ConsultaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/DetalleConsultaServicioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/DuenoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/EspecieRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/MascotaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/RazaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/ServicioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/UsuarioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/repository/VeterinarioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/ConsultaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/DetalleConsultaServicioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/DuenoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/EspecieService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/MascotaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/RazaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/ServicioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/UsuarioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Vet/backend/service/VeterinarioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/Css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/Html/agregar_cuenta.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/Html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/JavaScript/agregar_cuenta.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -35,7 +131,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "equipo-01-spring",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ALUMNOS/Documents/PROGRAMACI-N-PARA-DESARROLLO-DE-SOFTWARE-WITH-ORACLE/equipos/equipo-01/backend/veterinaria-backend",
+    "last_opened_file_path": "/home/phobos/PROYECTOS/CLASE/Veterinaria/PROGRAMACI-N-PARA-DESARROLLO-DE-SOFTWARE-WITH-ORACLE/equipo-01/veterinaria-backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,6 +164,14 @@
         <item itemvalue="Spring Boot.BackendApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
