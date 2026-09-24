@@ -1,37 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Cuenta - Veterinaria</title>
-    <link rel="stylesheet" href="../Css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear cuenta - Ximedgar</title>
+
+  <link rel="stylesheet" href="../Css/styles.css">
+
+  <!-- Fuentes Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h2>Registrar Nueva Cuenta</h2>
-        
-        <form id="form-agregar-cuenta">
-            <div class="form-group">
-                <label for="username">Nombre de Usuario:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <!-- Agrega aquí más campos si tu modelo 'Usuario.java' los requiere (ej. email, rol) -->
 
-            <button type="submit" class="btn-guardar">Guardar Cuenta</button>
-        </form>
+  <div class="main-container">
 
-        <div id="mensaje-respuesta" style="margin-top: 15px;"></div>
-        
-        <a href="index.html" class="link-volver">Volver al inicio</a>
+    <!-- LADO IZQUIERDO: Branding & Ilustración -->
+    <div class="left-panel">
+      <div class="logo-oval-container">
+        <svg class="brand-paw-icon" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="40" cy="70" rx="18" ry="24" transform="rotate(-25 40 70)" fill="#1ed0a8" />
+          <ellipse cx="80" cy="35" rx="18" ry="25" transform="rotate(-8 80 35)" fill="#1ed0a8" />
+          <ellipse cx="125" cy="35" rx="18" ry="25" transform="rotate(8 125 35)" fill="#1ed0a8" />
+          <ellipse cx="165" cy="70" rx="18" ry="24" transform="rotate(25 165 70)" fill="#1ed0a8" />
+          <g transform="translate(10, 30)">
+            <path d="M 40,75 C 30,105 50,140 92,140 C 135,140 155,105 145,75 C 135,50 115,55 92,62 C 70,55 50,50 40,75 Z" fill="#1ed0a8" />
+            <path d="M 52,120 C 50,90 68,75 78,85 C 83,90 85,100 82,120 Z" fill="#ffffff" />
+            <polygon points="56,76 66,80 58,90" fill="#ffffff" />
+            <polygon points="76,80 84,75 80,88" fill="#ffffff" />
+            <circle cx="68" cy="98" r="2" fill="#1ed0a8"/>
+            <path d="M 64,103 Q 68,107 72,103" stroke="#1ed0a8" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M 100,120 C 95,95 105,75 125,75 C 135,75 140,88 138,120 Z" fill="#e6c875" />
+            <path d="M 125,75 C 138,70 145,85 138,95 C 132,95 126,85 125,75 Z" fill="#cfa846" />
+            <circle cx="116" cy="92" r="2.2" fill="#333"/>
+            <ellipse cx="110" cy="98" rx="3.5" ry="2.5" fill="#333"/>
+          </g>
+          <path d="M 92,118 C 92,118 86,112 86,108 C 86,105 88,103 90.5,103 C 92,103 92,105 92,105 C 92,105 92,103 93.5,103 C 96,103 98,105 98,108 C 98,112 92,118 92,118 Z" fill="#ff5b5b"/>
+        </svg>
+
+        <div class="brand-title-primary">Ximedgar</div>
+        <div class="brand-title-secondary">HUELLITAS</div>
+      </div>
+
+      <p class="brand-slogan">El hogar donde sus huellas son nuestro mundo.</p>
     </div>
 
-    <!-- Enlazamos la lógica de JavaScript -->
-    <script src="../JavaScript/agregar_cuenta.js"></script>
+    <!-- LADO DERECHO: Formulario de Registro -->
+    <div class="right-panel">
+      <div class="form-wrapper">
+
+        <div class="form-header-brand">
+          <svg class="header-paw-icon" viewBox="0 0 100 100" fill="#1ed0a8">
+            <ellipse cx="25" cy="35" rx="9" ry="12" transform="rotate(-20 25 35)" />
+            <ellipse cx="42" cy="20" rx="9" ry="12" />
+            <ellipse cx="60" cy="20" rx="9" ry="12" />
+            <ellipse cx="77" cy="35" rx="9" ry="12" transform="rotate(20 77 35)" />
+            <path d="M 25,60 C 20,80 35,92 51,92 C 67,92 82,80 77,60 C 72,45 58,48 51,52 C 44,48 30,45 25,60 Z" />
+          </svg>
+          <div class="header-brand-text">
+            <h2>Ximedgar</h2>
+            <span>Clínica veterinaria</span>
+          </div>
+        </div>
+
+        <h1 class="login-title">Crear cuenta</h1>
+        <p class="login-subtitle">Completa los datos para registrar un nuevo usuario</p>
+
+        <form id="form-agregar-cuenta" autocomplete="off">
+
+          <!-- Correo -->
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" class="form-control" required placeholder=" ">
+          </div>
+
+          <!-- Contraseña -->
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" class="form-control" required minlength="6" placeholder=" ">
+          </div>
+
+          <!-- Confirmar contraseña -->
+          <div class="form-group">
+            <label for="confirmPassword">Confirmar contraseña</label>
+            <input type="password" id="confirmPassword" class="form-control" required minlength="6" placeholder=" ">
+          </div>
+
+          <!-- Rol -->
+          <div class="form-group">
+            <label for="rol">Rol</label>
+            <select id="rol" class="form-control" required>
+              <option value="" disabled selected>Selecciona un rol</option>
+              <option value="admin">Administrador</option>
+              <option value="veterinario">Veterinario</option>
+            </select>
+          </div>
+
+          <!-- Veterinario asociado (solo si rol = veterinario) -->
+          <div class="form-group" id="veterinarioGroup" style="display: none;">
+            <label for="veterinario">Veterinario asociado</label>
+            <select id="veterinario" class="form-control">
+              <option value="" disabled selected>Selecciona un veterinario</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit">Crear cuenta</button>
+
+        </form>
+
+        <div id="mensaje-respuesta" class="form-message"></div>
+
+        <p class="create-account-text">
+          <a href="index.html" class="create-account-link">Volver al inicio de sesión</a>
+        </p>
+
+        <div class="form-footer">
+          Sistema de gestión veterinaria v2.4.1
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../JavaScript/agregar_cuenta.js"></script>
 </body>
 </html>

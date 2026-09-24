@@ -5,9 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12faaaf9-f035-426c-94a3-a74dc4116029" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/veterinaria-backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/BackendApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/config/ConexionCheck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/ConsultaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/DetalleConsultaServicioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/DuenoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/EspecieController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/MascotaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/RazaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/ServicioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/controller/VeterinarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/Consulta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/DetalleConsultaServicio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/Dueno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/Especie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/Mascota.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/Raza.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/Servicio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/model/Veterinario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/ConsultaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/DetalleConsultaServicioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/DuenoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/EspecieRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/MascotaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/RazaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/ServicioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/repository/VeterinarioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/ConsultaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/DetalleConsultaServicioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/DuenoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/EspecieService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/MascotaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/RazaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/ServicioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/${project.build.directory}/classes/com/Vet/backend/service/VeterinarioService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Vet/backend/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +65,14 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BackendApplication.executor&quot;: &quot;Run&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;equipo-01-spring&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -42,6 +84,31 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DB_PASSWORD" value="npg_C4SzoBDgFAU8" />
+        <env name="DB_URL" value="jdbc:postgresql://ep-restless-thunder-aej0zbou-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require" />
+        <env name="DB_USER" value="neondb_owner" />
+      </envs>
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.Vet.backend.BackendApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.Vet.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BackendApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="12faaaf9-f035-426c-94a3-a74dc4116029" name="Changes" comment="" />

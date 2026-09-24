@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuarios")
-@CrossOrigin(origins = "*") // Permite la conexión desde tu frontend
 public class UsuarioController {
 
     @Autowired

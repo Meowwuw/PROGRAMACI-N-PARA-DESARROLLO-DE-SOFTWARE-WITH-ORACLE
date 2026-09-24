@@ -242,6 +242,52 @@ body {
   transform: scale(0.99);
 }
 
+/* --- ENLACE "CREAR CUENTA" / "VOLVER" --- */
+.create-account-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 18px;
+}
+
+.create-account-link {
+  color: #1ed0a8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.create-account-link:hover {
+  text-decoration: underline;
+}
+
+/* --- SELECT (mismo estilo que los inputs) --- */
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%23555' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+
+/* --- MENSAJES DE RESPUESTA (exito / error) --- */
+.form-message {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 12px;
+  min-height: 1em;
+}
+
+.form-message-success {
+  color: #1ed0a8;
+  font-weight: 600;
+}
+
+.form-message-error {
+  color: #ff5b5b;
+  font-weight: 600;
+}
+
 /* Footer del Formulario */
 .form-footer {
   text-align: center;
