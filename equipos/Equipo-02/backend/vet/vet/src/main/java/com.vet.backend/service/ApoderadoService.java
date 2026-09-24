@@ -32,7 +32,6 @@ public class ApoderadoService {
         return apoderadoRepository.findById(id).map(existente -> {
             existente.setNombre(apoderado.getNombre());
             existente.setTelefono(apoderado.getTelefono());
-            existente.setDni(apoderado.getDni());
             return apoderadoRepository.save(existente);
         });
     }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Veterinaria - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="brand"><h2>🐾 Patitas</h2></div>
+            <nav class="nav-menu">
+                <a href="home.html" class="nav-item active">🏠 Inicio</a>
+                <a href="mascotas.html" class="nav-item">🐶 Mascotas</a>
+                <!-- Agrega aquí los enlaces para Consultas, Veterinarios, etc. -->
+            </nav>
+            <button id="btn-logout" class="btn btn-logout">Cerrar Sesión</button>
+        </aside>
+        <main class="main-content">
+            <header class="topbar"><h1>Bienvenido al Sistema</h1></header>
+            <section class="card">
+                <h2>Estado del Sistema</h2>
+                <p>Selecciona una opción en el menú lateral para gestionar la clínica.</p>
+            </section>
+        </main>
+    </div>
+    <script>
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

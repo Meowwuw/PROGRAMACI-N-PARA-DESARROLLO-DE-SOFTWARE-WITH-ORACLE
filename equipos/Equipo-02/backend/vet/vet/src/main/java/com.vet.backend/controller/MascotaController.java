@@ -28,4 +28,16 @@ public class MascotaController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    // Guardar una nueva mascota
+    @PostMapping
+    public Mascota guardar(@RequestBody Mascota mascota) {
+        return mascotaService.guardar(mascota);
+    }
+
+    // Eliminar una mascota por su ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        mascotaService.eliminar(id);
+        return ResponseEntity.noContent().build(); // Devuelve un código 204 (Sin contenido, significa éxito)
+    }
 }

@@ -56,6 +56,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Solo el modulo de hashing (BCrypt) de Spring Security, SIN spring-boot-starter-security,
+             para no activar autenticacion/filtros sobre los endpoints ya existentes -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+        </dependency>
+
         <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
