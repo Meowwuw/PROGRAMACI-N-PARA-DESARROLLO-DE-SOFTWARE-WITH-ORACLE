@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/canchas")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5174")
 public class CanchaController {
 
     @Autowired
@@ -42,5 +42,5 @@ public class CanchaController {
     public void eliminar(@PathVariable Integer id) {
         canchaService.eliminar(id);
     }
-    
+
 }
