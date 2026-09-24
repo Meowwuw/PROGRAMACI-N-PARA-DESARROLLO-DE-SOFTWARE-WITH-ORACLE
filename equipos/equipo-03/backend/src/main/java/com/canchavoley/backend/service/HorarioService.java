@@ -2,42 +2,43 @@ package com.canchavoley.backend.service;
 
 import com.canchavoley.backend.model.Horario;
 import com.canchavoley.backend.repository.HorarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HorarioService {
 
-    private final HorarioRepository horarioRepository;
+    @Autowired
+    private HorarioRepository horarioRepository;
 
-    public HorarioService(HorarioRepository horarioRepository) {
-        this.horarioRepository = horarioRepository;
-    }
-
-    // ---- GET ----
-    public List<Horario> listar() {
+    // --- GETs ---
+    public List<Horario> obtenerTodos() {
         return horarioRepository.findAll();
     }
 
-    public Horario buscarPorId(Integer id) {
-        return horarioRepository.findById(id).orElse(null);
+    public Optional<Horario> obtenerPorId(Long id) {
+        return horarioRepository.findById(id);
     }
 
-    public Horario buscarPorHora(LocalTime hora) {
-        return horarioRepository.findByHora(hora).orElse(null);
+    public Optional<Horario> obtenerPorHora(LocalTime hora) {
+        return horarioRepository.findByHora(hora);
     }
 
-    public List<Horario> listarConPrecioMaximo(double precio) {
-        return horarioRepository.findByPrecioLessThanEqual(precio);
+    public List<Horario> obtenerPorPrecioMaximo(BigDecimal precioMax) {
+        return horarioRepository.findByPrecioLessThanEqual(precioMax);
     }
 
-    public List<Horario> listarOrdenadosPorPrecio() {
-        return horarioRepository.findAllByOrderByPrecioAsc();
+    public long contarTodos() {
+        return horarioRepository.count();
     }
 
-    // ---- POST ----
+    // --- POSTs ---
     public Horario guardar(Horario horario) {
         return horarioRepository.save(horario);
     }
@@ -46,29 +47,28 @@ public class HorarioService {
         return horarioRepository.saveAll(horarios);
     }
 
-    // ---- PUT ----
-    public Horario actualizar(Integer id, Horario datos) {
-        Horario existente = horarioRepository.findById(id).orElse(null);
-        if (existente == null) return null;
-        existente.setHora(datos.getHora());
-        existente.setPrecio(datos.getPrecio());
-        return horarioRepository.save(existente);
+    // --- PUTs ---
+    public Horario actualizar(Long id, Horario detalles) {
+        Horario horario = horarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Horario no encontrado con id: " + id));
+        horario.setHora(detalles.getHora());
+        horario.setPrecio(detalles.getPrecio());
+        return horarioRepository.save(horario);
     }
 
-    public Horario actualizarPrecio(Integer id, double precio) {
-        Horario existente = horarioRepository.findById(id).orElse(null);
-        if (existente == null) return null;
-        existente.setPrecio(precio);
-        return horarioRepository.save(existente);
+    public Horario actualizarPrecio(Long id, BigDecimal nuevoPrecio) {
+        Horario horario = horarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Horario no encontrado con id: " + id));
+        horario.setPrecio(nuevoPrecio);
+        return horarioRepository.save(horario);
     }
 
-    // ---- DELETE ----
-    public boolean eliminar(Integer id) {
-        if (!horarioRepository.existsById(id)) return false;
+    // --- DELETEs ---
+    public void eliminarPorId(Long id) {
         horarioRepository.deleteById(id);
-        return true;
     }
 
+    @Transactional
     public void eliminarPorHora(LocalTime hora) {
         horarioRepository.deleteByHora(hora);
     }

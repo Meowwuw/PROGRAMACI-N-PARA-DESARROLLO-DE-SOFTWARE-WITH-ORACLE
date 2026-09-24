@@ -1,12 +1,7 @@
 package com.canchavoley.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalTime;
 
 @Entity
@@ -16,28 +11,29 @@ public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_horario")
-    private Integer id;
+    private Long idHorario;
 
-    @Column(name = "hora")
+    @Column(name = "hora", nullable = false, unique = true)
     private LocalTime hora;
 
-    private double precio;
+    @Column(name = "precio", nullable = false, precision = 10, scale = 2)
+    private BigDecimal precio;
 
     public Horario() {
     }
 
-    public Horario(Integer id, LocalTime hora, double precio) {
-        this.id = id;
+    public Horario(Long idHorario, LocalTime hora, BigDecimal precio) {
+        this.idHorario = idHorario;
         this.hora = hora;
         this.precio = precio;
     }
 
-    public Integer getId() {
-        return id;
+    public Long getIdHorario() {
+        return idHorario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdHorario(Long idHorario) {
+        this.idHorario = idHorario;
     }
 
     public LocalTime getHora() {
@@ -48,11 +44,11 @@ public class Horario {
         this.hora = hora;
     }
 
-    public double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 }
