@@ -1,0 +1,277 @@
+/* --- RESET Y CONFIGURACIÓN GENERAL --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #7d8489;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-container {
+  display: flex;
+  width: 100%;
+  max-width: 980px;
+  min-height: 640px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+/* --- PANEL IZQUIERDO (VERDE CLARO) --- */
+.left-panel {
+  flex: 1.1;
+  background-color: #c9ebd8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.logo-oval-container {
+  background-color: #ffffff;
+  width: 320px;
+  height: 210px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  padding: 15px 20px;
+  margin-bottom: 30px;
+}
+
+.brand-paw-icon {
+  width: 110px;
+  height: 90px;
+  margin-bottom: -5px;
+}
+
+.brand-title-primary {
+  font-family: 'Montserrat', sans-serif;
+  color: #f16960;
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.brand-title-secondary {
+  font-family: 'Montserrat', sans-serif;
+  color: #17b993;
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.brand-slogan {
+  color: #2e3832;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+/* --- PANEL DERECHO (FORMULARIO) --- */
+.right-panel {
+  flex: 1;
+  background-color: #edfbf4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 45px;
+}
+
+.form-wrapper {
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Header con logo mini */
+.form-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.header-paw-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.header-brand-text h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1ed0a8;
+  line-height: 1;
+}
+
+.header-brand-text span {
+  font-size: 11px;
+  color: #657570;
+  font-weight: 500;
+  display: block;
+  margin-top: 1px;
+}
+
+.login-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.login-subtitle {
+  font-size: 12.5px;
+  color: #55605c;
+  margin-bottom: 28px;
+}
+
+/* Formulario e Inputs */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  color: #38423f;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #bcdecf;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 13px;
+  background-color: #ffffff;
+  color: #2b2b2b;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #1ed0a8;
+  box-shadow: 0 0 0 3px rgba(30, 208, 168, 0.15);
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .form-control {
+  padding-right: 38px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a5550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.toggle-password svg {
+  width: 18px;
+  height: 18px;
+}
+
+.forgot-password-wrapper {
+  text-align: right;
+  margin-top: 6px;
+}
+
+.forgot-password-link {
+  font-size: 11px;
+  color: #1ed0a8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* Botón Ingresar */
+.btn-submit {
+  width: 100%;
+  height: 40px;
+  background-color: #1ed0a8;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover {
+  background-color: #19b895;
+}
+
+.btn-submit:active {
+  transform: scale(0.99);
+}
+
+/* Footer del Formulario */
+.form-footer {
+  text-align: center;
+  font-size: 10px;
+  color: #6d7d77;
+  margin-top: 35px;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    max-width: 420px;
+  }
+
+  .left-panel {
+    padding: 30px 20px;
+  }
+
+  .logo-oval-container {
+    width: 260px;
+    height: 170px;
+  }
+
+  .brand-paw-icon {
+    width: 90px;
+    height: 70px;
+  }
+
+  .right-panel {
+    padding: 35px 25px;
+  }
+}
