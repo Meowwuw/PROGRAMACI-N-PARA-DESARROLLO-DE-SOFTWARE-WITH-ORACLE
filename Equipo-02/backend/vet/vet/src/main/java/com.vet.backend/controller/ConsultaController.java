@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/consultas")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ConsultaController {
 
     private final ConsultaService consultaService;
