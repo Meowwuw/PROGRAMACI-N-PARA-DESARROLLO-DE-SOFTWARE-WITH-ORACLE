@@ -4,7 +4,7 @@ import InicioPage from './pages/InicioPage';
 import { CanchasPage } from './pages/CanchasPage';
 import { HorariosPage } from './pages/HorariosPage';
 import { ContactoPage } from './pages/ContactoPage';
-import { ReservaPage } from './pages/ReservaPage';
+import ReservaPage from './pages/ReservaPage';
 import { ConfirmacionPage } from './pages/ConfirmacionPage';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path="/canchas" element={<CanchasPage />} />
         <Route path="/horarios" element={<HorariosPage />} />
         <Route path="/contacto" element={<ContactoPage />} />
-        <Route path="/reserva" element={<ReservaPage />} />
+        <Route path="/reservar" element={<ReservaPage />} />
         <Route path="/confirmacion" element={<ConfirmacionPage />} />
       </Routes>
     </BrowserRouter>

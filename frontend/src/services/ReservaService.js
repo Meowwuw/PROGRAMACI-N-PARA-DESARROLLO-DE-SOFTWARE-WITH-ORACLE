@@ -6,4 +6,5 @@ export const ReservaService = {
       method: "POST",
       body: JSON.stringify(reservaData),
     }),
+  obtenerPorFecha: (fecha) => fetchAPI(`/reservas/fecha/${fecha}`),
 };

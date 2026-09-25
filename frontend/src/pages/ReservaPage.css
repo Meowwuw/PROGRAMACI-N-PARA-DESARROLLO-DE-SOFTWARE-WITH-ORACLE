@@ -1,0 +1,582 @@
+/* CONTENEDOR GENERAL */
+.reserva-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding-bottom: 60px;
+}
+
+.reserva-main {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.reserva-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.reserva-header p {
+  color: #64748b;
+  font-size: 15px;
+  margin: 0 0 32px 0;
+}
+
+/* STEPPER (PASOS) */
+.stepper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+  gap: 12px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.step-item.activo {
+  opacity: 1;
+}
+
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.step-item.activo .step-num {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.step-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.step-linea {
+  flex: 1;
+  max-width: 60px;
+  height: 2px;
+  background: #e2e8f0;
+}
+
+/* LAYOUT GRID DE DOS COLUMNAS */
+.reserva-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* CARD DE FORMULARIO DE SELECCIÓN */
+.reserva-card-paso {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+}
+
+.bloque-seleccion {
+  margin-bottom: 36px;
+}
+
+.bloque-seleccion h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.subtexto-bloque {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 20px 0;
+}
+
+/* CALENDARIO */
+.calendario-box {
+  max-width: 360px;
+}
+
+.calendario-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cal-mes {
+  font-weight: 700;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.cal-btn-nav {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.cal-btn-nav:hover {
+  background: #f1f5f9;
+}
+
+.calendario-dias-semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.cal-dia {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cal-dia.deshabilitado {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.cal-dia.habilitado {
+  color: #0f172a;
+  cursor: pointer;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+}
+
+.cal-dia.habilitado:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.cal-dia.seleccionado {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transform: scale(1.05);
+}
+
+/* BOTONES DE SELECCIÓN DE CANCHA */
+.canchas-grid-selector {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cancha-opcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cancha-opcion span {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.cancha-opcion strong {
+  font-size: 20px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.cancha-opcion:hover {
+  border-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.cancha-opcion.seleccionada {
+  background: #eff6ff;
+  border: 2px solid #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.cancha-opcion.seleccionada span,
+.cancha-opcion.seleccionada strong {
+  color: #2563eb;
+}
+
+.reserva-acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.btn-continuar {
+  padding: 12px 32px;
+  font-size: 15px;
+  border-radius: 12px;
+}
+
+/* ASIDE RESUMEN DE RESERVA */
+.reserva-resumen-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+}
+
+.reserva-resumen-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 20px 0;
+}
+
+.resumen-filas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resumen-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.resumen-fila span {
+  color: #64748b;
+}
+
+.resumen-fila strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.resumen-divider {
+  border: none;
+  border-top: 1px solid #f1f5f9;
+  margin: 4px 0;
+}
+
+.resumen-fila.total strong {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .reserva-grid {
+    grid-template-columns: 1fr;
+  }
+  .canchas-grid-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* PASO 2: LEYENDA */
+.horario-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.leyenda-punto {
+  width: 16px;
+  height: 16px;
+  border-radius: 6px;
+}
+
+.leyenda-punto.disponible {
+  background: #ffffff;
+  border: 2px solid #16a34a;
+}
+
+.leyenda-punto.ocupado {
+  background: #e2e8f0;
+  border: 2px solid #e2e8f0;
+}
+
+.leyenda-punto.seleccionado {
+  background: #2563eb;
+  border: 2px solid #2563eb;
+}
+
+/* PASO 2: GRID DE HORARIOS */
+.horarios-grid-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.horario-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 16px 8px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.horario-slot strong { font-size: 15px; font-weight: 700; }
+.horario-slot span { font-size: 12px; }
+
+.horario-slot.disponible {
+  background: #f0fdf4;
+  border: 1.5px solid #16a34a;
+  color: #14532d;
+}
+.horario-slot.disponible span { color: #16a34a; }
+.horario-slot.disponible:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(22, 163, 74, 0.18);
+}
+
+.horario-slot.ocupado {
+  background: #f1f5f9;
+  border: 1.5px solid #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+.horario-slot.ocupado span { color: #94a3b8; }
+
+.horario-slot.seleccionado {
+  background: #2563eb;
+  border: 1.5px solid #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+.horario-slot.seleccionado span { color: #dbeafe; }
+
+.estado-carga, .estado-error {
+  font-size: 14px;
+  color: #64748b;
+  padding: 16px 0;
+}
+.estado-error { color: #dc2626; }
+
+.acciones-dos-botones {
+  justify-content: space-between;
+}
+
+@media (min-width: 700px) {
+  .horarios-grid-selector {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* PASO 3: FORMULARIO DE DATOS */
+.form-datos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+  margin-top: 16px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.campo-input {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  font-size: 15px;
+  color: #0f172a;
+  font-family: inherit;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-input::placeholder {
+  color: #94a3b8;
+}
+
+.campo-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.campo-input.con-error {
+  border-color: #dc2626;
+}
+
+.campo-input.con-error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.campo-ayuda-error {
+  font-size: 13px;
+  color: #dc2626;
+}
+
+@media (max-width: 700px) {
+  .form-datos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* PASO 4: RESUMEN Y PAGO */
+.confirma-filas {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.confirma-fila {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.confirma-fila span { color: #64748b; }
+.confirma-fila strong { color: #0f172a; font-weight: 600; }
+
+.total-a-pagar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 18px 20px;
+  background: #dbeafe;
+  border-radius: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.total-a-pagar strong {
+  font-size: 22px;
+  color: #2563eb;
+}
+
+/* PANTALLA DE CONFIRMACIÓN */
+.confirmacion-card {
+  max-width: 520px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.confirmacion-icono {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmacion-card h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+}
+
+.confirmacion-card > p {
+  color: #64748b;
+  font-size: 15px;
+  margin: 0 0 28px 0;
+  line-height: 1.5;
+}
+
+.confirmacion-detalle {
+  text-align: left;
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.total-destacado {
+  color: #2563eb !important;
+  font-size: 18px;
+}
+
+.confirmacion-acciones {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

@@ -6,4 +6,5 @@ export const ClienteService = {
       method: "POST",
       body: JSON.stringify(clienteData),
     }),
+  buscarPorDni: (dni) => fetchAPI(`/clientes/dni/${dni}`),
 };
