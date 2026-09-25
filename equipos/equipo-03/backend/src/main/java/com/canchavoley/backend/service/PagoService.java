@@ -2,41 +2,43 @@ package com.canchavoley.backend.service;
 
 import com.canchavoley.backend.model.Pago;
 import com.canchavoley.backend.repository.PagoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PagoService {
 
-    private final PagoRepository pagoRepository;
+    @Autowired
+    private PagoRepository pagoRepository;
 
-    public PagoService(PagoRepository pagoRepository) {
-        this.pagoRepository = pagoRepository;
-    }
-
-    // ---- GET ----
-    public List<Pago> listar() {
+    // --- GETs ---
+    public List<Pago> obtenerTodos() {
         return pagoRepository.findAll();
     }
 
-    public Pago buscarPorId(Long id) {
-        return pagoRepository.findById(id).orElse(null);
+    public Optional<Pago> obtenerPorId(Long id) {
+        return pagoRepository.findById(id);
     }
 
-    public List<Pago> buscarPorReserva(Long idReserva) {
-        return pagoRepository.findByIdReserva(idReserva);
+    public Optional<Pago> obtenerPorReserva(Long idReserva) {
+        return pagoRepository.findByReservaIdReserva(idReserva);
     }
 
-    public List<Pago> listarConTotalMinimo(Double total) {
-        return pagoRepository.findByTotalGreaterThanEqual(total);
+    public BigDecimal obtenerSumaTotal() {
+        BigDecimal total = pagoRepository.sumarTotalPagos();
+        return total != null ? total : BigDecimal.ZERO;
     }
 
-    public long contar() {
+    public long contarTodos() {
         return pagoRepository.count();
     }
 
-    // ---- POST ----
+    // --- POSTs ---
     public Pago guardar(Pago pago) {
         return pagoRepository.save(pago);
     }
@@ -45,30 +47,29 @@ public class PagoService {
         return pagoRepository.saveAll(pagos);
     }
 
-    // ---- PUT ----
-    public Pago actualizar(Long id, Pago datos) {
-        Pago existente = pagoRepository.findById(id).orElse(null);
-        if (existente == null) return null;
-        existente.setIdReserva(datos.getIdReserva());
-        existente.setTotal(datos.getTotal());
-        return pagoRepository.save(existente);
+    // --- PUTs ---
+    public Pago actualizar(Long id, Pago detalles) {
+        Pago pago = pagoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pago no encontrado con id: " + id));
+        pago.setReserva(detalles.getReserva());
+        pago.setTotal(detalles.getTotal());
+        return pagoRepository.save(pago);
     }
 
-    public Pago actualizarTotal(Long id, Double total) {
-        Pago existente = pagoRepository.findById(id).orElse(null);
-        if (existente == null) return null;
-        existente.setTotal(total);
-        return pagoRepository.save(existente);
+    public Pago actualizarMonto(Long id, BigDecimal nuevoTotal) {
+        Pago pago = pagoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pago no encontrado con id: " + id));
+        pago.setTotal(nuevoTotal);
+        return pagoRepository.save(pago);
     }
 
-    // ---- DELETE ----
-    public boolean eliminar(Long id) {
-        if (!pagoRepository.existsById(id)) return false;
+    // --- DELETEs ---
+    public void eliminarPorId(Long id) {
         pagoRepository.deleteById(id);
-        return true;
     }
 
+    @Transactional
     public void eliminarPorReserva(Long idReserva) {
-        pagoRepository.deleteByIdReserva(idReserva);
+        pagoRepository.deleteByReservaIdReserva(idReserva);
     }
 }

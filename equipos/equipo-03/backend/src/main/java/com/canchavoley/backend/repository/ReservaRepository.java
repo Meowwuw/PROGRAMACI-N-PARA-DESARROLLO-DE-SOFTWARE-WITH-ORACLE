@@ -4,16 +4,21 @@ import com.canchavoley.backend.model.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
+public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
-    List<Reserva> findByIdCliente(int idCliente);
+    // Listar reservas por fecha
+    List<Reserva> findByFecha(LocalDate fecha);
 
-    List<Reserva> findByFecha(String fecha);
+    // Listar reservas por ID de cliente
+    List<Reserva> findByClienteIdCliente(Long idCliente);
 
-    List<Reserva> findByIdCancha(int idCancha);
+    // Listar reservas por ID de cancha
+    List<Reserva> findByCanchaIdCancha(Long idCancha);
 
-    void deleteByIdCliente(int idCliente);
+    // Eliminar todas las reservas de una fecha específica
+    void deleteByFecha(LocalDate fecha);
 }

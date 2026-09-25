@@ -2,14 +2,22 @@ package com.canchavoley.backend.repository;
 
 import com.canchavoley.backend.model.Pago;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.Optional;
 
+@Repository
 public interface PagoRepository extends JpaRepository<Pago, Long> {
 
-    List<Pago> findByIdReserva(Long idReserva);
+    // Buscar pago asociado a una reserva específica
+    Optional<Pago> findByReservaIdReserva(Long idReserva);
 
-    List<Pago> findByTotalGreaterThanEqual(Double total);
+    // Calcular la recaudación total acumulada
+    @Query("SELECT SUM(p.total) FROM Pago p")
+    BigDecimal sumarTotalPagos();
 
-    void deleteByIdReserva(Long idReserva);
+    // Eliminar pago asociado a una reserva específica
+    void deleteByReservaIdReserva(Long idReserva);
 }

@@ -1,36 +1,54 @@
 package com.canchavoley.backend.model;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "pago", schema = "renta_cancha")
 public class Pago {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "id_pago")
+    private Long idPago;
 
-    @Column(name = "id_reserva")
-    private Long idReserva;
+    @OneToOne
+    @JoinColumn(name = "id_reserva", nullable = false, unique = true)
+    private Reserva reserva;
 
-    @Column(name = "total")
-    private Double total;
+    @Column(name = "total", nullable = false, precision = 10, scale = 2)
+    private BigDecimal total;
 
     public Pago() {
     }
 
-    public Pago(Long id, Long idReserva, Double total) {
-        this.id = id;
-        this.idReserva = idReserva;
+    public Pago(Long idPago, Reserva reserva, BigDecimal total) {
+        this.idPago = idPago;
+        this.reserva = reserva;
         this.total = total;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getIdPago() {
+        return idPago;
+    }
 
-    public Long getIdReserva() { return idReserva; }
-    public void setIdReserva(Long idReserva) { this.idReserva = idReserva; }
+    public void setIdPago(Long idPago) {
+        this.idPago = idPago;
+    }
 
-    public Double getTotal() { return total; }
-    public void setTotal(Double total) { this.total = total; }
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
 }
