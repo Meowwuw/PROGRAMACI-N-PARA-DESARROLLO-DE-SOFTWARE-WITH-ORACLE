@@ -1,0 +1,47 @@
+:root {
+    --primary: #4a90e2; --bg: #f4f7f6; --text: #333; --sidebar: #2c3e50;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: var(--bg); color: var(--text); }
+
+/* Login: en el HTML original esto iba en <body class="login-body">.
+   Aqui se aplica desde AuthPage envolviendo el contenido, ver App.jsx si quieres
+   moverlo a nivel de <body> en index.html en su lugar. */
+.login-body, #root:has(.auth-container) {
+    display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+.auth-container { width: 100%; max-width: 400px; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.auth-box { display: none; }
+.auth-box.active { display: block; }
+.auth-box h2 { text-align: center; margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; font-size: 0.9rem; }
+.form-group input, .form-group select { width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px; }
+.btn { padding: 0.8rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-block { width: 100%; }
+.btn-danger { background: #e74c3c; color: white; padding: 5px 10px; font-size: 0.8rem; }
+.switch-form { text-align: center; margin-top: 1rem; font-size: 0.9rem; }
+.alert { padding: 0.8rem; margin-bottom: 1rem; border-radius: 4px; text-align: center; }
+.alert.error { background: #fadbd8; color: #c0392b; }
+.alert.success { background: #d5f5e3; color: #27ae60; }
+
+/* Dashboard Layout */
+.dashboard-layout { display: flex; height: 100vh; }
+.sidebar { width: 250px; background: var(--sidebar); color: white; display: flex; flex-direction: column; padding: 1rem; }
+.brand h2 { text-align: center; padding: 1rem 0; border-bottom: 1px solid #34495e; margin-bottom: 1rem; }
+.nav-menu { flex-grow: 1; }
+.nav-item { display: block; padding: 1rem; color: #bdc3c7; text-decoration: none; border-radius: 4px; margin-bottom: 0.5rem; }
+.nav-item:hover, .nav-item.active { background: #34495e; color: white; }
+.btn-logout { background: #c0392b; color: white; width: 100%; }
+.main-content { flex-grow: 1; padding: 2rem; overflow-y: auto; }
+.topbar h1 { margin-bottom: 2rem; }
+.card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.mt-2 { margin-top: 2rem; }
+
+/* Forms & Tables */
+.grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-actions { grid-column: 1 / -1; }
+.data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.data-table th, .data-table td { border: 1px solid #ddd; padding: 1rem; text-align: left; }
+.data-table th { background-color: #f8f9fa; }
