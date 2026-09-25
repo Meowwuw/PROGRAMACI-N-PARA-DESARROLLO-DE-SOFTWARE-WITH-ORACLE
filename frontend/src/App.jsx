@@ -1,8 +1,8 @@
-import ProductPage from "./pages/ProductPage";
+import ProductosPage from "./pages/ProductosPage.jsx";
 
 function App() {
   return(
-    <ProductPage/>
+    <ProductosPage/>
   );
 }
 
