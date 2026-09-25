@@ -1,18 +1,28 @@
 const API_MASCOTAS = 'http://localhost:8080/api/mascotas';
+const API_APODERADOS = 'http://localhost:8080/api/apoderados';
 
 document.addEventListener('DOMContentLoaded', () => {
     cargarMascotas();
+    cargarApoderados();
 
     // Crear / Insertar
     const formMascota = document.getElementById('form-mascota');
     if (formMascota) {
         formMascota.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            const idApoderado = document.getElementById('mascota-apoderado').value;
+            if (!idApoderado) {
+                alert('Selecciona un apoderado (dueño) antes de guardar.');
+                return;
+            }
+
             const nuevaMascota = {
                 nombre: document.getElementById('mascota-nombre').value,
                 raza: document.getElementById('mascota-raza').value,
                 peso: parseFloat(document.getElementById('mascota-peso').value),
-                genero: document.getElementById('mascota-genero').value
+                genero: document.getElementById('mascota-genero').value,
+                apoderado: { id: parseInt(idApoderado, 10) } // el backend espera el objeto Apoderado, no solo el id suelto
             };
 
             try {
@@ -24,16 +34,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     formMascota.reset();
-                    cargarMascotas(); 
+                    cargarMascotas();
                 } else {
-                    alert('Error al guardar en la base de datos.');
+                    const texto = await response.text();
+                    console.error('Error al guardar mascota:', response.status, texto);
+                    alert(`Error al guardar en la base de datos (HTTP ${response.status}).`);
                 }
             } catch (error) {
+                console.error('Error de red al guardar mascota:', error);
                 alert('No se pudo conectar con el servidor Backend.');
             }
         });
     }
 });
+
+// Carga el select de apoderados
+async function cargarApoderados() {
+    const select = document.getElementById('mascota-apoderado');
+    if (!select) return;
+
+    try {
+        const response = await fetch(API_APODERADOS);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const apoderados = await response.json();
+
+        select.innerHTML = '<option value="">-- Selecciona un apoderado --</option>';
+        apoderados.forEach(a => {
+            const opt = document.createElement('option');
+            opt.value = a.id;
+            opt.textContent = `${a.nombre} (tel: ${a.telefono})`;
+            select.appendChild(opt);
+        });
+    } catch (error) {
+        console.error('Error cargando apoderados:', error);
+        select.innerHTML = '<option value="">Error al cargar apoderados</option>';
+    }
+}
 
 // Leer / Select
 async function cargarMascotas() {
@@ -58,8 +94,7 @@ function renderTabla(mascotas) {
     }
 
     mascotas.forEach(m => {
-        // Asume que tu backend devuelve el ID como id_mascota o id
-        const rowId = m.id_mascota || m.id; 
+        const rowId = m.id_mascota || m.id;
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${rowId}</td>
