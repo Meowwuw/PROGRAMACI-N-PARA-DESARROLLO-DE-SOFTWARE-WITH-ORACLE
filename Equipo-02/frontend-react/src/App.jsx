@@ -5,6 +5,8 @@ import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
 import MascotasPage from './pages/MascotasPage';
 import ApoderadosPage from './pages/ApoderadosPage';
+import VeterinariosPage from './pages/VeterinariosPage';
+import CitasPage from './pages/CitasPage';
 
 export default function App() {
     return (
@@ -21,6 +23,8 @@ export default function App() {
                             </ProtectedRoute>
                         }
                     />
+
+                    {/* Mascotas: admin ve/edita todas, veterinario solo consulta, apoderado ve/crea las suyas */}
                     <Route
                         path="/mascotas"
                         element={
@@ -29,11 +33,33 @@ export default function App() {
                             </ProtectedRoute>
                         }
                     />
+
+                    {/* Apoderados: solo administración */}
                     <Route
                         path="/apoderados"
                         element={
-                            <ProtectedRoute>
+                            <ProtectedRoute roles={['admin']}>
                                 <ApoderadosPage />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    {/* Veterinarios: todos los roles pueden verlos, solo admin puede crear */}
+                    <Route
+                        path="/veterinarios"
+                        element={
+                            <ProtectedRoute>
+                                <VeterinariosPage />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    {/* Citas: admin ve todas, veterinario ve las suyas, apoderado ve/agenda las suyas */}
+                    <Route
+                        path="/citas"
+                        element={
+                            <ProtectedRoute>
+                                <CitasPage />
                             </ProtectedRoute>
                         }
                     />

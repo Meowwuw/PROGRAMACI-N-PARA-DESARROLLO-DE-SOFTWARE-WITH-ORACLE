@@ -1,6 +1,13 @@
 import Layout from '../components/Layout';
 import { useAuth } from '../context/AuthContext';
 
+const DESCRIPCION_ROL = {
+    admin: 'Tienes acceso completo: mascotas, apoderados, veterinarios y citas.',
+    veterinario: 'Puedes ver todas las mascotas con su apoderado y tus citas asignadas.',
+    apoderado: 'Puedes ver tus mascotas, agendar citas y consultar a los veterinarios.',
+    recepcionista: 'Bienvenido/a al sistema.',
+};
+
 export default function HomePage() {
     const { user } = useAuth();
 
@@ -13,6 +20,9 @@ export default function HomePage() {
                         ? `Sesión iniciada como ${user.username} (${user.rol}).`
                         : 'Selecciona una opción en el menú lateral para gestionar la clínica.'}
                 </p>
+                {user?.rol && DESCRIPCION_ROL[user.rol] && (
+                    <p>{DESCRIPCION_ROL[user.rol]}</p>
+                )}
             </section>
         </Layout>
     );

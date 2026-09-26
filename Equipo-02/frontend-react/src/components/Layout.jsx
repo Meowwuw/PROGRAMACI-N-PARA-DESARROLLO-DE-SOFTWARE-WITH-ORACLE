@@ -2,8 +2,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function Layout({ title, children }) {
-    const { cerrarSesion } = useAuth();
+    const { user, cerrarSesion } = useAuth();
     const navigate = useNavigate();
+    const rol = user?.rol;
 
     function handleLogout() {
         cerrarSesion();
@@ -18,11 +19,23 @@ export default function Layout({ title, children }) {
                     <NavLink to="/home" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
                         🏠 Inicio
                     </NavLink>
+
                     <NavLink to="/mascotas" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
-                        🐶 Mascotas
+                        🐶 {rol === 'apoderado' ? 'Mis Mascotas' : 'Mascotas'}
                     </NavLink>
-                    <NavLink to="/apoderados" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
-                        👤 Apoderados
+
+                    {rol === 'admin' && (
+                        <NavLink to="/apoderados" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
+                            👤 Apoderados
+                        </NavLink>
+                    )}
+
+                    <NavLink to="/veterinarios" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
+                        🩺 Veterinarios
+                    </NavLink>
+
+                    <NavLink to="/citas" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
+                        📅 {rol === 'apoderado' ? 'Mis Citas' : 'Citas'}
                     </NavLink>
                 </nav>
                 <button className="btn btn-logout" onClick={handleLogout}>Cerrar Sesión</button>

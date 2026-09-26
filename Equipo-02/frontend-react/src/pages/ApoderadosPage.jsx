@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { listarApoderados, crearApoderado, eliminarApoderado } from '../api/apoderados';
+import { listarMascotas, eliminarMascota } from '../api/mascotas';
 
 export default function ApoderadosPage() {
     const [apoderados, setApoderados] = useState([]);
     const [error, setError] = useState('');
+    const [mensaje, setMensaje] = useState('');
 
     const [nombre, setNombre] = useState('');
     const [telefono, setTelefono] = useState('');
@@ -25,8 +27,10 @@ export default function ApoderadosPage() {
     async function handleSubmit(e) {
         e.preventDefault();
         setError('');
+        setMensaje('');
         try {
             await crearApoderado({ nombre, telefono });
+            setMensaje(`Apoderado "${nombre}" guardado correctamente.`);
             setNombre('');
             setTelefono('');
             cargarApoderados();
@@ -35,10 +39,34 @@ export default function ApoderadosPage() {
         }
     }
 
-    async function handleEliminar(id) {
-        if (!window.confirm(`¿Eliminar de la base de datos al apoderado con ID ${id}?`)) return;
+    async function handleEliminar(id, nombreApoderado) {
+        setError('');
+        setMensaje('');
         try {
+            const todasLasMascotas = await listarMascotas();
+            const mascotasDelApoderado = todasLasMascotas.filter((m) => m.apoderado?.id === id);
+
+            let mensajeConfirmacion = `¿Eliminar al apoderado "${nombreApoderado}"?`;
+            if (mascotasDelApoderado.length > 0) {
+                const listado = mascotasDelApoderado.map((m) => `• ${m.nombre} (${m.raza})`).join('\n');
+                mensajeConfirmacion +=
+                    `\n\nTiene ${mascotasDelApoderado.length} mascota(s) registrada(s) a su nombre. ` +
+                    `Si continúas, también se eliminarán:\n${listado}`;
+            }
+
+            if (!window.confirm(mensajeConfirmacion)) return;
+
+            // Primero las mascotas (si las hay), luego el apoderado.
+            for (const m of mascotasDelApoderado) {
+                await eliminarMascota(m.id);
+            }
             await eliminarApoderado(id);
+
+            setMensaje(
+                mascotasDelApoderado.length > 0
+                    ? `Apoderado "${nombreApoderado}" y ${mascotasDelApoderado.length} mascota(s) eliminados correctamente.`
+                    : `Apoderado "${nombreApoderado}" eliminado correctamente.`
+            );
             cargarApoderados();
         } catch (err) {
             alert(`Error al eliminar: ${err.message}`);
@@ -50,6 +78,7 @@ export default function ApoderadosPage() {
             <section className="card">
                 <h2>Registrar Apoderado</h2>
                 {error && <div className="alert error">{error}</div>}
+                {mensaje && <div className="alert success">{mensaje}</div>}
                 <form className="grid-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Nombre:</label>
@@ -89,7 +118,7 @@ export default function ApoderadosPage() {
                                     <td><strong>{a.nombre}</strong></td>
                                     <td>{a.telefono}</td>
                                     <td>
-                                        <button className="btn btn-danger" onClick={() => handleEliminar(a.id)}>
+                                        <button className="btn btn-danger" onClick={() => handleEliminar(a.id, a.nombre)}>
                                             Eliminar
                                         </button>
                                     </td>

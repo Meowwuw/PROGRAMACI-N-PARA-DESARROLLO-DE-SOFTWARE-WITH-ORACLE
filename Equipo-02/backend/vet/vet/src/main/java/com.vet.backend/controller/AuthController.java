@@ -64,7 +64,9 @@ public class AuthController {
         Usuario guardado = usuarioRepository.save(usuario);
 
         AuthResponse body = new AuthResponse(guardado.getId(), guardado.getUsername(),
-                guardado.getEmail(), rol.getNombreRol());
+                guardado.getEmail(), rol.getNombreRol(),
+                guardado.getApoderado() != null ? guardado.getApoderado().getId() : null,
+                guardado.getVeterinario() != null ? guardado.getVeterinario().getId() : null);
         return ResponseEntity.status(HttpStatus.CREATED).body(body);
     }
 
@@ -84,7 +86,9 @@ public class AuthController {
 
         AuthResponse body = new AuthResponse(
                 u.getId(), u.getUsername(), u.getEmail(),
-                u.getRol() != null ? u.getRol().getNombreRol() : null);
+                u.getRol() != null ? u.getRol().getNombreRol() : null,
+                u.getApoderado() != null ? u.getApoderado().getId() : null,
+                u.getVeterinario() != null ? u.getVeterinario().getId() : null);
         return ResponseEntity.ok(body);
     }
 }
