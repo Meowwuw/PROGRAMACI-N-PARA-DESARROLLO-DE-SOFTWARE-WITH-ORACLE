@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import BrandPanel from '../components/BrandPanel.jsx'
 import HeaderBrand from '../components/HeaderBrand.jsx'
+import { guardarSesion } from '../lib/session.js'
 
 const API_BASE = 'http://localhost:8080/api'
 
@@ -11,6 +12,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [mensaje, setMensaje] = useState({ texto: '', tipo: '' })
   const [enviando, setEnviando] = useState(false)
+  const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -18,19 +20,23 @@ export default function Login() {
     setMensaje({ texto: '', tipo: '' })
 
     try {
-      // NOTA: el archivo original "app.js" (login) no venía en el proyecto
-      // que subiste, así que este endpoint es una suposición razonable.
-      // Ajusta la ruta/nombre de campos si tu UsuarioController espera otra cosa.
-      const response = await fetch(`${API_BASE}/auth/login`, {
+      // Confirmado con UsuarioController.java: POST /api/usuarios/login,
+      // body {email, password}, responde el objeto Usuario completo.
+      const response = await fetch(`${API_BASE}/usuarios/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       })
 
       if (response.ok) {
+        const usuario = await response.json()
+        // No guardamos el password en localStorage aunque el backend lo
+        // devuelva; no hace falta tenerlo en el navegador para nada.
+        const { password: _password, ...datosUsuario } = usuario
+
+        guardarSesion(datosUsuario)
         setMensaje({ texto: 'Sesión iniciada correctamente.', tipo: 'success' })
-        // Aquí normalmente guardarías el token/usuario y redirigirías,
-        // por ejemplo con useNavigate() de react-router.
+        navigate('/')
       } else if (response.status === 401) {
         setMensaje({ texto: 'Correo o contraseña incorrectos.', tipo: 'error' })
       } else {
@@ -45,6 +51,7 @@ export default function Login() {
   }
 
   return (
+    <div className="auth-shell">
     <div className="main-container">
       <BrandPanel />
 
@@ -116,6 +123,7 @@ export default function Login() {
           <div className="form-footer">Sistema de gestión veterinaria v2.4.1</div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

@@ -7,6 +7,12 @@
 }
 
 body {
+  min-height: 100vh;
+}
+
+/* Solo Login y Crear cuenta usan este wrapper para quedar centrados
+   sobre el fondo gris, como tarjeta flotante */
+.auth-shell {
   background-color: #7d8489;
   min-height: 100vh;
   display: flex;
@@ -319,5 +325,650 @@ select.form-control {
 
   .right-panel {
     padding: 35px 25px;
+  }
+}
+/* ==========================================
+   Layout interno (sidebar + topbar + contenido)
+   ========================================== */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #eef4f1;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-right: 1px solid #e3ece7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 16px;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 20px;
+}
+
+.sidebar-paw-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #16a077;
+}
+
+.sidebar-brand-sub {
+  font-size: 0.72rem;
+  color: #8a9a93;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #445048;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.sidebar-link:hover {
+  background: #f1f7f4;
+}
+
+.sidebar-link-active {
+  background: #c9e9d2;
+  color: #146c4f;
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid #eef1ef;
+  padding-top: 12px;
+}
+
+.sidebar-logout {
+  color: #445048;
+}
+
+.app-shell-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e3ece7;
+  padding: 14px 28px;
+}
+
+.topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f4f7f6;
+  border: 1px solid #e3ece7;
+  border-radius: 10px;
+  padding: 8px 14px;
+  max-width: 420px;
+  color: #8a9a93;
+}
+
+.topbar-search input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #2c332f;
+}
+
+.app-shell-content {
+  padding: 28px;
+  flex: 1;
+}
+
+.page-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #1e2a24;
+  margin: 0;
+}
+
+.page-subtitle {
+  color: #7c8c84;
+  font-size: 0.9rem;
+  margin: 4px 0 0;
+}
+
+.page-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* Tarjetas de estadisticas del dashboard */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 22px 0;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #e3ece7;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.stat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.stat-icon-mint { background: #35c9a5; }
+.stat-icon-teal { background: #57c8c8; }
+.stat-icon-slate { background: #7c93a8; }
+
+.stat-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #1e2a24;
+}
+
+.stat-label {
+  color: #7c8c84;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+/* Paneles genericos (consultas de hoy, accesos rapidos, veterinarios, tabla) */
+.home-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.home-side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #e3ece7;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.panel h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e2a24;
+  margin: 0 0 14px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.panel-header h2 { margin: 0; }
+
+.panel-link {
+  color: #16a077;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.empty-hint {
+  color: #9aa8a1;
+  font-size: 0.88rem;
+  padding: 8px 0;
+}
+
+.today-list, .vet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.today-item, .vet-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.today-item-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #eafaf3;
+  color: #16a077;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.today-item-title, .vet-item-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1e2a24;
+}
+
+.today-item-sub, .vet-item-sub {
+  font-size: 0.8rem;
+  color: #8a9a93;
+}
+
+.vet-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #16a077;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-quick {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-quick:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.btn-quick-primary { background: #16a077; color: #ffffff; }
+.btn-quick-secondary { background: #c9e9d2; color: #146c4f; }
+.btn-quick-light { background: #eafaf3; color: #16a077; }
+
+/* Tabla de listados (Duenos, Mascotas, etc.) */
+.table-search {
+  margin-bottom: 16px;
+}
+
+.table-search input {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #e3ece7;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.table-search input:focus {
+  border-color: #1ed0a8;
+}
+
+.panel-table {
+  padding: 0;
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #8a9a93;
+  padding: 14px 20px;
+  border-bottom: 1px solid #eef1ef;
+}
+
+.data-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f3f6f4;
+  font-size: 0.9rem;
+  color: #2c332f;
+}
+
+.data-row:last-child td {
+  border-bottom: none;
+}
+
+.row-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #16a077;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-count {
+  background: #16a077;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.row-chevron {
+  color: #b7c3bd;
+  text-align: right;
+}
+
+.btn-inline {
+  width: auto;
+  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .home-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================
+   Modal generico (Agregar dueño, Agregar mascota, etc.)
+   ========================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 28, 24, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #eef1ef;
+}
+
+.modal-header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e2a24;
+}
+
+.modal-close {
+  border: none;
+  background: none;
+  color: #8a9a93;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.modal-close:hover {
+  background: #f1f7f4;
+}
+
+.modal-body {
+  padding: 20px 22px 24px;
+}
+
+.modal-form .form-group {
+  margin-bottom: 14px;
+}
+
+/* ==========================================
+   Detalle de consulta (servicios aplicados)
+   ========================================== */
+.data-row-clickable {
+  cursor: pointer;
+}
+
+.data-row-clickable:hover {
+  background: #f7faf8;
+}
+
+.detalle-linea {
+  font-size: 0.9rem;
+  color: #2c332f;
+  margin-bottom: 6px;
+}
+
+.detalle-subtitulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1e2a24;
+  margin: 18px 0 10px;
+}
+
+.servicios-aplicados-list {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.servicio-aplicado-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #f7faf8;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.servicio-precio {
+  font-weight: 700;
+  color: #16a077;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.detalle-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed #e3ece7;
+  padding-top: 12px;
+  margin-bottom: 18px;
+  font-size: 0.9rem;
+  color: #2c332f;
+}
+
+.agregar-servicio-form {
+  border-top: 1px solid #eef1ef;
+  padding-top: 16px;
+}
+
+/* ==========================================
+   Catalogos (pestanas) y Reportes (barras)
+   ========================================== */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e3ece7;
+}
+
+.tab-btn {
+  border: none;
+  background: none;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #7c8c84;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn-active {
+  color: #16a077;
+  border-bottom-color: #16a077;
+}
+
+.row-avatar-icon {
+  color: #ffffff;
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 70px;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar-label {
+  font-size: 0.82rem;
+  color: #2c332f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-track {
+  height: 10px;
+  background: #eef4f1;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.bar-fill-mint { background: #35c9a5; }
+.bar-fill-teal { background: #57c8c8; }
+
+.bar-value {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1e2a24;
+  text-align: right;
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.perfil-avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .bar-row {
+    grid-template-columns: 90px 1fr 60px;
   }
 }

@@ -97,6 +97,7 @@ export default function AgregarCuenta() {
   }
 
   return (
+    <div className="auth-shell">
     <div className="main-container">
       <BrandPanel />
 
@@ -190,12 +191,13 @@ export default function AgregarCuenta() {
           )}
 
           <p className="create-account-text">
-            <Link to="/" className="create-account-link">Volver al inicio de sesión</Link>
+            <Link to="/login" className="create-account-link">Volver al inicio de sesión</Link>
           </p>
 
           <div className="form-footer">Sistema de gestión veterinaria v2.4.1</div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
