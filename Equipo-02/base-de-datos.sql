@@ -11,6 +11,8 @@ DROP SCHEMA IF EXISTS a_veterinaria CASCADE;
 CREATE SCHEMA IF NOT EXISTS a_veterinaria;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
+--EJECUTAR EN LA BASE DE DATOS SI NO REGISTRA CONSULTAS
+ALTER TABLE a_veterinaria.consulta ADD COLUMN id_mascota INT REFERENCES a_veterinaria.mascota(id_mascota);
 -- ---------------------------------------------------------------------
 -- CREACION DE TABLAS · SISTEMA DE VETERINARIA
 -- ---------------------------------------------------------------------
