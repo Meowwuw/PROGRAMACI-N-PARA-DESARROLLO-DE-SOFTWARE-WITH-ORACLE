@@ -1,0 +1,531 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background: #0f172a;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  flex-shrink: 0;
+  animation: adminSidebarIn 0.35s ease both;
+}
+
+@keyframes adminSidebarIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.admin-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 20px 8px;
+}
+
+.admin-marca .logo {
+  width: 32px;
+  height: 32px;
+  background: #2563eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.admin-marca .marca-nombre {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.admin-etiqueta {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  padding: 0 8px 10px 8px;
+  text-transform: uppercase;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.admin-nav-item {
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  animation: adminNavItemIn 0.3s ease both;
+}
+
+@keyframes adminNavItemIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.admin-nav-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(2px);
+}
+
+.admin-nav-item.activo {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.admin-cerrar-sesion {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: #f87171;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.18s ease;
+}
+
+.admin-cerrar-sesion:hover {
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.admin-contenido {
+  flex: 1;
+  padding: 32px 40px;
+  overflow-y: auto;
+}
+
+.admin-vista {
+  animation: adminVistaIn 0.28s ease both;
+}
+
+@keyframes adminVistaIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-encabezado h1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.admin-encabezado p { color: #64748b; margin: 0; }
+
+.admin-btn-primario {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.admin-btn-primario:hover { background: #1d4ed8; transform: translateY(-1px); }
+.admin-btn-primario:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.btn-admin-secundario {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.18s ease;
+}
+
+.btn-admin-secundario:hover { background: #f1f5f9; }
+
+.admin-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-tarjeta {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: adminTarjetaIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes adminTarjetaIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.admin-tarjeta span { color: #64748b; font-size: 14px; }
+.admin-tarjeta strong { font-size: 26px; color: #0f172a; }
+.admin-tarjeta small { color: #94a3b8; font-size: 12px; }
+
+.admin-paneles-dobles {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+.admin-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  animation: adminTarjetaIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.admin-panel h3 { margin: 0 0 20px 0; font-size: 17px; color: #0f172a; }
+
+.admin-barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  height: 200px;
+}
+
+.admin-barra-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.admin-barra-valor { font-size: 13px; font-weight: 700; color: #0f172a; }
+
+.admin-barra {
+  width: 100%;
+  max-width: 48px;
+  background: #2563eb;
+  border-radius: 8px 8px 0 0;
+  animation: adminBarraIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.3s;
+  transform-origin: bottom;
+}
+
+@keyframes adminBarraIn {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.admin-barra-label { font-size: 12px; color: #64748b; }
+
+.admin-lista-reservas {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-fila-reserva {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.admin-fila-reserva span { color: #0f172a; font-weight: 500; }
+.admin-fila-reserva strong { color: #64748b; font-weight: 600; }
+
+.estado-carga, .estado-error {
+  font-size: 14px;
+  color: #64748b;
+  padding: 20px 0;
+}
+.estado-error { color: #dc2626; }
+
+/* FILTROS / BUSCADOR (Reservas y demás secciones tipo tabla) */
+.admin-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-buscador {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  font-size: 14px;
+  font-family: inherit;
+  background: #ffffff;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.admin-buscador:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.admin-chips-filtro {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-chip {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.18s ease;
+}
+
+.admin-chip:hover { border-color: #93c5fd; }
+
+.admin-chip.activo {
+  background: #dbeafe;
+  border-color: #2563eb;
+  color: #1d4ed8;
+}
+
+/* TABLA */
+.admin-tabla-wrap {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  overflow-x: auto;
+}
+
+.admin-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-tabla th {
+  text-align: left;
+  padding: 16px 20px;
+  color: #64748b;
+  font-weight: 600;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.admin-tabla td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.admin-tabla tbody tr {
+  animation: adminFilaIn 0.25s ease both;
+}
+
+@keyframes adminFilaIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.admin-link-editar {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.admin-link-eliminar {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  margin-left: 12px;
+}
+
+.admin-link-editar:hover, .admin-link-eliminar:hover { text-decoration: underline; }
+
+.admin-conteo {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* MODAL (Nueva/Editar reserva, y el resto de secciones CRUD) */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  animation: adminOverlayIn 0.2s ease forwards;
+}
+
+.admin-modal-overlay.salida {
+  animation: adminOverlayOut 0.2s ease forwards;
+}
+
+@keyframes adminOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes adminOverlayOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.admin-modal-contenido {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: adminModalIn 0.2s ease forwards;
+}
+
+.admin-modal-contenido.salida {
+  animation: adminModalOut 0.2s ease forwards;
+}
+
+@keyframes adminModalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes adminModalOut {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.95) translateY(10px); }
+}
+
+.admin-modal-contenido h2 {
+  margin: 0 0 4px 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.admin-modal-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* Botón cerrar (reutilizado del estilo del modal de contacto) */
+.admin-modal-contenido .modal-cerrar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease;
+}
+
+.admin-modal-contenido .modal-cerrar:hover { background: #e2e8f0; }
+
+/* Reutilizados por el formulario (campo-grupo, campo-label, campo-input, campo-ayuda-error) */
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.campo-input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  font-size: 14px;
+  color: #0f172a;
+  font-family: inherit;
+  background: #ffffff;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.campo-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.campo-ayuda-error {
+  font-size: 13px;
+  color: #dc2626;
+}
+
+@media (max-width: 900px) {
+  .admin-tarjetas { grid-template-columns: repeat(2, 1fr); }
+  .admin-paneles-dobles { grid-template-columns: 1fr; }
+}

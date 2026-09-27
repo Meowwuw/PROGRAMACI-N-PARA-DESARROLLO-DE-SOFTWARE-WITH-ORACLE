@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './InicioPage.css';
 
 const getImageUrl = (name) => {
@@ -7,6 +7,7 @@ const getImageUrl = (name) => {
 };
 
 export default function InicioPage() {
+  const navigate = useNavigate();
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [conSombra, setConSombra] = useState(false);
   const [seccionActiva, setSeccionActiva] = useState('inicio');
@@ -14,6 +15,12 @@ export default function InicioPage() {
   // Estados para el modal de contacto y animación de salida
   const [modalContactoAbierto, setModalContactoAbierto] = useState(false);
   const [cerrandoModal, setCerrandoModal] = useState(false);
+
+  // Estados para el login oculto de administrador
+  const [mostrarLoginAdmin, setMostrarLoginAdmin] = useState(false);
+  const [cerrandoLoginModal, setCerrandoLoginModal] = useState(false);
+  const [loginAdmin, setLoginAdmin] = useState({ usuario: '', clave: '' });
+  const [errorLoginAdmin, setErrorLoginAdmin] = useState('');
 
   useEffect(() => {
     const ids = ['inicio', 'canchas', 'horarios'];
@@ -144,6 +151,31 @@ export default function InicioPage() {
     }, 200);
   };
 
+  const abrirLoginAdmin = () => {
+    setLoginAdmin({ usuario: '', clave: '' });
+    setErrorLoginAdmin('');
+    setMostrarLoginAdmin(true);
+  };
+
+  const cerrarLoginAdmin = () => {
+    setCerrandoLoginModal(true);
+    setTimeout(() => {
+      setMostrarLoginAdmin(false);
+      setCerrandoLoginModal(false);
+    }, 200);
+  };
+
+  const intentarLoginAdmin = (e) => {
+    e.preventDefault();
+    if (loginAdmin.usuario === 'admin' && loginAdmin.clave === '1234') {
+      sessionStorage.setItem('admin_autenticado', 'true');
+      setMostrarLoginAdmin(false);
+      navigate('/admin');
+    } else {
+      setErrorLoginAdmin('Usuario o contraseña incorrectos.');
+    }
+  };
+
   const canchas = [
     { id: 1, nombre: 'Cancha 1', precio: 'Desde S/ 20 por hora', img: getImageUrl('Cancha 1.png') },
     { id: 2, nombre: 'Cancha 2', precio: 'Desde S/ 20 por hora', img: getImageUrl('Cancha 2.png') },
@@ -171,7 +203,7 @@ export default function InicioPage() {
       {/* HEADER / NAVBAR */}
       <header className={`header ${conSombra ? 'con-sombra' : ''}`} id="header">
         <div className="container header-in">
-          <a href="#inicio" className="marca" onClick={(e) => irASeccion(e, 'inicio')} aria-label="CanchaVóley, ir al inicio">
+          <a href="#inicio" className="marca" onClick={(e) => irASeccion(e, 'inicio')} onDoubleClick={abrirLoginAdmin} aria-label="CanchaVóley, ir al inicio">
             <span className="logo">V</span>
             <span className="marca-nombre">CanchaVóley</span>
           </a>
@@ -391,6 +423,63 @@ export default function InicioPage() {
             >
               Entendido
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL LOGIN ADMIN (oculto, doble clic en el logo) */}
+      {mostrarLoginAdmin && (
+        <div
+          className={`modal-overlay ${cerrandoLoginModal ? 'salida' : ''}`}
+          onClick={cerrarLoginAdmin}
+        >
+          <div
+            className={`modal-contenido ${cerrandoLoginModal ? 'salida' : ''}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-cerrar"
+              type="button"
+              onClick={cerrarLoginAdmin}
+              aria-label="Cerrar modal"
+            >
+              ✕
+            </button>
+
+            <span className="etiqueta">Acceso restringido</span>
+            <h2>Acceso administrador</h2>
+            <p className="modal-sub">Ingresa tus credenciales para continuar.</p>
+
+            <form onSubmit={intentarLoginAdmin} className="form-login-admin">
+              <div className="campo-grupo">
+                <label className="campo-label" htmlFor="admin-usuario">Usuario</label>
+                <input
+                  id="admin-usuario"
+                  type="text"
+                  className="campo-input"
+                  value={loginAdmin.usuario}
+                  onChange={(e) => setLoginAdmin((prev) => ({ ...prev, usuario: e.target.value }))}
+                  autoFocus
+                />
+              </div>
+
+              <div className="campo-grupo">
+                <label className="campo-label" htmlFor="admin-clave">Contraseña</label>
+                <input
+                  id="admin-clave"
+                  type="password"
+                  className="campo-input"
+                  value={loginAdmin.clave}
+                  onChange={(e) => setLoginAdmin((prev) => ({ ...prev, clave: e.target.value }))}
+                />
+              </div>
+
+              {errorLoginAdmin && <span className="campo-ayuda-error">{errorLoginAdmin}</span>}
+
+              <button type="submit" className="btn btn-primario modal-btn">
+                Ingresar
+              </button>
+            </form>
           </div>
         </div>
       )}

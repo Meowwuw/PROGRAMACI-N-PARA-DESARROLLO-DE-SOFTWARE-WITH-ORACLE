@@ -6,6 +6,7 @@ import { HorariosPage } from './pages/HorariosPage';
 import { ContactoPage } from './pages/ContactoPage';
 import ReservaPage from './pages/ReservaPage';
 import { ConfirmacionPage } from './pages/ConfirmacionPage';
+import { AdminPage } from './pages/AdminPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/reservar" element={<ReservaPage />} />
         <Route path="/confirmacion" element={<ConfirmacionPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
   );

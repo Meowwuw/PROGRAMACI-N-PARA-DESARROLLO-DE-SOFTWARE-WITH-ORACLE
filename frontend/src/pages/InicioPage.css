@@ -1041,3 +1041,48 @@ html {
     transform: scale(0.95) translateY(10px);
   }
 }
+
+/* FORMULARIO DE LOGIN ADMIN (dentro del modal) */
+.form-login-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.campo-input {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  font-size: 15px;
+  color: #0f172a;
+  font-family: inherit;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.campo-ayuda-error {
+  font-size: 13px;
+  color: #dc2626;
+}
