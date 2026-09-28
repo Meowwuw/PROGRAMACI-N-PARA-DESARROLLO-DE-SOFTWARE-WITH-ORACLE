@@ -1,0 +1,17 @@
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.producto-card {
+  width: 220px;
+  padding: 20px;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.producto-card h2 {
+  margin-top: 0;
+}

@@ -1,14 +1,12 @@
 package com.tecnomichistore.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "producto", schema = "michistore")
 public class Producto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_producto")
     private Long id;
 
@@ -43,6 +41,21 @@ public class Producto {
     public Integer getStock(){
         return stock;
     }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    public void setCategoria(String categoria){
+        this.categoria = categoria;
+    }
+    public void setPrecio(Double precio){
+        this.precio = precio;
+    }
+    public void setStock(Integer stock){
+        this.stock = stock;
+    }
+
+
 }
 
 

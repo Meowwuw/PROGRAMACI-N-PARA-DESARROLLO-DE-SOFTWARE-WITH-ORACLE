@@ -16,4 +16,9 @@ public class ClienteService {
     public List<Cliente> obtenerTodosLosClientes() {
         return clienteRepository.findAll();
     }
+
+    public Cliente actualizar(Long id, Cliente cliente) {
+        cliente.setId(id);
+        return clienteRepository.save(cliente);
+    }
 }
