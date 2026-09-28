@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="946d786f-aab1-4bed-8d47-af542fd06bd3" name="Changes" comment="" />
+=======
+    <list default="true" id="946d786f-aab1-4bed-8d47-af542fd06bd3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> ce80903c76ad225c1560f4a7b087c4f61ac56820
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +19,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Daybenvv-code"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Meowwuw/PROGRAMACI-N-PARA-DESARROLLO-DE-SOFTWARE-WITH-ORACLE.git",
+    "accountId": "172ff7ba-7ae9-4fd4-9738-1ea466ca11bf"
+  }
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -29,6 +47,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.ServicioCanchaApplication.executor&quot;: &quot;Run&quot;,
@@ -44,6 +63,48 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ServicioCanchaApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.ServicioCanchaApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "equipo-06-spring",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ARDEY/Documents/PROGRAMACI-N-PARA-DESARROLLO-DE-SOFTWARE-WITH-ORACLE/equipos/equipo-06/Backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ServicioCanchaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="ServicioCancha" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.serviciocancha.ServicioCanchaApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.serviciocancha.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ServicioCanchaApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+>>>>>>> ce80903c76ad225c1560f4a7b087c4f61ac56820
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
