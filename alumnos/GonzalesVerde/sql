@@ -1,0 +1,119 @@
+select current_schema();
+select table_name from information_schema.tables
+WHERE table_schema = current_schema();
+SELECT COUNT(*) FROM cliente;
+
+-- Una sola fila con el resumen completo del catalogo
+SELECT COUNT(*)     AS total_productos,
+       AVG(precio)  AS precio_promedio,
+       MAX(precio)  AS mas_caro,
+       MIN(precio)  AS mas_barato,
+       SUM(stock)   AS unidades_en_stock
+FROM producto;
+  select * from cliente;
+-- El promedio sale con muchos decimales. Se redondea:
+SELECT ROUND(AVG(precio), 2) AS precio_promedio FROM producto;
+ -- >>> TE TOCA A TI (1):
+-- a) Cuantos clientes hay registrados?
+--count()
+select COUNT(*)  as total_clientes
+from cliente;
+
+
+-- b) cual es el total  de unidades vendidas en detalle_pedido?
+--sum()
+SELECT SUM(cantidad) AS total_unidades_vendidas 
+FROM detalle_pedido;
+-- c) cuant suma el promedio ma	s caro?
+--  (pista: cantidad * precio_unit, agrupado por pedido)
+select id_pedido,
+sum(cantidad* precio_unit) as total_pedido
+from detalle_pedido
+group by id_pedido
+order by total_pedido desc
+limit 2;
+select * from detalle_pedido;
+select * from cliente limit 3;
+
+SELECT categoria,
+       COUNT(*)               AS cantidad,
+       ROUND(AVG(precio), 2)  AS precio_promedio
+FROM producto
+GROUP BY categoria
+ORDER BY cantidad DESC;
+
+select * from producto;
+
+-- Cuantos clientes tengo por ciudad?
+SELECT ciudad, COUNT(*) AS clientes
+FROM cliente
+GROUP BY ciudad
+ORDER BY clientes DESC;
+ 
+-- Cuanto vendi de cada producto? (agrupando con JOIN)
+SELECT pr.nombre,
+       SUM(d.cantidad) AS unidades,
+       SUM(d.cantidad * d.precio_unit) AS total
+FROM detalle_pedido d
+JOIN producto pr ON d.id_producto = pr.id_producto
+GROUP BY pr.nombre
+ORDER BY total DESC;
+-- >>> TE TOCA A TI (2):
+-- Cuantos pedidos tiene cada cliente? muestra apellido y cantidad,
+-- del que mas pide al que menos.
+--JOIN
+SELECT 
+    c.apellido, 
+    COUNT(p.id_pedido) AS cantidad_pedidos
+FROM cliente c
+  left JOIN pedido p ON c.id_cliente = p.id_cliente
+GROUP BY c.id_cliente , c.apellido 
+ORDER BY cantidad_pedidos DESC;
+
+ select * from cliente;
+select * from detalle_pedido;
+select * from pedido;
+
+-- Ciudades donde tengo mas de un cliente,
+-- considerando solo clientes con correo registrado
+SELECT ciudad, COUNT(*) AS clientes
+FROM cliente
+WHERE correo IS NOT NULL      -- filtra filas
+GROUP BY ciudad
+HAVING COUNT(*) > 1;          -- filtra grupos
+
+select * from cliente;
+-- >>> TE TOCA A TI(3):
+-- a) Que categoria  tienen mas de un producto en catalogo?
+select categoria 
+   count(*) as total_producto
+   from producto
+   group by categoria
+   having count(*) >1;
+select * from producto;
+-- b) Que clientes han hecho 2 o mas pedidos?
+select c.apellidos,
+count(*) as total_pedidos
+from cliente  c
+join pedido p on
+group by c.apellido
+having count(*) >=2;
+
+select * from cliente, detalle_pedido 
+-- c) Que productos han vendido mas de 1 unidad en total?
+-- Pista: si la condicion contiene COUNT, SUM o AVG VA en el HAVING.
+SELECT 
+    pr.nombre, 
+    SUM(d.cantidad) AS total_unidades
+FROM detalle_pedido d
+JOIN producto pr ON d.id_producto = pr.id_producto
+GROUP BY pr.id_producto, pr.nombre
+HAVING SUM(d.cantidad) > 1
+ORDER BY total_unidades DESC;
+-- b) Lista los productos que nunca a vendido.
+SELECT 
+    pr.id_producto,
+    pr.nombre
+FROM producto pr
+LEFT JOIN detalle_pedido d ON pr.id_producto = d.id_producto
+WHERE d.id_producto IS NULL;
