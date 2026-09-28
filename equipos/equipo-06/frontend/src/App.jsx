@@ -1,9 +1,9 @@
 import React from 'react';
-import ClientePage from "./pages/ClientePage.jsx";
+import CanchaPage from "./pages/CanchaPage.jsx";
 
 function App() {
-  return(
-    <ClientePage/>
+  return (
+    <CanchaPage />
   );
 }
 
