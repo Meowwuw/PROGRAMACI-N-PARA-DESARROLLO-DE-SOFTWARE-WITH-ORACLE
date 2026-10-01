@@ -1,6 +1,7 @@
 import ProductoCard from "../components/ProductoCard.jsx";
 import { obtenerProductos } from "../services/productoService.jsx";
 import { useState, useEffect } from "react";
+import "../styles/producto.css";
 
 function ProductosPage() {
     const [productos, setProductos] = useState([]);
