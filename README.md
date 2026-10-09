@@ -50,9 +50,9 @@ La aplicación se divide en un **frontend** (interfaz de usuario) y un **backend
 
 | Recurso | URL |
 |---------|-----|
-| 🌐 Frontend (público) | `PEGAR_AQUI_URL_DE_VERCEL` |
-| ⚙️ Backend (público) | `PEGAR_AQUI_URL_DE_RAILWAY` |
-| 🎨 Figma (público) | `PEGAR_AQUI_URL_DE_FIGMA` |
+| 🌐 Frontend (público) | `https://veterinaria-patitas-2f1vg3ilv-alexgonzales-xds-projects.vercel.app` |
+| ⚙️ Backend (público) | `veterinaria-patitas-production.up.railway.app` |
+| 🎨 Figma (público) | `https://www.figma.com/design/2eHK2MC9R4LZfqBcBuIZO3/Veterinaria-Patitas?node-id=0-1&t=bMD9J4WaMopCogZb-1` |
 | 💻 Repositorio | https://github.com/Meowwuw/PROGRAMACI-N-PARA-DESARROLLO-DE-SOFTWARE-WITH-ORACLE |
 
 ---
